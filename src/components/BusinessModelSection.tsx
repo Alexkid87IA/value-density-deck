@@ -42,61 +42,66 @@ export default function BusinessModelSection() {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  // Revenue motors data
+  // Revenue motors data RÉALISTES
   const revenueMotors = [
     {
-      name: "Co-création & co-shooting",
-      percentage: 35,
-      ticket: "15 k€",
-      margin: 55,
-      scale: "Studios en propre + workflow IA pour réduire 40 % des coûts",
+      name: "Brand content & Collabs",
+      percentage: 52,
+      revenue: "24k€/mois",
+      margin: 70,
+      details: "2-3 ops/mois × 5-7k€",
+      breakdown: [
+        { type: "Brand content", count: "2-3/mois", price: "5-7k€", total: "15k€" },
+        { type: "Interview collab", count: "2-3/mois", price: "3k€", total: "9k€" }
+      ],
       color: "rgba(56, 189, 248, 0.5)"
     },
     {
-      name: "Contenus sponsorisés",
+      name: "Communauté Skool",
       percentage: 20,
-      ticket: "8 k€",
-      margin: 70,
-      scale: "Emplacements éditoriaux premium, intégrés sans rupture UX",
+      revenue: "9k€/mois",
+      margin: 85,
+      details: "150 membres × 60€/mois",
+      breakdown: [
+        { type: "Accès communauté Roger", desc: "Lives hebdo + ressources" },
+        { type: "Coaching groupe", desc: "Sessions mensuelles" },
+        { type: "Network exclusif", desc: "Mise en relation membres" }
+      ],
       color: "rgba(125, 211, 252, 0.5)"
     },
     {
-      name: "Événements & expériences",
-      percentage: 15,
-      ticket: "120 €",
-      margin: 45,
-      scale: "Talks, masterclass, enregistrements publics : cross-pollinisation avec la communauté",
+      name: "Monétisation RS",
+      percentage: 13,
+      revenue: "6k€/mois",
+      margin: 95,
+      details: "TikTok + Facebook + YouTube",
+      breakdown: [
+        { type: "Facebook", views: "4M vues", cpm: "0.7€", total: "2.8k€" },
+        { type: "TikTok", views: "5M vues", cpm: "0.4€", total: "2k€" },
+        { type: "YouTube", views: "200k vues", cpm: "2€", total: "0.4k€" },
+        { type: "Sponsors posts", count: "2/mois", total: "0.8k€" }
+      ],
       color: "rgba(56, 189, 248, 0.3)"
     },
     {
-      name: "E-commerce & affiliation",
-      percentage: 18,
-      ticket: "25 €",
-      margin: 30,
-      scale: "Sélection « HV-approved » : objets, livres, routines ; intégration shop-in-content",
+      name: "Newsletter & Site",
+      percentage: 15,
+      revenue: "7k€/mois",
+      margin: 80,
+      details: "Abonnements + programmatique",
+      breakdown: [
+        { type: "Newsletter premium", count: "500", price: "7.90€", total: "4k€" },
+        { type: "Programmatique site", visitors: "250k", cpm: "3€", total: "2.5k€" },
+        { type: "Sponsors newsletter", count: "2/mois", total: "0.5k€" }
+      ],
       color: "rgba(125, 211, 252, 0.3)"
-    },
-    {
-      name: "Formations premium",
-      percentage: 12,
-      ticket: "299 €",
-      margin: 65,
-      scale: "Micro-learning + HV Agent personnalisé + coach WhatsApp",
-      color: "rgba(56, 189, 248, 0.2)"
     }
   ];
 
-  // Financial projections
-  const projections = [
-    { year: "2025", ca: "1,2 M", ebitda: "–0,3 M", desc: "Mise en place studios + build audience" },
-    { year: "2026", ca: "4,5 M", ebitda: "+0,35 M", desc: "Traction RS (50 M impr.), 100 k lecteurs/mois" },
-    { year: "2027", ca: "10 M", ebitda: "+1,4 M", desc: "API HV Agent B2B + déploiement international" }
-  ];
-
-  // Calculate donut chart paths with better spacing
+  // Calculate donut chart paths
   const createDonutPath = (percentage: number, offset: number) => {
     const radius = 100;
-    const strokeWidth = 40; // Increased for better visibility
+    const strokeWidth = 40;
     const normalizedRadius = radius - strokeWidth / 2;
     const circumference = normalizedRadius * 2 * Math.PI;
     const strokeDasharray = `${(percentage / 100) * circumference} ${circumference}`;
@@ -116,6 +121,31 @@ export default function BusinessModelSection() {
     cumulativePercentage += motor.percentage;
     return { ...motor, path };
   });
+
+  // Financial projections RÉALISTES
+  const projections = [
+    { 
+      period: "Mois 6", 
+      mrr: "25k€",
+      costs: "30k€",
+      status: "Investissement",
+      desc: "Construction audience payante" 
+    },
+    { 
+      period: "Mois 12", 
+      mrr: "46k€",
+      costs: "35k€",
+      status: "Rentable",
+      desc: "Break-even atteint" 
+    },
+    { 
+      period: "Mois 24", 
+      mrr: "100k€",
+      costs: "60k€",
+      status: "Profitable",
+      desc: "Scaling & international" 
+    }
+  ];
 
   return (
     <section 
@@ -156,7 +186,7 @@ export default function BusinessModelSection() {
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
         }`}>
           <h2 className="text-5xl md:text-6xl lg:text-7xl font-light leading-[1.1] text-white/90 max-w-5xl">
-            Cinq moteurs de revenus : un hybride robuste et scalable
+            6 sources de revenus pour 46k€/mois
           </h2>
         </div>
 
@@ -165,29 +195,26 @@ export default function BusinessModelSection() {
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
         }`}>
           <p className="text-xl md:text-2xl text-white/60 font-light leading-relaxed max-w-4xl">
-            High Value n'est pas qu'un média : c'est une plateforme qui monétise{' '}
-            <span className="text-white/80">contenus, expertise et communauté</span>.
+            Un modèle <span className="text-white/80">diversifié et réaliste</span> qui ne dépend pas d'une seule source.
             <span className="block mt-4">
-              Notre modèle hybride s'appuie sur cinq flux de cash-flow déjà balisés dans l'industrie, 
-              mais dopés par notre galaxie de formats et par HV Agent.
+              Brand content pour le cash-flow immédiat, communauté pour la récurrence, 
+              monétisation des 10M d'impressions existantes.
             </span>
           </p>
         </div>
 
-        {/* Revenue visualization - Enhanced Design */}
+        {/* Revenue visualization */}
         <div className={`mb-24 transition-all duration-1200 delay-400 ease-out ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
         }`}>
           <h3 className="text-lg font-light text-white/40 mb-12 tracking-[0.2em] text-center md:text-left">
-            RÉPARTITION DES REVENUS
+            MIX REVENUS À 12 MOIS
           </h3>
           
-          {/* Mobile-first design with donut chart */}
           <div className="relative">
             {/* Donut chart container */}
             <div className="relative mx-auto mb-12 md:mb-16" style={{ maxWidth: '320px' }}>
               <svg viewBox="0 0 260 260" className="w-full transform -rotate-90">
-                {/* Outer glow effect */}
                 <defs>
                   <filter id="glow">
                     <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
@@ -216,7 +243,7 @@ export default function BusinessModelSection() {
                   strokeWidth="40"
                 />
                 
-                {/* Revenue segments with enhanced styling */}
+                {/* Revenue segments */}
                 {donutSegments.map((segment, index) => (
                   <g key={index}>
                     <circle
@@ -234,8 +261,6 @@ export default function BusinessModelSection() {
                       filter={hoveredMotor === index ? "url(#glow)" : ""}
                       onMouseEnter={() => setHoveredMotor(index)}
                       onMouseLeave={() => setHoveredMotor(null)}
-                      onTouchStart={() => setHoveredMotor(index)}
-                      onTouchEnd={() => setHoveredMotor(null)}
                       style={{
                         transform: hoveredMotor === index ? 'scale(1.02)' : 'scale(1)',
                         transformOrigin: '130px 130px'
@@ -248,80 +273,72 @@ export default function BusinessModelSection() {
               {/* Center content */}
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="text-center transform rotate-90">
-                  <div className="text-3xl md:text-4xl font-light text-white/90">2026</div>
-                  <div className="text-xs md:text-sm text-white/40 font-light mt-1 tracking-wider">CIBLE CA</div>
+                  <div className="text-3xl md:text-4xl font-light text-white/90">46k€</div>
+                  <div className="text-xs md:text-sm text-white/40 font-light mt-1 tracking-wider">MRR</div>
                 </div>
               </div>
             </div>
 
-            {/* Revenue details - Grid layout */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+            {/* Revenue details */}
+            <div className="space-y-4">
               {revenueMotors.map((motor, index) => (
                 <div
                   key={index}
                   className={`group relative overflow-hidden rounded-lg transition-all duration-700 cursor-pointer ${
-                    hoveredMotor === index ? 'bg-white/[0.05] scale-[1.02]' : 'bg-white/[0.02]'
+                    hoveredMotor === index ? 'bg-white/[0.05] scale-[1.01]' : 'bg-white/[0.02]'
                   }`}
                   onMouseEnter={() => setHoveredMotor(index)}
                   onMouseLeave={() => setHoveredMotor(null)}
-                  onTouchStart={() => setHoveredMotor(index)}
-                  onTouchEnd={() => setHoveredMotor(null)}
                 >
-                  {/* Gradient border effect */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${
-                    index % 2 === 0 ? 'from-electric-blue/20' : 'from-electric-cyan/20'
-                  } to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700`} />
-                  
-                  <div className="relative p-6">
+                  <div className="p-6">
                     {/* Header */}
-                    <div className="flex items-start justify-between mb-4">
-                      <h4 className="text-base md:text-lg text-white/90 font-light leading-tight pr-2">
-                        {motor.name}
-                      </h4>
-                      <span className={`text-3xl md:text-4xl font-light ${
-                        hoveredMotor === index ? 'text-white/100' : 'text-white/80'
-                      } transition-colors duration-500`}>
-                        {motor.percentage}%
-                      </span>
-                    </div>
-                    
-                    {/* Metrics */}
-                    <div className="space-y-3">
-                      <div className="flex justify-between items-center">
-                        <span className="text-xs text-white/40 uppercase tracking-wider">Ticket moyen</span>
-                        <span className="text-sm text-white/70 font-light">{motor.ticket}</span>
+                    <div className="flex items-center justify-between mb-4">
+                      <div>
+                        <h4 className="text-lg text-white/90">{motor.name}</h4>
+                        <p className="text-sm text-white/50 mt-1">{motor.details}</p>
                       </div>
-                      <div className="flex justify-between items-center">
-                        <span className="text-xs text-white/40 uppercase tracking-wider">Marge</span>
-                        <span className="text-sm text-white/70 font-light">{motor.margin}%</span>
+                      <div className="text-right">
+                        <div className="text-2xl font-light text-white/80">{motor.percentage}%</div>
+                        <div className="text-sm text-white/60">{motor.revenue}</div>
                       </div>
                     </div>
                     
-                    {/* Scale description - always visible on mobile, hover on desktop */}
-                    <div className={`mt-4 pt-4 border-t border-white/10 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500`}>
-                      <p className="text-xs text-white/50 font-light leading-relaxed">
-                        {motor.scale}
-                      </p>
-                    </div>
+                    {/* Breakdown - shown on hover */}
+                    {hoveredMotor === index && motor.breakdown && (
+                      <div className="pt-4 border-t border-white/10 animate-fadeIn">
+                        <div className="space-y-2">
+                          {motor.breakdown.map((item, i) => (
+                            <div key={i} className="flex justify-between items-center text-sm">
+                              <div className="text-white/50">
+                                {item.type}
+                                {item.count && <span className="text-white/30"> • {item.count}</span>}
+                                {item.price && <span className="text-white/30"> × {item.price}</span>}
+                                {item.desc && <span className="text-white/30"> : {item.desc}</span>}
+                              </div>
+                              <div className="text-white/70">
+                                {item.total || item.views || ''}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                        <div className="mt-3 pt-3 border-t border-white/10 flex justify-between items-center">
+                          <span className="text-xs text-white/40">Marge</span>
+                          <span className="text-sm text-white/70">{motor.margin}%</span>
+                        </div>
+                      </div>
+                    )}
                   </div>
-                  
-                  {/* Accent line */}
-                  <div className={`absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r ${
-                    index % 2 === 0 ? 'from-electric-blue/50' : 'from-electric-cyan/50'
-                  } via-transparent to-transparent transform ${
-                    hoveredMotor === index ? 'scale-x-100' : 'scale-x-0'
-                  } transition-transform duration-700`} />
                 </div>
               ))}
             </div>
           </div>
         </div>
 
-        {/* Financial projections */}
+        {/* Growth trajectory */}
         <div className={`mb-24 transition-all duration-1200 delay-600 ease-out ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
         }`}>
-          <h3 className="text-lg font-light text-white/40 mb-12 tracking-[0.2em]">PROJECTIONS FINANCIÈRES</h3>
+          <h3 className="text-lg font-light text-white/40 mb-12 tracking-[0.2em]">TRAJECTOIRE VERS LA RENTABILITÉ</h3>
           
           <div className="relative">
             {/* Timeline line */}
@@ -330,12 +347,12 @@ export default function BusinessModelSection() {
             <div className="grid grid-cols-3 gap-8">
               {projections.map((proj, index) => (
                 <div key={index} className="relative group">
-                  {/* Year node */}
+                  {/* Node */}
                   <div className="relative text-center mb-8">
                     <div className="w-24 h-24 mx-auto relative">
                       <div className="absolute inset-0 bg-white/[0.02] rounded-full transition-all duration-700 group-hover:bg-white/[0.05]" />
                       <div className="absolute inset-0 flex items-center justify-center">
-                        <span className="text-lg text-white/60 font-light">{proj.year}</span>
+                        <span className="text-lg text-white/60 font-light">{proj.period}</span>
                       </div>
                     </div>
                   </div>
@@ -343,18 +360,23 @@ export default function BusinessModelSection() {
                   {/* Metrics */}
                   <div className="space-y-4">
                     <div className="text-center">
-                      <div className="text-xs text-white/40 mb-1">CA</div>
-                      <div className="text-2xl text-white/90 font-light">{proj.ca}</div>
+                      <div className="text-xs text-white/40 mb-1">MRR</div>
+                      <div className="text-2xl text-white/90 font-light">{proj.mrr}</div>
                     </div>
                     <div className="text-center">
-                      <div className="text-xs text-white/40 mb-1">EBITDA</div>
-                      <div className={`text-xl font-light ${
-                        proj.ebitda.startsWith('+') ? 'text-electric-blue/80' : 'text-white/50'
+                      <div className="text-xs text-white/40 mb-1">Coûts</div>
+                      <div className="text-xl text-white/60 font-light">{proj.costs}</div>
+                    </div>
+                    <div className="text-center">
+                      <div className={`text-sm font-light ${
+                        proj.status === 'Rentable' || proj.status === 'Profitable' 
+                          ? 'text-electric-blue/80' 
+                          : 'text-white/50'
                       }`}>
-                        {proj.ebitda}
+                        {proj.status}
                       </div>
                     </div>
-                    <p className="text-xs text-white/40 font-light text-center leading-relaxed mt-4">
+                    <p className="text-xs text-white/40 font-light text-center mt-4">
                       {proj.desc}
                     </p>
                   </div>
@@ -364,50 +386,49 @@ export default function BusinessModelSection() {
           </div>
         </div>
 
-        {/* Why investors love this */}
-        <div className={`grid md:grid-cols-3 gap-8 mb-20 transition-all duration-1200 delay-800 ease-out ${
+        {/* Unit economics */}
+        <div className={`grid md:grid-cols-4 gap-6 mb-20 transition-all duration-1200 delay-800 ease-out ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
         }`}>
-          <div className="group">
-            <div className="h-px w-12 bg-gradient-to-r from-transparent via-white/20 to-transparent mb-6 group-hover:w-24 transition-all duration-700" />
-            <h4 className="text-base font-normal text-white/80 mb-3">Diversification native</h4>
-            <p className="text-sm text-white/40 font-light">Aucun levier ne dépasse 35 % du CA.</p>
+          <div className="p-6 rounded-lg bg-white/[0.02] border border-white/10 text-center">
+            <div className="text-2xl font-light text-white/80 mb-2">25€</div>
+            <div className="text-sm text-white/40">CAC moyen</div>
+            <div className="text-xs text-white/30 mt-1">organique + paid</div>
           </div>
-          <div className="group">
-            <div className="h-px w-12 bg-gradient-to-r from-transparent via-white/20 to-transparent mb-6 group-hover:w-24 transition-all duration-700" />
-            <h4 className="text-base font-normal text-white/80 mb-3">Barrières à l'entrée</h4>
-            <p className="text-sm text-white/40 font-light">Studios, workflow IA propriétaire, data d'audience.</p>
+          <div className="p-6 rounded-lg bg-white/[0.02] border border-white/10 text-center">
+            <div className="text-2xl font-light text-white/80 mb-2">65€</div>
+            <div className="text-sm text-white/40">ARPU annuel</div>
+            <div className="text-xs text-white/30 mt-1">tous segments</div>
           </div>
-          <div className="group">
-            <div className="h-px w-12 bg-gradient-to-r from-transparent via-white/20 to-transparent mb-6 group-hover:w-24 transition-all duration-700" />
-            <h4 className="text-base font-normal text-white/80 mb-3">LTV ▶ CAC</h4>
-            <p className="text-sm text-white/40 font-light">Optimisé par HV Agent qui convertit l'attention en revenu récurrent.</p>
+          <div className="p-6 rounded-lg bg-white/[0.02] border border-white/10 text-center">
+            <div className="text-2xl font-light text-white/80 mb-2">x2.6</div>
+            <div className="text-sm text-white/40">LTV/CAC</div>
+            <div className="text-xs text-white/30 mt-1">sain et viable</div>
+          </div>
+          <div className="p-6 rounded-lg bg-white/[0.02] border border-white/10 text-center">
+            <div className="text-2xl font-light text-white/80 mb-2">75%</div>
+            <div className="text-sm text-white/40">Marge brute</div>
+            <div className="text-xs text-white/30 mt-1">moyenne pondérée</div>
           </div>
         </div>
 
-        {/* North Star Metrics */}
+        {/* Investment highlights */}
         <div className={`relative p-8 rounded bg-white/[0.02] mb-16 transition-all duration-1200 delay-1000 ease-out ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
         }`}>
-          <h3 className="text-sm font-light text-white/40 mb-6 tracking-[0.2em]">NORTH STAR METRICS</h3>
-          <div className="grid md:grid-cols-3 gap-8 text-center">
+          <h3 className="text-sm font-light text-white/40 mb-6 tracking-[0.2em]">POURQUOI CE MODÈLE FONCTIONNE</h3>
+          <div className="grid md:grid-cols-3 gap-8">
             <div>
-              <div className="text-3xl font-light text-transparent bg-clip-text bg-gradient-to-br from-white via-white/80 to-electric-blue/50 mb-2">
-                650 k€
-              </div>
-              <p className="text-sm text-white/40 font-light">MRR cible fin 2026</p>
+              <h4 className="text-base text-white/80 mb-2">Cash immédiat</h4>
+              <p className="text-sm text-white/50">Brand content dès le mois 1 : 10-15k€/mois garantis.</p>
             </div>
             <div>
-              <div className="text-3xl font-light text-transparent bg-clip-text bg-gradient-to-br from-white via-white/80 to-electric-blue/50 mb-2">
-                ÷3
-              </div>
-              <p className="text-sm text-white/40 font-light">Coût d'acquisition réduit</p>
+              <h4 className="text-base text-white/80 mb-2">Récurrence forte</h4>
+              <p className="text-sm text-white/50">Skool + Newsletter = 65% de revenus récurrents.</p>
             </div>
             <div>
-              <div className="text-3xl font-light text-transparent bg-clip-text bg-gradient-to-br from-white via-white/80 to-electric-blue/50 mb-2">
-                22 min
-              </div>
-              <p className="text-sm text-white/40 font-light">Temps moyen / jour</p>
+              <h4 className="text-base text-white/80 mb-2">Coûts maîtrisés</h4>
+              <p className="text-sm text-white/50">Production optimisée, équipe lean, marges élevées.</p>
             </div>
           </div>
         </div>
@@ -425,7 +446,7 @@ export default function BusinessModelSection() {
             }}
             className="group inline-flex items-center gap-4 text-white/60 hover:text-white/90 transition-all duration-500"
           >
-            <span className="text-sm font-light tracking-wider">Découvrir notre feuille de route</span>
+            <span className="text-sm font-light tracking-wider">Voir notre plan d'exécution</span>
             <svg 
               className="w-4 h-4 transition-transform duration-500 group-hover:translate-x-2" 
               fill="none" 
@@ -470,7 +491,16 @@ export default function BusinessModelSection() {
             opacity: 0.3;
           }
         }
+        
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(-5px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-fadeIn {
+          animation: fadeIn 0.3s ease-out;
+        }
       `}</style>
     </section>
   );
-};
+}

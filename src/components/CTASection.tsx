@@ -42,75 +42,61 @@ export default function CTASection() {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  // Investment priorities data
+  // Investment priorities data RÉALISTES
   const priorities = [
     {
-      title: "Bureaux & Hub créatif – Paris",
-      cost: "En cours d'estimation",
-      impact: "QG éditorial, salle d'écriture IA, plateau podcast",
+      title: "Équipe & Salaires",
+      cost: "240k€",
+      impact: "7-10 personnes pendant 12 mois",
+      icon: "👥",
+      category: "team"
+    },
+    {
+      title: "Bureau & Studio",
+      cost: "60k€",
+      impact: "10 postes + studio vidéo intégré Paris",
       icon: "🏢",
-      category: "infrastructure"
+      category: "infra"
     },
     {
-      title: "Aménagement des studios vidéo (2 plateaux)",
-      cost: "En cours d'estimation",
-      impact: "Production premium YouTube + 4 lives Twitch / semaine",
+      title: "Production contenu",
+      cost: "60k€",
+      impact: "200+ contenus/mois en qualité premium",
       icon: "🎬",
-      category: "production"
-    },
-    {
-      title: "Formats YouTube haute qualité",
-      cost: "En cours d'estimation",
-      impact: "52 épisodes long-form (1 / semaine) – vecteur d'autorité",
-      icon: "📹",
       category: "content"
     },
     {
-      title: "Lancement du site (100 articles) + CMS IA",
-      cost: "En cours d'estimation",
-      impact: "Base SEO & Discover opérationnelle dès J 1",
-      icon: "🌐",
+      title: "Tech & Outils",
+      cost: "20k€",
+      impact: "Stack complète : site, CRM, analytics",
+      icon: "🛠️",
       category: "tech"
     },
     {
-      title: "Mise en production de HV Agent v1",
-      cost: "En cours d'estimation",
-      impact: "Assistant personnel + coach WhatsApp (freemium)",
-      icon: "🤖",
-      category: "ai"
-    },
-    {
-      title: "Marketing & acquisition audience",
-      cost: "En cours d'estimation",
-      impact: "30 M impressions / mois · 25 k abonnés newsletter",
+      title: "Marketing & Growth",
+      cost: "20k€",
+      impact: "Tests paid, PR, partenariats",
       icon: "📈",
       category: "growth"
-    },
-    {
-      title: "Fonds de roulement / talents",
-      cost: "En cours d'estimation",
-      impact: "4 créatifs senior + 2 développeurs IA pour soutenir la cadence",
-      icon: "👥",
-      category: "team"
     }
   ];
 
   const benefits = [
     {
-      title: "Accès board",
-      desc: "échanges mensuels sur les analytics bruts et les sprints produit"
+      title: "Traction prouvée",
+      desc: "120k followers + 10M impressions/mois = audience validée"
     },
     {
-      title: "Fast-lane studios",
-      desc: "vos marques ou participations tournent en priorité dans nos plateaux"
+      title: "Cash rapide",
+      desc: "Brand content dès le mois 1 : 10-15k€/mois garantis"
     },
     {
-      title: "Option \"Constellation\"",
-      desc: "droit préférentiel pour créer votre agent IA en marque blanche avec notre API"
+      title: "Break-even rapide",
+      desc: "Rentabilité en 10-12 mois vs 24-36 mois industrie"
     },
     {
-      title: "Visibilité native",
-      desc: "présence dans nos formats premium, lives et événements : ROI image immédiat"
+      title: "Exit réaliste",
+      desc: "Comparables : 5-10x ARR dans 3-5 ans"
     }
   ];
 
@@ -147,34 +133,6 @@ export default function CTASection() {
         />
       </div>
 
-      {/* Radial lines emanating from center */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <svg className="w-full h-full opacity-5">
-          <defs>
-            <linearGradient id="radial-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="rgba(56, 189, 248, 0)" />
-              <stop offset="50%" stopColor="rgba(56, 189, 248, 0.5)" />
-              <stop offset="100%" stopColor="rgba(56, 189, 248, 0)" />
-            </linearGradient>
-          </defs>
-          {[...Array(12)].map((_, i) => (
-            <line
-              key={i}
-              x1="50%"
-              y1="50%"
-              x2={`${50 + 50 * Math.cos((i * 30 * Math.PI) / 180)}%`}
-              y2={`${50 + 50 * Math.sin((i * 30 * Math.PI) / 180)}%`}
-              stroke="url(#radial-gradient)"
-              strokeWidth="0.5"
-              style={{
-                animation: `pulse ${4 + i * 0.2}s infinite`,
-                animationDelay: `${i * 0.1}s`
-              }}
-            />
-          ))}
-        </svg>
-      </div>
-
       {/* Main content */}
       <div className="relative z-10 max-w-6xl mx-auto px-8">
         {/* Title */}
@@ -182,7 +140,7 @@ export default function CTASection() {
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
         }`}>
           <h2 className="text-5xl md:text-6xl lg:text-7xl font-light leading-[1.1] text-white/90">
-            Rejoignez l'orbite High Value
+            Investir dans le futur des médias
           </h2>
         </div>
 
@@ -191,12 +149,28 @@ export default function CTASection() {
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
         }`}>
           <p className="text-xl md:text-2xl text-white/60 font-light leading-relaxed max-w-4xl mx-auto">
-            Nous comptons déjà <span className="text-white/80">10 millions d'impressions sociales par mois</span> avant même l'ouverture du site.
+            Nous levons <span className="text-white/80">400k€</span> pour transformer High Value 
+            en premier média rentable nouvelle génération.
             <span className="block mt-4">
-              La centrale de contenus tourne, notre IA sort de bêta et le plan d'expansion est prêt. 
-              Il ne manque plus que des partenaires audacieux pour accélérer.
+              Pas de promesses folles, juste un plan solide avec des chiffres réalistes.
             </span>
           </p>
+        </div>
+
+        {/* Investment amount highlight */}
+        <div className={`text-center mb-20 transition-all duration-1200 delay-300 ease-out ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+        }`}>
+          <div className="inline-block relative">
+            <div className="absolute inset-0 bg-gradient-to-r from-electric-blue/20 to-electric-cyan/20 blur-xl" />
+            <div className="relative px-12 py-8 rounded-lg bg-white/[0.02] border border-white/10">
+              <div className="text-5xl md:text-6xl font-light text-transparent bg-clip-text bg-gradient-to-r from-electric-blue to-electric-cyan mb-2">
+                400k€
+              </div>
+              <p className="text-sm text-white/60">Seed • 15-18 mois de runway</p>
+              <p className="text-xs text-white/40 mt-2">Ticket minimum : 25k€</p>
+            </div>
+          </div>
         </div>
 
         {/* Investment priorities */}
@@ -204,7 +178,7 @@ export default function CTASection() {
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
         }`}>
           <h3 className="text-lg font-light text-white/40 mb-12 tracking-[0.2em] text-center">
-            CE QUE VOTRE SOUTIEN DÉBLOQUERA
+            UTILISATION DES FONDS
           </h3>
 
           {/* Priorities grid */}
@@ -217,8 +191,6 @@ export default function CTASection() {
                 }`}
                 onMouseEnter={() => setHoveredPriority(index)}
                 onMouseLeave={() => setHoveredPriority(null)}
-                onTouchStart={() => setHoveredPriority(index)}
-                onTouchEnd={() => setHoveredPriority(null)}
               >
                 {/* Hover gradient */}
                 <div className={`absolute inset-0 bg-gradient-to-r from-electric-blue/5 via-transparent to-transparent opacity-0 ${
@@ -233,13 +205,13 @@ export default function CTASection() {
                     </h4>
                   </div>
 
-                  {/* Cost estimation */}
-                  <div className="md:col-span-3">
-                    <p className="text-sm text-white/40 font-light italic">{priority.cost}</p>
+                  {/* Cost */}
+                  <div className="md:col-span-2">
+                    <p className="text-lg text-white/90 font-light">{priority.cost}</p>
                   </div>
 
                   {/* Impact */}
-                  <div className="md:col-span-4">
+                  <div className="md:col-span-5">
                     <p className="text-sm text-white/60 font-light leading-relaxed">{priority.impact}</p>
                   </div>
                 </div>
@@ -251,6 +223,11 @@ export default function CTASection() {
               </div>
             ))}
           </div>
+
+          {/* Total */}
+          <div className="mt-4 text-right">
+            <p className="text-sm text-white/40">Total : <span className="text-white/60">400k€</span></p>
+          </div>
         </div>
 
         {/* Benefits */}
@@ -258,7 +235,7 @@ export default function CTASection() {
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
         }`}>
           <h3 className="text-lg font-light text-white/40 mb-12 tracking-[0.2em] text-center">
-            POURQUOI EMBARQUER AVEC NOUS ?
+            POURQUOI INVESTIR MAINTENANT
           </h3>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -272,15 +249,93 @@ export default function CTASection() {
                   <div className="absolute top-0 left-6 right-6 h-px bg-gradient-to-r from-transparent via-electric-blue/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                   
                   <h4 className="text-base text-white/80 font-normal mb-3">{benefit.title}</h4>
-                  <p className="text-sm text-white/50 font-light leading-relaxed">— {benefit.desc}.</p>
+                  <p className="text-sm text-white/50 font-light leading-relaxed">{benefit.desc}</p>
                 </div>
               </div>
             ))}
           </div>
         </div>
 
+        {/* Traction proof */}
+        <div className={`grid md:grid-cols-4 gap-8 mb-20 transition-all duration-1200 delay-800 ease-out ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+        }`}>
+          <div className="text-center">
+            <div className="text-4xl font-light text-white/80 mb-2">120k</div>
+            <p className="text-sm text-white/40">followers actifs</p>
+          </div>
+          <div className="text-center">
+            <div className="text-4xl font-light text-white/80 mb-2">46k€</div>
+            <p className="text-sm text-white/40">MRR objectif</p>
+          </div>
+          <div className="text-center">
+            <div className="text-4xl font-light text-white/80 mb-2">10-12</div>
+            <p className="text-sm text-white/40">mois to break-even</p>
+          </div>
+          <div className="text-center">
+            <div className="text-4xl font-light text-white/80 mb-2">6</div>
+            <p className="text-sm text-white/40">sources de revenus</p>
+          </div>
+        </div>
+
+        {/* Terms box */}
+        <div className={`max-w-3xl mx-auto mb-20 transition-all duration-1200 delay-900 ease-out ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+        }`}>
+          <div className="relative p-8 rounded-lg bg-white/[0.02] border border-white/10">
+            <h3 className="text-sm font-light text-white/40 mb-6 tracking-[0.2em]">TERMES DE L'OPÉRATION</h3>
+            
+            <div className="grid md:grid-cols-2 gap-8">
+              <div>
+                <div className="space-y-4">
+                  <div>
+                    <p className="text-xs text-white/40 mb-1">Montant recherché</p>
+                    <p className="text-2xl text-white/80 font-light">400k€</p>
+                  </div>
+                  <div>
+                    <p className="text-xs text-white/40 mb-1">Type</p>
+                    <p className="text-lg text-white/70">Seed / Equity</p>
+                  </div>
+                  <div>
+                    <p className="text-xs text-white/40 mb-1">Ticket minimum</p>
+                    <p className="text-lg text-white/70">25k€</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div>
+                <div className="space-y-4">
+                  <div>
+                    <p className="text-xs text-white/40 mb-1">Valorisation</p>
+                    <p className="text-2xl text-white/80 font-light">À discuter</p>
+                  </div>
+                  <div>
+                    <p className="text-xs text-white/40 mb-1">Closing visé</p>
+                    <p className="text-lg text-white/70">Mars 2025</p>
+                  </div>
+                  <div>
+                    <p className="text-xs text-white/40 mb-1">Lead investor</p>
+                    <p className="text-lg text-white/70">En recherche</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Next steps */}
+            <div className="mt-8 pt-8 border-t border-white/10">
+              <p className="text-sm text-white/40 mb-4">Prochaines étapes :</p>
+              <ol className="space-y-2 text-sm text-white/60">
+                <li>1. Call découverte (30 min)</li>
+                <li>2. Présentation détaillée + Q&A (1h)</li>
+                <li>3. Due diligence (data room prête)</li>
+                <li>4. Closing Mars 2025</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
         {/* Quote */}
-        <div className={`text-center mb-20 transition-all duration-1200 delay-800 ease-out ${
+        <div className={`text-center mb-20 transition-all duration-1200 delay-1000 ease-out ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
         }`}>
           <div className="relative max-w-3xl mx-auto">
@@ -289,17 +344,22 @@ export default function CTASection() {
             <div className="absolute -bottom-6 -right-8 text-6xl text-white/5 font-serif rotate-180">"</div>
             
             <p className="text-2xl md:text-3xl text-white/70 font-light leading-relaxed italic">
-              Miser sur High Value, c'est parier sur la densité : moins de bruit, plus d'impact, et une audience qui reste.
+              Les médias qui survivront sont ceux qui sauront mixer contenus, communauté et revenus diversifiés. 
+              C'est exactement ce que nous construisons.
             </p>
+            
+            <cite className="block mt-6 text-sm text-white/40">
+              — Roger, Fondateur High Value
+            </cite>
           </div>
         </div>
 
         {/* CTAs */}
-        <div className={`text-center transition-all duration-1200 delay-1000 ease-out ${
+        <div className={`text-center transition-all duration-1200 delay-1100 ease-out ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
         }`}>
           <h3 className="text-lg font-light text-white/40 mb-12 tracking-[0.2em]">
-            PASSONS À L'ACTION
+            INTÉRESSÉ(E) ?
           </h3>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
@@ -313,9 +373,8 @@ export default function CTASection() {
                 {/* Glow effect */}
                 <div className="absolute inset-0 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-xl bg-gradient-to-r from-electric-blue/20 to-electric-cyan/20" />
                 
-                <span className="relative z-10 text-white/90 font-light tracking-wide flex items-center gap-3">
-                  <span className="text-2xl font-light">1</span>
-                  <span>Réserver un appel découverte (30 min)</span>
+                <span className="relative z-10 text-white/90 font-light tracking-wide">
+                  Planifier un call
                 </span>
               </div>
             </button>
@@ -324,13 +383,16 @@ export default function CTASection() {
             <button className="group relative overflow-hidden">
               <div className="relative px-12 py-5">
                 <div className="absolute inset-0 bg-white/[0.03] backdrop-blur-sm border border-white/10 rounded transition-all duration-700 group-hover:bg-white/[0.06] group-hover:border-white/20" />
-                <span className="relative z-10 text-white/70 font-light tracking-wide flex items-center gap-3 group-hover:text-white/90 transition-colors duration-500">
-                  <span className="text-2xl font-light">2</span>
-                  <span>Recevoir notre deck détaillé</span>
+                <span className="relative z-10 text-white/70 font-light tracking-wide group-hover:text-white/90 transition-colors duration-500">
+                  Recevoir le deck complet
                 </span>
               </div>
             </button>
           </div>
+
+          <p className="mt-8 text-xs text-white/30">
+            Contact : roger@highvalue.fr • +33 6 XX XX XX XX
+          </p>
         </div>
 
         {/* Footer signature */}
@@ -338,12 +400,12 @@ export default function CTASection() {
           isVisible ? 'opacity-100' : 'opacity-0'
         }`}>
           <div className="text-xs text-white/20 font-light tracking-[0.3em]">
-            HIGH VALUE · MÉDIA & IA POUR ESPRITS EXIGEANTS
+            HIGH VALUE · MÉDIA NOUVELLE GÉNÉRATION · 2025
           </div>
         </div>
       </div>
 
-      {/* Orbiting particles - more prominent for CTA */}
+      {/* Orbiting particles */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {[...Array(40)].map((_, i) => (
           <div
@@ -365,15 +427,6 @@ export default function CTASection() {
       </div>
 
       <style jsx>{`
-        @keyframes pulse {
-          0%, 100% { 
-            opacity: 0.05;
-          }
-          50% { 
-            opacity: 0.1;
-          }
-        }
-        
         @keyframes orbit {
           from {
             transform: rotate(0deg) translateX(100px) rotate(0deg);
@@ -385,4 +438,4 @@ export default function CTASection() {
       `}</style>
     </section>
   );
-};
+}

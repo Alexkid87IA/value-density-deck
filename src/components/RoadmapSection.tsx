@@ -4,7 +4,7 @@ export default function RoadmapSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  const [activePhase, setActivePhase] = useState(null);
+  const [activePhase, setActivePhase] = useState<number | null>(null);
 
   // Intersection Observer
   useEffect(() => {
@@ -42,85 +42,94 @@ export default function RoadmapSection() {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  // Roadmap phases data
+  // Roadmap phases data RÉALISTES
   const phases = [
     {
-      period: "0-6 mois",
-      subtitle: "T4-2025",
-      title: "Validation",
+      period: "T1 2025",
+      subtitle: "Phase 1",
+      title: "Lancement",
       objectives: [
-        "Mise en ligne MVP : site, app, première newsletter",
-        "Lancement public de HV Agent – bêta",
-        "Deux plateaux vidéo opérationnels"
+        "Setup bureau + équipe core (5→7 pers)",
+        "Lancer Skool à 60€ (objectif : 50 membres)",
+        "Newsletter payante 7.90€ (objectif : 200 abonnés)",
+        "2 brand contents/mois à 5k€"
       ],
-      audience: {
-        newsletter: "3 000 inscrits",
-        impressions: "2 M impressions sociales"
+      metrics: {
+        mrr: "8-10k€",
+        costs: "25k€/mois",
+        status: "Burn : -15k€/mois"
       },
-      revenue: {
-        amount: "120 k €",
-        desc: "co-shootings pilotes + premières OP sponsorisées"
-      },
+      milestones: [
+        "Infrastructure en place",
+        "Premiers revenus récurrents",
+        "Process de production rodé"
+      ],
       phase: 1
     },
     {
-      period: "6-12 mois",
-      subtitle: "T1-T2 2026",
-      title: "Traction",
+      period: "T2 2025",
+      subtitle: "Phase 2",
+      title: "Accélération",
       objectives: [
-        "Cadence 15 articles Discover/jour",
-        "Podcast hebdo + short quotidien",
-        "Shop e-commerce « HV-approved » en soft-launch"
+        "Monétiser Facebook/TikTok (3-4M vues/mois)",
+        "Skool : 100 membres (+100%)",
+        "Newsletter : 400 abonnés (+100%)",
+        "3-4 brand contents/mois"
       ],
-      audience: {
-        newsletter: "10 000 inscrits",
-        impressions: "10 M impressions sociales",
-        readers: "25 k lecteurs mensuels"
+      metrics: {
+        mrr: "20-25k€",
+        costs: "30k€/mois",
+        status: "Burn : -5k€/mois"
       },
-      revenue: {
-        amount: "400 k €",
-        desc: "CA cumulé",
-        ebitda: "–220 k €"
-      },
+      milestones: [
+        "Premiers sponsors newsletter",
+        "Communauté Skool active",
+        "Pipeline B2B régulier"
+      ],
       phase: 2
     },
     {
-      period: "12-24 mois",
-      subtitle: "T3-T4 2026",
-      title: "Industrialisation",
+      period: "T3-T4 2025",
+      subtitle: "Phase 3",
+      title: "Break-even",
       objectives: [
-        "HV Agent v2 : routines + coach WhatsApp",
-        "1 format premium/mois (masterclass ou docu)"
+        "150 membres Skool × 60€ = 9k€",
+        "500 newsletter × 7.90€ = 4k€",
+        "RS monétisés = 6k€/mois",
+        "Brand content = 24k€/mois"
       ],
-      audience: {
-        newsletter: "25 000 inscrits",
-        impressions: "25 M impressions sociales"
+      metrics: {
+        mrr: "43-46k€",
+        costs: "35k€/mois",
+        status: "Rentable : +10k€/mois"
       },
-      revenue: {
-        amount: "1,2 M €",
-        desc: "CA annuel",
-        ebitda: "–50 k €"
-      },
+      milestones: [
+        "Break-even atteint",
+        "Modèle validé",
+        "Prêt pour série A"
+      ],
       phase: 3
     },
     {
-      period: "2027",
-      subtitle: "",
-      title: "Expansion",
+      period: "2026",
+      subtitle: "Phase 4",
+      title: "Scaling",
       objectives: [
-        "API « Constellations » ouverte aux marques",
-        "Studios HV Paris + Montréal",
-        "Localisation EN / ES des contenus signature"
+        "300+ membres Skool",
+        "1500+ abonnés newsletter",
+        "YouTube 500k vues/mois",
+        "International (EN)"
       ],
-      audience: {
-        newsletter: "50 000 inscrits",
-        impressions: "60 M impressions sociales cumulées"
+      metrics: {
+        mrr: "80-100k€",
+        costs: "60k€/mois",
+        status: "Profitable : +40k€/mois"
       },
-      revenue: {
-        amount: "4 M €",
-        desc: "CA annuel",
-        ebitda: "+350 k €"
-      },
+      milestones: [
+        "Équipe 15 personnes",
+        "Série A : 2-3M€",
+        "Expansion Europe"
+      ],
       phase: 4
     }
   ];
@@ -158,35 +167,6 @@ export default function RoadmapSection() {
         />
       </div>
 
-      {/* Orbital lines background */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <svg className="w-full h-full opacity-10">
-          <defs>
-            <linearGradient id="orbit-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="rgba(56, 189, 248, 0)" />
-              <stop offset="50%" stopColor="rgba(56, 189, 248, 0.3)" />
-              <stop offset="100%" stopColor="rgba(56, 189, 248, 0)" />
-            </linearGradient>
-          </defs>
-          {[...Array(4)].map((_, i) => (
-            <ellipse
-              key={i}
-              cx="50%"
-              cy="50%"
-              rx={`${30 + i * 15}%`}
-              ry={`${20 + i * 10}%`}
-              fill="none"
-              stroke="url(#orbit-gradient)"
-              strokeWidth="0.5"
-              style={{
-                animation: `rotate ${30 + i * 10}s linear infinite`,
-                transformOrigin: 'center'
-              }}
-            />
-          ))}
-        </svg>
-      </div>
-
       {/* Main content */}
       <div className="relative z-10 max-w-6xl mx-auto px-8">
         {/* Title */}
@@ -194,7 +174,7 @@ export default function RoadmapSection() {
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
         }`}>
           <h2 className="text-5xl md:text-6xl lg:text-7xl font-light leading-[1.1] text-white/90 max-w-5xl">
-            La trajectoire High Value — quatre orbites, un atterrissage solide
+            12 mois pour atteindre la rentabilité
           </h2>
         </div>
 
@@ -203,10 +183,10 @@ export default function RoadmapSection() {
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
         }`}>
           <p className="text-xl md:text-2xl text-white/60 font-light leading-relaxed max-w-4xl">
-            Nous avançons par paliers mesurables : <span className="text-white/80">valider le produit</span>, 
-            {' '}<span className="text-white/80">construire l'audience</span>, 
-            {' '}<span className="text-white/80">industrialiser les revenus</span>, 
-            puis <span className="text-white/80">déployer l'international</span>.
+            Un plan d'exécution <span className="text-white/80">trimestre par trimestre</span> avec des objectifs clairs et atteignables.
+            <span className="block mt-4">
+              Pas de hockey stick irréaliste, juste une croissance progressive et maîtrisée.
+            </span>
           </p>
         </div>
 
@@ -227,12 +207,10 @@ export default function RoadmapSection() {
                 }`}
                 onMouseEnter={() => setActivePhase(index)}
                 onMouseLeave={() => setActivePhase(null)}
-                onTouchStart={() => setActivePhase(index)}
-                onTouchEnd={() => setActivePhase(null)}
               >
                 {/* Phase node - visible on desktop */}
                 <div className="hidden lg:block relative mb-8">
-                  <div className="w-40 h-40 mx-auto relative">
+                  <div className="w-32 h-32 mx-auto relative">
                     {/* Outer ring */}
                     <div className={`absolute inset-0 rounded-full transition-all duration-700 ${
                       activePhase === index ? 'bg-white/[0.08]' : 'bg-white/[0.03]'
@@ -240,8 +218,7 @@ export default function RoadmapSection() {
                     {/* Inner circle */}
                     <div className="absolute inset-4 rounded-full bg-[#050505] flex items-center justify-center">
                       <div className="text-center">
-                        {/* Phase number instead of emoji */}
-                        <div className="text-3xl font-light text-white/20 mb-1">{phase.phase}</div>
+                        <div className="text-2xl font-light text-white/20 mb-1">T{phase.phase}</div>
                         <div className="text-sm text-white/60 font-light">{phase.title}</div>
                       </div>
                     </div>
@@ -255,7 +232,6 @@ export default function RoadmapSection() {
                 {/* Mobile header */}
                 <div className="lg:hidden mb-4">
                   <div className="flex items-center gap-3 mb-2">
-                    {/* Phase indicator for mobile */}
                     <div className="w-10 h-10 rounded-full bg-white/[0.05] flex items-center justify-center">
                       <span className="text-sm font-light text-white/40">{phase.phase}</span>
                     </div>
@@ -294,40 +270,36 @@ export default function RoadmapSection() {
                       </ul>
                     </div>
 
-                    {/* Metrics grid */}
-                    <div className="grid grid-cols-2 gap-4 mb-4">
-                      {/* Audience */}
-                      <div>
-                        <h4 className="text-xs text-white/40 uppercase tracking-wider mb-2">Audience</h4>
-                        <div className="space-y-1">
-                          <div className="text-sm text-white/70">{phase.audience.newsletter}</div>
-                          <div className="text-xs text-white/50">{phase.audience.impressions}</div>
-                          {phase.audience.readers && (
-                            <div className="text-xs text-white/50">{phase.audience.readers}</div>
-                          )}
+                    {/* Metrics */}
+                    <div className="border-t border-white/10 pt-4">
+                      <div className="grid grid-cols-2 gap-4 mb-3">
+                        <div>
+                          <div className="text-xs text-white/40">MRR</div>
+                          <div className="text-lg text-white/80">{phase.metrics.mrr}</div>
+                        </div>
+                        <div>
+                          <div className="text-xs text-white/40">Coûts</div>
+                          <div className="text-lg text-white/60">{phase.metrics.costs}</div>
                         </div>
                       </div>
-
-                      {/* Revenue */}
-                      <div>
-                        <h4 className="text-xs text-white/40 uppercase tracking-wider mb-2">Revenus</h4>
-                        <div className="text-lg text-transparent bg-clip-text bg-gradient-to-br from-white via-white/80 to-electric-blue/50 font-light">
-                          {phase.revenue.amount}
-                        </div>
-                        {phase.revenue.ebitda && (
-                          <div className={`text-xs mt-1 ${
-                            phase.revenue.ebitda.startsWith('+') ? 'text-electric-blue/70' : 'text-white/40'
-                          }`}>
-                            EBITDA {phase.revenue.ebitda}
-                          </div>
-                        )}
+                      <div className={`text-sm ${
+                        phase.metrics.status.includes('Rentable') || phase.metrics.status.includes('Profitable')
+                          ? 'text-electric-blue/70'
+                          : 'text-white/50'
+                      }`}>
+                        {phase.metrics.status}
                       </div>
                     </div>
 
-                    {/* Revenue description */}
-                    {phase.revenue.desc && (
-                      <div className="text-xs text-white/40 font-light pt-4 border-t border-white/10">
-                        {phase.revenue.desc}
+                    {/* Milestones on hover */}
+                    {activePhase === index && (
+                      <div className="mt-4 pt-4 border-t border-white/10 animate-fadeIn">
+                        <h5 className="text-xs text-white/40 uppercase tracking-wider mb-2">Milestones</h5>
+                        <ul className="space-y-1">
+                          {phase.milestones.map((milestone, i) => (
+                            <li key={i} className="text-xs text-white/50">• {milestone}</li>
+                          ))}
+                        </ul>
                       </div>
                     )}
                   </div>
@@ -343,23 +315,23 @@ export default function RoadmapSection() {
         }`}>
           <div className="group">
             <div className="h-px w-12 bg-gradient-to-r from-transparent via-white/20 to-transparent mb-6 group-hover:w-24 transition-all duration-700" />
-            <h4 className="text-base font-normal text-white/80 mb-3">Capex maîtrisé</h4>
+            <h4 className="text-base font-normal text-white/80 mb-3">Burn maîtrisé</h4>
             <p className="text-sm text-white/40 font-light">
-              Les studios sont amortis dès la 1ʳᵉ année grâce aux co-shootings pilotes.
+              -15k€/mois au début, break-even en 10-12 mois.
             </p>
           </div>
           <div className="group">
             <div className="h-px w-12 bg-gradient-to-r from-transparent via-white/20 to-transparent mb-6 group-hover:w-24 transition-all duration-700" />
-            <h4 className="text-base font-normal text-white/80 mb-3">Croissance audience ≈ croissance CA</h4>
+            <h4 className="text-base font-normal text-white/80 mb-3">Croissance organique</h4>
             <p className="text-sm text-white/40 font-light">
-              Ratio prudent d'environ 10 € de CA par lecteur régulier et par an.
+              Pas de paid acquisition avant d'avoir validé le modèle.
             </p>
           </div>
           <div className="group">
             <div className="h-px w-12 bg-gradient-to-r from-transparent via-white/20 to-transparent mb-6 group-hover:w-24 transition-all duration-700" />
-            <h4 className="text-base font-normal text-white/80 mb-3">Break-even planifié en année 3</h4>
+            <h4 className="text-base font-normal text-white/80 mb-3">Milestones clairs</h4>
             <p className="text-sm text-white/40 font-light">
-              Cible réaliste pour un média-plateforme naissant.
+              Des objectifs trimestriels mesurables et atteignables.
             </p>
           </div>
         </div>
@@ -368,35 +340,39 @@ export default function RoadmapSection() {
         <div className={`relative p-8 rounded-lg bg-white/[0.02] mb-16 transition-all duration-1200 delay-800 ease-out ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
         }`}>
-          <h3 className="text-sm font-light text-white/40 mb-6 tracking-[0.2em]">FINANCEMENT RECHERCHÉ</h3>
+          <h3 className="text-sm font-light text-white/40 mb-6 tracking-[0.2em]">UTILISATION DES FONDS</h3>
           <div className="grid md:grid-cols-2 gap-8">
             <div>
               <div className="text-3xl font-light text-transparent bg-clip-text bg-gradient-to-br from-white via-white/80 to-electric-blue/50 mb-2">
-                Bridge SAFE : 1,5 M €
+                400k€ recherchés
               </div>
-              <p className="text-sm text-white/40 font-light">(closing fin 2025)</p>
+              <p className="text-sm text-white/40 font-light">Runway : 15-18 mois</p>
             </div>
             <div>
               <h4 className="text-sm text-white/60 mb-3">Allocation</h4>
               <div className="space-y-2">
                 <div className="flex justify-between text-sm">
-                  <span className="text-white/40">Produit & IA</span>
-                  <span className="text-white/60">55 %</span>
+                  <span className="text-white/40">Équipe (7-10 pers)</span>
+                  <span className="text-white/60">60%</span>
                 </div>
                 <div className="flex justify-between text-sm">
-                  <span className="text-white/40">Acquisition audience</span>
-                  <span className="text-white/60">30 %</span>
+                  <span className="text-white/40">Bureau + Studio</span>
+                  <span className="text-white/60">15%</span>
                 </div>
                 <div className="flex justify-between text-sm">
-                  <span className="text-white/40">Équipement studio</span>
-                  <span className="text-white/60">15 %</span>
+                  <span className="text-white/40">Production contenu</span>
+                  <span className="text-white/60">15%</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="text-white/40">Marketing & Tech</span>
+                  <span className="text-white/60">10%</span>
                 </div>
               </div>
             </div>
           </div>
           <div className="mt-6 pt-6 border-t border-white/10">
             <p className="text-sm text-white/40 font-light">
-              Valorisation cap proposée : <span className="text-white/60">12 M € post-money</span>
+              Prochaine levée : <span className="text-white/60">Série A de 2-3M€ quand MRR &gt; 80k€</span>
             </p>
           </div>
         </div>
@@ -414,7 +390,7 @@ export default function RoadmapSection() {
             }}
             className="group inline-flex items-center gap-4 text-white/60 hover:text-white/90 transition-all duration-500"
           >
-            <span className="text-sm font-light tracking-wider">Voir nos métriques clés</span>
+            <span className="text-sm font-light tracking-wider">Voir nos métriques actuelles</span>
             <svg 
               className="w-4 h-4 transition-transform duration-500 group-hover:translate-x-2" 
               fill="none" 
@@ -449,11 +425,6 @@ export default function RoadmapSection() {
       </div>
 
       <style jsx>{`
-        @keyframes rotate {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-        
         @keyframes float-orbit {
           0%, 100% { 
             transform: translate(0, 0) scale(1);
@@ -464,7 +435,16 @@ export default function RoadmapSection() {
             opacity: 0.3;
           }
         }
+
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(-5px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-fadeIn {
+          animation: fadeIn 0.3s ease-out;
+        }
       `}</style>
     </section>
   );
-};
+}

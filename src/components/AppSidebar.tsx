@@ -4,7 +4,7 @@ import {
   SidebarContent,
   useSidebar,
 } from "@/components/ui/sidebar";
-import { CustomSidebarTrigger } from "./CustomSidebarTrigger"; // On remet l'import
+import { CustomSidebarTrigger } from "./CustomSidebarTrigger";
 
 const navigationItems = [
   { 
@@ -25,7 +25,7 @@ const navigationItems = [
   { 
     title: "Roadmap", 
     id: "roadmap",
-    subtitle: "4 phases d'expansion"
+    subtitle: "4 phases vers le succès"
   },
   { 
     title: "Métriques", 
@@ -35,7 +35,7 @@ const navigationItems = [
   { 
     title: "Investir", 
     id: "cta",
-    subtitle: "Rejoindre l'orbite"
+    subtitle: "Rejoindre l'aventure"
   },
 ];
 
@@ -83,7 +83,7 @@ export function AppSidebar({ onNavigate, activeSection }: AppSidebarProps) {
   if (collapsed) {
     return (
       <>
-        <CustomSidebarTrigger /> {/* On remet le bouton custom avec les 3 barres */}
+        <CustomSidebarTrigger />
         <Sidebar 
           className="w-[60px] !bg-[#050505] border-r border-white/[0.02] transition-all duration-700"
           style={{ backgroundColor: '#050505' }}
@@ -162,10 +162,10 @@ export function AppSidebar({ onNavigate, activeSection }: AppSidebarProps) {
     );
   }
 
-  // Version ouverte (inchangée)
+  // Version ouverte
   return (
     <>
-      <CustomSidebarTrigger /> {/* On remet le bouton custom avec les 3 barres */}
+      <CustomSidebarTrigger />
       <Sidebar 
         className="w-80 !bg-[#050505]/95 backdrop-blur-md border-r border-white/[0.05] transition-all duration-700"
         style={{ backgroundColor: 'rgba(5, 5, 5, 0.95)' }}
@@ -225,7 +225,7 @@ export function AppSidebar({ onNavigate, activeSection }: AppSidebarProps) {
                   Deck Investisseur
                 </p>
                 <p className="text-xs font-light text-white/40">
-                  Bridge SAFE · 1.5M€ · 2025
+                  Bridge · 500k€ · 2025
                 </p>
               </div>
             </div>
@@ -326,23 +326,23 @@ export function AppSidebar({ onNavigate, activeSection }: AppSidebarProps) {
               <div className="absolute inset-0 bg-gradient-to-r from-electric-blue/10 to-electric-cyan/10 rounded-lg blur-xl group-hover:from-electric-blue/20 group-hover:to-electric-cyan/20 transition-all duration-700" />
               <div className="relative p-4 rounded-lg bg-white/[0.02] border border-white/[0.08] group-hover:border-white/[0.15] transition-all duration-700">
                 <div className="flex items-center justify-between mb-3">
-                  <span className="text-xs font-light text-white/60">Bridge SAFE</span>
+                  <span className="text-xs font-light text-white/60">Bridge</span>
                   <div className="flex items-center gap-2">
                     <div className="w-2 h-2 bg-green-500/80 rounded-full animate-pulse" />
                     <span className="text-[10px] text-white/40">Ouvert</span>
                   </div>
                 </div>
                 <div className="text-3xl font-light text-transparent bg-clip-text bg-gradient-to-r from-electric-blue to-electric-cyan mb-3">
-                  1.5M€
+                  500k€
                 </div>
                 <div className="grid grid-cols-2 gap-4 text-xs">
                   <div>
                     <p className="text-white/30">Ticket min.</p>
-                    <p className="text-white/60">50k€</p>
+                    <p className="text-white/60">25k€</p>
                   </div>
                   <div>
                     <p className="text-white/30">Closing</p>
-                    <p className="text-white/60">Dec 2025</p>
+                    <p className="text-white/60">Mars 2025</p>
                   </div>
                 </div>
               </div>

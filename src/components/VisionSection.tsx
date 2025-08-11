@@ -43,27 +43,27 @@ export default function VisionSection() {
 
   const blocks = [
     {
-      title: "Le constat",
+      title: "Le problème",
       points: [
-        "Saturation d'infos, polarisation idéologique, fatigue cognitive.",
-        <>Les publics exigeants réclament du <span className="text-white/90 font-normal">sens</span>, pas du sensationnel.</>,
-        "Les investisseurs cherchent des médias résilients, capables de monétiser au-delà de la publicité classique."
+        "Les médias dépendent à 90% de la pub programmatique qui s'effondre.",
+        "Les créateurs brûlent leur audience avec trop de sponsors.",
+        "Les communautés payantes restent des niches sans impact."
       ]
     },
     {
-      title: "Notre rupture",
+      title: "Notre solution",
       points: [
-        <><span className="text-white/90 font-normal">Businesstainment</span> : le meilleur de l'éducation, du divertissement et de la tech.</>,
-        <><span className="text-white/90 font-normal">HV Agent</span> : un assistant IA pré-prompté pour cartographier les objectifs de l'abonné et l'accompagner (routines, contenus, calendrier, coach WhatsApp).</>,
-        "Production industrielle de contenus (workflow IA) + traitement éditorial premium (voix forte, charte rigoureuse)."
+        <><span className="text-white/90 font-normal">Un modèle hybride</span> : 6 sources de revenus équilibrées.</>,
+        <><span className="text-white/90 font-normal">Du contenu qui convertit</span> : brand content premium à 5-7k€.</>,
+        <><span className="text-white/90 font-normal">Une communauté qui paie</span> : Skool à 60€/mois avec Roger.</>
       ]
     },
     {
-      title: "L'ambition",
+      title: "L'objectif 2025",
       points: [
-        <><span className="text-white/90 font-normal">Mantra :</span> « Élever l'humain, partout où il se trouve, sans bullshit, sans clivage. »</>,
-        "D'ici 2027 : devenir la référence francophone du contenu haute densité ; 1 million d'abonnés, 5 flux de revenus équilibrés.",
-        "Ouvrir les API de nos agents IA pour que marques et institutions créent leurs propres constellations au sein de High Value."
+        <><span className="text-white/90 font-normal">46k€ MRR</span> en 12 mois (réaliste et atteignable).</>,
+        <><span className="text-white/90 font-normal">700 membres payants</span> sur 120k followers (0.6% de conversion).</>,
+        <><span className="text-white/90 font-normal">Break-even mois 10-12</span> avec 400k€ d'investissement.</>
       ]
     }
   ];
@@ -107,7 +107,7 @@ export default function VisionSection() {
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
         }`}>
           <h2 className="text-5xl md:text-6xl lg:text-7xl font-light leading-[1.1] text-white/90 max-w-5xl">
-            Pourquoi la galaxie High Value va redéfinir l'utilité du contenu
+            Construire le premier média rentable nouvelle génération
           </h2>
         </div>
 
@@ -116,10 +116,10 @@ export default function VisionSection() {
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
         }`}>
           <p className="text-xl md:text-2xl text-white/60 font-light leading-relaxed max-w-4xl">
-            Nous vivons dans l'ère du scroll sans conséquence : des millions d'heures vues, zéro impact réel. 
+            High Value n'est pas une énième newsletter. C'est un <span className="text-white/80">écosystème média complet</span> qui 
+            combine contenus premium, communauté engagée et monétisation diversifiée.
             <span className="block mt-4 text-white/70">
-              High Value inverse la tendance : chaque orbite de notre galaxie livre un savoir directement applicable, 
-              porté par l'IA mais piloté par l'humain.
+              Notre ambition : prouver qu'un média peut être rentable sans sacrifier la qualité ni l'éthique.
             </span>
           </p>
         </div>
@@ -152,21 +152,100 @@ export default function VisionSection() {
           ))}
         </div>
 
-        {/* Citation */}
+        {/* Les différenciateurs */}
+        <div className={`mb-24 transition-all duration-1200 delay-800 ease-out ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+        }`}>
+          <h3 className="text-lg font-light text-white/40 mb-12 tracking-[0.2em] text-center">
+            CE QUI NOUS REND UNIQUES
+          </h3>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="group p-6 rounded-lg bg-white/[0.02] border border-white/10 hover:border-white/20 transition-all duration-500">
+              <div className="text-2xl mb-4">🎯</div>
+              <h4 className="text-base text-white/80 font-normal mb-2">AUDIENCE QUALIFIÉE</h4>
+              <p className="text-sm text-white/50 font-light">120k followers avec 4-6% d'engagement. Une base solide pour monétiser.</p>
+            </div>
+            
+            <div className="group p-6 rounded-lg bg-white/[0.02] border border-white/10 hover:border-white/20 transition-all duration-500">
+              <div className="text-2xl mb-4">💰</div>
+              <h4 className="text-base text-white/80 font-normal mb-2">REVENUS DIVERSIFIÉS</h4>
+              <p className="text-sm text-white/50 font-light">Brand content, Skool, RS, newsletter : pas de dépendance unique.</p>
+            </div>
+            
+            <div className="group p-6 rounded-lg bg-white/[0.02] border border-white/10 hover:border-white/20 transition-all duration-500">
+              <div className="text-2xl mb-4">🚀</div>
+              <h4 className="text-base text-white/80 font-normal mb-2">TRACK RECORD</h4>
+              <p className="text-sm text-white/50 font-light">Roger : 5 ans d'expérience média, déjà vendu 2 projets.</p>
+            </div>
+            
+            <div className="group p-6 rounded-lg bg-white/[0.02] border border-white/10 hover:border-white/20 transition-all duration-500">
+              <div className="text-2xl mb-4">📊</div>
+              <h4 className="text-base text-white/80 font-normal mb-2">RENTABILITÉ RAPIDE</h4>
+              <p className="text-sm text-white/50 font-light">Break-even en 10-12 mois grâce au brand content immédiat.</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Benchmarks réalistes */}
         <div className={`relative my-32 transition-all duration-1200 delay-1000 ease-out ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
         }`}>
-          <div className="max-w-3xl mx-auto text-center">
-            {/* Guillemets */}
-            <div className="text-6xl text-white/10 font-serif mb-6">"</div>
+          <div className="max-w-3xl mx-auto">
+            <h3 className="text-lg font-light text-white/40 mb-8 tracking-[0.2em] text-center">
+              BENCHMARKS MARCHÉ
+            </h3>
             
-            <blockquote className="text-2xl md:text-3xl text-white/70 font-light leading-relaxed mb-6 italic">
-              Un média n'est puissant que s'il change ceux qui l'écoutent. Le reste n'est que bruit.
-            </blockquote>
-            
-            <cite className="text-sm text-white/40 font-light tracking-wider">
-              — Roger Ormières
-            </cite>
+            <div className="grid grid-cols-3 gap-8 text-center">
+              <div>
+                <p className="text-sm text-white/40 mb-2">Brief.me</p>
+                <p className="text-lg text-white/70">50k€ MRR</p>
+                <p className="text-xs text-white/30">après 3 ans</p>
+              </div>
+              <div>
+                <p className="text-sm text-white/40 mb-2">Titiou Lecoq</p>
+                <p className="text-lg text-white/70">15k€ MRR</p>
+                <p className="text-xs text-white/30">2k abonnés</p>
+              </div>
+              <div>
+                <p className="text-sm text-white/40 mb-2">High Value</p>
+                <p className="text-lg text-transparent bg-clip-text bg-gradient-to-r from-electric-blue to-electric-cyan">46k€ MRR</p>
+                <p className="text-xs text-white/30">objectif 12 mois</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Execution roadmap simple */}
+        <div className={`mb-24 transition-all duration-1200 delay-1100 ease-out ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+        }`}>
+          <h3 className="text-lg font-light text-white/40 mb-12 tracking-[0.2em] text-center">
+            EXÉCUTION EN 3 PHASES
+          </h3>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="text-center">
+              <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-white/[0.05] flex items-center justify-center">
+                <span className="text-white/40">1</span>
+              </div>
+              <h4 className="text-base text-white/70 mb-2">Mois 0-3</h4>
+              <p className="text-sm text-white/40">Lancer Skool + Newsletter payante. Premiers brand contents.</p>
+            </div>
+            <div className="text-center">
+              <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-white/[0.05] flex items-center justify-center">
+                <span className="text-white/40">2</span>
+              </div>
+              <h4 className="text-base text-white/70 mb-2">Mois 4-9</h4>
+              <p className="text-sm text-white/40">Monétiser RS. Scaler le brand content. 25k€ MRR.</p>
+            </div>
+            <div className="text-center">
+              <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-white/[0.05] flex items-center justify-center">
+                <span className="text-white/40">3</span>
+              </div>
+              <h4 className="text-base text-white/70 mb-2">Mois 10-12</h4>
+              <p className="text-sm text-white/40">Break-even. 46k€ MRR. Prêt pour la série A.</p>
+            </div>
           </div>
         </div>
 
@@ -176,14 +255,14 @@ export default function VisionSection() {
         }`}>
           <button
             onClick={() => {
-              const roadmapElement = document.getElementById('roadmap');
-              if (roadmapElement) {
-                roadmapElement.scrollIntoView({ behavior: 'smooth' });
+              const ecosystemElement = document.getElementById('ecosystem');
+              if (ecosystemElement) {
+                ecosystemElement.scrollIntoView({ behavior: 'smooth' });
               }
             }}
             className="group inline-flex items-center gap-4 text-white/60 hover:text-white/90 transition-all duration-500"
           >
-            <span className="text-sm font-light tracking-wider">Suivre notre trajectoire</span>
+            <span className="text-sm font-light tracking-wider">Découvrir notre écosystème de production</span>
             <svg 
               className="w-4 h-4 transition-transform duration-500 group-hover:translate-x-2" 
               fill="none" 
@@ -231,4 +310,4 @@ export default function VisionSection() {
       `}</style>
     </section>
   );
-};
+}

@@ -3,10 +3,9 @@ import { useEffect, useRef, useState } from "react";
 export default function HighValueSchemaSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
-  const [activeQuadrant, setActiveQuadrant] = useState(null);
-  const [hoveredPoint, setHoveredPoint] = useState(null);
+  const [hoveredLevel, setHoveredLevel] = useState<number | null>(null);
 
-  // Intersection Observer pour l'apparition
+  // Intersection Observer
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -16,7 +15,7 @@ export default function HighValueSchemaSection() {
           }
         });
       },
-      { threshold: 0.2 }
+      { threshold: 0.1 }
     );
 
     if (sectionRef.current) {
@@ -26,133 +25,75 @@ export default function HighValueSchemaSection() {
     return () => observer.disconnect();
   }, []);
 
-  // Les 4 piliers avec objectifs réalistes et cohérents
-  const quadrants = [
+  // Le modèle en cascade amélioré
+  const cascadeModel = [
     {
-      id: 'editorial',
-      title: 'Cœur éditorial',
-      position: 'top-left',
-      color: 'from-blue-500 to-cyan-500',
-      icon: '✍️',
-      points: [
-        { 
-          main: "Ligne éditoriale ambitieuse", 
-          detail: "Mindset, Culture, Business & Innovation",
-          metrics: "Objectif : 4 verticales fortes"
-        },
-        { 
-          main: "Tonalité à développer", 
-          detail: "incarnée, exigeante, sensorielle",
-          metrics: "Cible : NPS > 70"
-        },
-        { 
-          main: "Formats diversifiés", 
-          detail: "Articles, audio, vidéo, tribunes",
-          metrics: "Vision : 11 formats actifs"
-        },
-        { 
-          main: "Mission claire", 
-          detail: "inspirer, transmettre, transformer",
-          metrics: "Ambition : Impact maximal"
-        }
+      level: 1,
+      name: "Audience Cumulée",
+      price: "Gratuit",
+      audience: "10-30M impressions",
+      revenue: "0€",
+      features: [
+        "Contenus multi-plateformes",
+        "Newsletter hebdo gratuite", 
+        "Articles blog en accès libre",
+        "Lives publics & stories"
       ],
-      stats: {
-        objectif: "300 contenus/mois",
-        qualité: "Viser 90%+ de satisfaction",
-        portée: "Cible : 2.5M impressions"
-      }
+      color: "from-gradient-start to-gradient-end",
+      borderGlow: "from-white/40 to-white/20",
+      conversion: "→ 3-5% vers payant",
+      levelNumber: "01"
     },
     {
-      id: 'diffusion',
-      title: 'Diffusion & rayonnement',
-      position: 'top-right',
-      color: 'from-purple-500 to-pink-500',
-      icon: '🚀',
-      points: [
-        { 
-          main: "Stratégie multicanale", 
-          detail: "site, newsletter, réseaux sociaux",
-          metrics: "Plan : 12 canaux actifs"
-        },
-        { 
-          main: "Audiences visées", 
-          detail: "25-45 ans, leaders d'opinion",
-          metrics: "Objectif : 25K lecteurs"
-        },
-        { 
-          main: "Approche mobile first", 
-          detail: "expérience optimisée, rapide",
-          metrics: "Cible : 60% trafic mobile"
-        },
-        { 
-          main: "Amplification maximale", 
-          detail: "viralité et partage naturel",
-          metrics: "Ambition : +15% /mois"
-        }
+      level: 2,
+      name: "Newsletter Premium",
+      price: "7.90€/mois",
+      audience: "500-700 membres",
+      revenue: "4-5.5k€ MRR",
+      features: [
+        "Newsletter quotidienne exclusive",
+        "Archives complètes du site",
+        "Contenus sans publicité",
+        "Communauté Discord VIP"
       ],
-      stats: {
-        expansion: "Viser 12 plateformes",
-        international: "Objectif 50+ pays",
-        viralité: "20+ contenus viraux/mois"
-      }
+      color: "from-electric-blue/40 to-electric-cyan/20",
+      borderGlow: "from-electric-blue to-electric-cyan",
+      conversion: "Taux de churn : 5-8%/mois",
+      levelNumber: "02"
     },
     {
-      id: 'communaute',
-      title: 'Communauté & influence',
-      position: 'bottom-left',
-      color: 'from-green-500 to-emerald-500',
-      icon: '🌟',
-      points: [
-        { 
-          main: "Audience engagée", 
-          detail: "lecteurs fidèles et ambassadeurs",
-          metrics: "Objectif : 85% rétention"
-        },
-        { 
-          main: "Réseau d'excellence", 
-          detail: "experts, auteurs, créatifs",
-          metrics: "Cible : 100+ contributeurs"
-        },
-        { 
-          main: "Espaces communautaires", 
-          detail: "échanges, partage, co-création",
-          metrics: "Vision : 5K+ membres actifs"
-        }
+      level: 3,
+      name: "Communauté Skool",
+      price: "60€/mois",
+      audience: "150-200 membres",
+      revenue: "9-12k€ MRR",
+      features: [
+        "Accès direct à Roger",
+        "Lives hebdo exclusifs",
+        "Ressources & templates premium",
+        "Networking entre membres"
       ],
-      stats: {
-        communauté: "Objectif 25K membres",
-        événements: "12 masterclass/an",
-        engagement: "Viser NPS > 70"
-      }
+      color: "from-electric-purple/40 to-purple-500/20",
+      borderGlow: "from-electric-purple to-purple-500",
+      conversion: "Rétention : 85%+",
+      levelNumber: "03"
     },
     {
-      id: 'economique',
-      title: 'Modèle économique',
-      position: 'bottom-right',
-      color: 'from-orange-500 to-red-500',
-      icon: '💎',
-      points: [
-        { 
-          main: "Revenus diversifiés", 
-          detail: "publicité, partenariats, premium",
-          metrics: "Plan : 5 sources de revenus"
-        },
-        { 
-          main: "Croissance durable", 
-          detail: "alignée avec nos valeurs",
-          metrics: "Objectifs progressifs"
-        },
-        { 
-          main: "Vision long terme", 
-          detail: "média de référence premium",
-          metrics: "Ambition 2027 : 4M€ ARR"
-        }
+      level: 4,
+      name: "B2B & Marques",
+      price: "5-7k€/opération",
+      audience: "5-10 clients/mois",
+      revenue: "25-50k€/mois",
+      features: [
+        "Brand content sur-mesure",
+        "Interviews collaboratives",
+        "Distribution multi-canal",
+        "Analytics détaillés"
       ],
-      stats: {
-        revenus: "Cible MRR 35K€",
-        croissance: "Viser +150% /an",
-        rentabilité: "Break-even année 3"
-      }
+      color: "from-gold-400/40 to-gold-600/20",
+      borderGlow: "from-gold-400 to-gold-600",
+      conversion: "Récurrence : 40%",
+      levelNumber: "04"
     }
   ];
 
@@ -160,208 +101,294 @@ export default function HighValueSchemaSection() {
     <section 
       ref={sectionRef}
       id="high-value-schema" 
-      className="relative min-h-screen py-32 bg-gradient-to-b from-[#050505] via-[#0a0a0f] to-[#050505] overflow-hidden"
+      className="relative min-h-screen py-32 bg-[#050505] overflow-hidden"
     >
-      {/* Fond subtil sans animations agressives */}
+      {/* Animated background gradient */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl" />
-        </div>
-      </div>
-
-      {/* Grille de fond très subtile */}
-      <div className="absolute inset-0 opacity-[0.02]">
-        <div className="h-full w-full" style={{
-          backgroundImage: `
-            linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px)
-          `,
-          backgroundSize: '40px 40px, 40px 40px'
-        }} />
+        <div className="absolute inset-0 bg-gradient-to-br from-electric-blue/5 via-transparent to-electric-purple/5 animate-gradient" />
+        <div className="absolute top-20 right-20 w-[600px] h-[600px] bg-electric-cyan/10 rounded-full blur-[120px] animate-float" />
+        <div className="absolute bottom-20 left-20 w-[800px] h-[800px] bg-electric-purple/10 rounded-full blur-[150px] animate-float-delayed" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-8">
-        {/* Titre de la section */}
-        <div className={`text-center mb-20 transition-all duration-1000 ${
+        {/* Title with gradient */}
+        <div className={`mb-20 transition-all duration-1200 ease-out ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
         }`}>
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-light mb-6">
-            <span className="text-white/40">Notre vision</span>{" "}
-            <span className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
-              High Value
+          <h2 className="text-5xl md:text-6xl lg:text-7xl font-extralight leading-[1.1] text-white/90 max-w-5xl">
+            Un modèle simple qui
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-electric-blue via-electric-cyan to-electric-purple">
+              convertit vraiment
             </span>
           </h2>
-          <p className="text-xl text-white/50 max-w-3xl mx-auto font-light">
-            Un écosystème éditorial ambitieux où chaque pilier se renforce mutuellement. 
-            Notre feuille de route pour créer un média d'exception à forte valeur ajoutée.
+        </div>
+
+        {/* Intro with modern typography */}
+        <div className={`mb-24 transition-all duration-1200 delay-200 ease-out ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+        }`}>
+          <p className="text-xl md:text-2xl text-white/50 font-light leading-relaxed max-w-4xl">
+            De l'audience gratuite au client B2B : 
+            <span className="text-white/80 font-normal"> chaque niveau a sa logique économique</span>.
+          </p>
+          <p className="text-lg text-white/40 mt-4 max-w-3xl">
+            Pas de promesses folles, juste un funnel qui fonctionne avec des taux de conversion réalistes.
           </p>
         </div>
 
-        {/* Schéma interactif */}
-        <div className={`relative transition-all duration-1000 ${
-          isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-90'
+        {/* Cascade visualization with modern cards */}
+        <div className={`mb-24 transition-all duration-1200 delay-400 ease-out ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
         }`}>
-          <div className="relative mx-auto" style={{ maxWidth: '900px', height: '900px' }}>
-            
-            {/* Cercle central HIGH VALUE */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
-              <div className="relative">
-                {/* Anneaux statiques */}
-                <div className="absolute inset-0 -inset-20">
-                  <div className="absolute inset-0 rounded-full border border-white/10" />
-                  <div className="absolute inset-4 rounded-full border border-white/5" />
-                  <div className="absolute -inset-8 rounded-full border border-white/5" />
-                </div>
-
-                {/* Hub central */}
-                <div className="relative w-48 h-48 rounded-full bg-gradient-to-br from-[#0a0a0f] to-[#050505] border border-white/20 flex items-center justify-center group cursor-pointer hover:scale-105 transition-transform duration-300">
-                  <div className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  <div className="text-center">
-                    <h3 className="text-2xl font-bold text-white mb-1">HIGH</h3>
-                    <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">VALUE</h3>
-                    <div className="mt-2 text-xs text-white/40">Notre ambition</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Lignes de connexion */}
-            <svg className="absolute inset-0 w-full h-full pointer-events-none">
-              <defs>
-                <linearGradient id="line-gradient-1" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="rgba(59, 130, 246, 0)" />
-                  <stop offset="50%" stopColor="rgba(59, 130, 246, 0.3)" />
-                  <stop offset="100%" stopColor="rgba(59, 130, 246, 0)" />
-                </linearGradient>
-              </defs>
-              {/* Connexions principales */}
-              <line x1="25%" y1="25%" x2="50%" y2="50%" stroke="url(#line-gradient-1)" strokeWidth="1" opacity="0.5" />
-              <line x1="75%" y1="25%" x2="50%" y2="50%" stroke="url(#line-gradient-1)" strokeWidth="1" opacity="0.5" />
-              <line x1="25%" y1="75%" x2="50%" y2="50%" stroke="url(#line-gradient-1)" strokeWidth="1" opacity="0.5" />
-              <line x1="75%" y1="75%" x2="50%" y2="50%" stroke="url(#line-gradient-1)" strokeWidth="1" opacity="0.5" />
+          <div className="relative space-y-6">
+            {/* Connection lines */}
+            <svg className="absolute left-1/2 top-0 h-full w-2 -translate-x-1/2" style={{ zIndex: 0 }}>
+              <line
+                x1="4"
+                y1="0"
+                x2="4"
+                y2="100%"
+                className="stroke-white/10"
+                strokeWidth="2"
+                strokeDasharray="5 5"
+              />
             </svg>
 
-            {/* Les 4 quadrants */}
-            {quadrants.map((quadrant, index) => {
-              const positions = {
-                'top-left': { top: '0%', left: '0%' },
-                'top-right': { top: '0%', right: '0%' },
-                'bottom-left': { bottom: '0%', left: '0%' },
-                'bottom-right': { bottom: '0%', right: '0%' }
-              };
-              
-              return (
-                <div
-                  key={quadrant.id}
-                  className={`absolute w-80 transition-all duration-500 ${
-                    activeQuadrant === index ? 'z-30 scale-105' : 'z-10'
-                  }`}
-                  style={positions[quadrant.position]}
-                  onMouseEnter={() => setActiveQuadrant(index)}
-                  onMouseLeave={() => setActiveQuadrant(null)}
-                >
-                  <div className={`relative p-6 rounded-2xl border backdrop-blur-sm transition-all duration-300 cursor-pointer ${
-                    activeQuadrant === index 
-                      ? 'bg-white/[0.08] border-white/30 shadow-xl' 
-                      : 'bg-white/[0.02] border-white/10 hover:bg-white/[0.05]'
-                  }`}>
-                    {/* Effet de dégradé */}
-                    <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${quadrant.color} opacity-0 transition-opacity duration-300 ${
-                      activeQuadrant === index ? 'opacity-10' : ''
-                    }`} />
+            {/* Cascade steps */}
+            {cascadeModel.map((level, index) => (
+              <div
+                key={index}
+                className={`relative transition-all duration-700 ${
+                  hoveredLevel === index ? 'scale-[1.02] z-20' : 'z-10'
+                }`}
+                style={{
+                  width: `${100 - index * 15}%`,
+                  marginLeft: `${index * 7.5}%`,
+                  transitionDelay: `${index * 100}ms`
+                }}
+                onMouseEnter={() => setHoveredLevel(index)}
+                onMouseLeave={() => setHoveredLevel(null)}
+              >
+                {/* Glow effect on hover */}
+                {hoveredLevel === index && (
+                  <div className={`absolute inset-0 bg-gradient-to-r ${level.borderGlow} opacity-20 blur-xl rounded-2xl`} />
+                )}
 
-                    {/* En-tête */}
-                    <div className="relative z-10 mb-4">
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="text-2xl">{quadrant.icon}</span>
-                        <div className={`px-2 py-1 rounded-full text-xs font-light bg-gradient-to-r ${quadrant.color} bg-opacity-20 text-white/60`}>
-                          Pilier {index + 1}
-                        </div>
+                <div className={`relative p-8 rounded-2xl bg-gradient-to-r ${level.color} backdrop-blur-xl border border-white/10 
+                  ${hoveredLevel === index ? 'border-white/30 shadow-2xl' : ''}`}>
+                  
+                  {/* Header with level number */}
+                  <div className="flex items-start justify-between mb-6">
+                    <div className="flex items-center gap-6">
+                      <div className="text-5xl font-extralight text-white/20">{level.levelNumber}</div>
+                      <div>
+                        <h3 className="text-2xl font-light text-white/90">{level.name}</h3>
+                        <p className="text-lg text-white/50 mt-1">{level.price}</p>
                       </div>
-                      <h3 className="text-lg font-light text-white/90 leading-tight">
-                        {quadrant.title}
-                      </h3>
                     </div>
+                    <div className={`px-4 py-2 rounded-full bg-gradient-to-r ${level.borderGlow} bg-opacity-20`}>
+                      <span className="text-sm font-medium text-white/80">{level.conversion}</span>
+                    </div>
+                  </div>
 
-                    {/* Points de contenu */}
-                    <div className="relative z-10 space-y-3">
-                      {quadrant.points.map((point, i) => (
-                        <div 
-                          key={i} 
-                          className="group/point"
-                          onMouseEnter={() => setHoveredPoint(`${index}-${i}`)}
-                          onMouseLeave={() => setHoveredPoint(null)}
-                        >
-                          <div className="flex items-start gap-2">
-                            <div className={`w-1 h-1 rounded-full bg-gradient-to-r ${quadrant.color} mt-2 opacity-60`} />
-                            <div className="flex-1">
-                              <div className="text-sm text-white/70 font-light">
-                                <span className="text-white/80">{point.main}:</span> {point.detail}
-                              </div>
-                              {hoveredPoint === `${index}-${i}` && point.metrics && (
-                                <div className="mt-1 text-xs text-white/40" style={{ animation: 'fadeIn 0.3s ease-out' }}>
-                                  {point.metrics}
-                                </div>
-                              )}
-                            </div>
-                          </div>
+                  {/* Metrics Grid */}
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div className="space-y-1">
+                      <div className="text-sm text-white/40 uppercase tracking-wider">Volume</div>
+                      <div className="text-2xl font-light text-white/90">{level.audience}</div>
+                    </div>
+                    <div className="space-y-1">
+                      <div className="text-sm text-white/40 uppercase tracking-wider">Revenus</div>
+                      <div className="text-2xl font-light text-white/90">{level.revenue}</div>
+                    </div>
+                  </div>
+
+                  {/* Features - always visible but subtle */}
+                  <div className={`mt-6 pt-6 border-t border-white/10 transition-all duration-500 ${
+                    hoveredLevel === index ? 'opacity-100' : 'opacity-60'
+                  }`}>
+                    <div className="grid md:grid-cols-2 gap-3">
+                      {level.features.map((feature, i) => (
+                        <div key={i} className="flex items-center gap-2">
+                          <div className="w-1.5 h-1.5 rounded-full bg-white/40" />
+                          <span className="text-sm text-white/60">{feature}</span>
                         </div>
                       ))}
                     </div>
-
-                    {/* Stats (objectifs) */}
-                    {activeQuadrant === index && (
-                      <div className="relative z-10 mt-4 pt-4 border-t border-white/10" style={{ animation: 'fadeIn 0.3s ease-out' }}>
-                        <div className="space-y-1">
-                          {Object.entries(quadrant.stats).map(([key, value]) => (
-                            <div key={key} className="text-xs flex justify-between">
-                              <span className="text-white/40 capitalize">{key}:</span>
-                              <span className="text-white/60 font-light">{value}</span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-
-                    {/* Indicateur de connexion */}
-                    <div className={`absolute ${
-                      quadrant.position.includes('top') ? 'bottom-0' : 'top-0'
-                    } ${
-                      quadrant.position.includes('left') ? 'right-0' : 'left-0'
-                    } w-3 h-3 transform translate-x-1/2 translate-y-1/2`}>
-                      <div className={`w-full h-full rounded-full bg-gradient-to-br ${quadrant.color} opacity-60`} />
-                    </div>
                   </div>
                 </div>
-              );
-            })}
+              </div>
+            ))}
+          </div>
+
+          {/* Total revenue card */}
+          <div className="mt-16 flex justify-center">
+            <div className="relative group">
+              {/* Glow effect */}
+              <div className="absolute inset-0 bg-gradient-to-r from-electric-blue via-electric-cyan to-electric-purple opacity-30 blur-2xl group-hover:opacity-50 transition-opacity duration-500" />
+              
+              <div className="relative p-8 rounded-2xl bg-black/40 backdrop-blur-xl border border-white/20 group-hover:border-white/40 transition-all duration-500">
+                <div className="text-sm text-white/40 uppercase tracking-wider mb-3">Objectif MRR Total</div>
+                <div className="text-5xl font-extralight text-transparent bg-clip-text bg-gradient-to-r from-electric-blue via-electric-cyan to-electric-purple">
+                  46k€/mois
+                </div>
+                <div className="text-base text-white/60 mt-3">Break-even : mois 10-12</div>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Objectifs clés en bas */}
-        <div className={`mt-20 grid grid-cols-1 md:grid-cols-3 gap-8 transition-all duration-1000 delay-300 ${
+        {/* Key differentiators with modern cards */}
+        <div className={`grid md:grid-cols-3 gap-6 mb-24 transition-all duration-1200 delay-600 ease-out ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
         }`}>
-          <div className="text-center">
-            <div className="text-3xl font-light text-white/80 mb-2">300</div>
-            <div className="text-sm text-white/40">contenus/mois visés</div>
+          {[
+            {
+              title: "Acquisition organique",
+              description: "10-30M impressions = 0€ de CAC. On monétise une audience existante."
+            },
+            {
+              title: "Prix psychologiques",
+              description: "7.90€ et 60€ : deux prix ancrés qui convertissent naturellement."
+            },
+            {
+              title: "B2B = cash rapide",
+              description: "Brand content dès le mois 1 pour financer la croissance."
+            }
+          ].map((item, index) => (
+            <div key={index} className="group relative">
+              <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-white/0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="relative p-8 rounded-2xl bg-white/[0.02] backdrop-blur-sm border border-white/10 group-hover:border-white/20 transition-all duration-500">
+                <h4 className="text-xl font-light text-white/90 mb-3">{item.title}</h4>
+                <p className="text-sm text-white/50 leading-relaxed">{item.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Comparison section with gradient border */}
+        <div className={`relative transition-all duration-1200 delay-800 ease-out ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+        }`}>
+          {/* Gradient border effect */}
+          <div className="absolute inset-0 bg-gradient-to-r from-electric-blue via-electric-cyan to-electric-purple p-[1px] rounded-2xl">
+            <div className="h-full w-full bg-[#050505] rounded-2xl" />
           </div>
-          <div className="text-center">
-            <div className="text-3xl font-light text-white/80 mb-2">25K+</div>
-            <div className="text-sm text-white/40">communauté cible</div>
+          
+          <div className="relative p-10 rounded-2xl">
+            <h3 className="text-2xl font-light text-transparent bg-clip-text bg-gradient-to-r from-electric-blue to-electric-cyan mb-8">
+              Avantage compétitif
+            </h3>
+            <div className="grid md:grid-cols-2 gap-12">
+              <div>
+                <h4 className="text-lg text-white/80 mb-4 flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-red-400"></span>
+                  Médias classiques
+                </h4>
+                <ul className="space-y-3 text-sm text-white/50">
+                  <li className="flex items-start gap-2">
+                    <span className="text-white/30 mt-1">•</span>
+                    <span>90% pub programmatique (CPM en chute)</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-white/30 mt-1">•</span>
+                    <span>Paywall unique à 10-20€</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-white/30 mt-1">•</span>
+                    <span>Pas de communauté monétisée</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-white/30 mt-1">•</span>
+                    <span>B2B = native advertising basique</span>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="text-lg text-white/80 mb-4 flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-electric-cyan"></span>
+                  High Value
+                </h4>
+                <ul className="space-y-3 text-sm text-white/50">
+                  <li className="flex items-start gap-2">
+                    <span className="text-electric-cyan mt-1">•</span>
+                    <span>6 sources de revenus équilibrées</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-electric-cyan mt-1">•</span>
+                    <span>2 niveaux de prix (7.90€ + 60€)</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-electric-cyan mt-1">•</span>
+                    <span>Communauté Skool haute valeur</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-electric-cyan mt-1">•</span>
+                    <span>Brand content premium 5-7k€</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
-          <div className="text-center">
-            <div className="text-3xl font-light text-white/80 mb-2">35K€</div>
-            <div className="text-sm text-white/40">MRR objectif année 1</div>
-          </div>
+        </div>
+
+        {/* CTA with hover effect */}
+        <div className={`text-center mt-24 transition-all duration-1200 delay-1000 ease-out ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+        }`}>
+          <button
+            onClick={() => {
+              const businessElement = document.getElementById('business');
+              if (businessElement) {
+                businessElement.scrollIntoView({ behavior: 'smooth' });
+              }
+            }}
+            className="group relative inline-flex items-center gap-4 px-10 py-5 overflow-hidden rounded-full transition-all duration-500"
+          >
+            {/* Background gradient animation */}
+            <div className="absolute inset-0 bg-gradient-to-r from-electric-blue via-electric-cyan to-electric-purple opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <div className="absolute inset-0 bg-white/[0.05] backdrop-blur-sm border border-white/10 group-hover:border-transparent rounded-full transition-all duration-500" />
+            
+            {/* Content */}
+            <span className="relative text-lg text-white/70 group-hover:text-white transition-colors duration-500">
+              Voir le détail des revenus
+            </span>
+            <svg className="relative w-5 h-5 text-white/50 group-hover:text-white transition-all duration-500 group-hover:translate-x-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </button>
         </div>
       </div>
 
       <style jsx>{`
-        @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(-10px); }
-          to { opacity: 1; transform: translateY(0); }
+        @keyframes gradient {
+          0%, 100% { transform: translateX(0%) translateY(0%) rotate(0deg) scale(1); }
+          25% { transform: translateX(-5%) translateY(10%) rotate(1deg) scale(1.1); }
+          50% { transform: translateX(5%) translateY(5%) rotate(-1deg) scale(1); }
+          75% { transform: translateX(0%) translateY(-5%) rotate(1deg) scale(1.1); }
+        }
+        
+        @keyframes float {
+          0%, 100% { transform: translateY(0px) scale(1); }
+          50% { transform: translateY(-30px) scale(1.05); }
+        }
+        
+        @keyframes float-delayed {
+          0%, 100% { transform: translateY(0px) scale(1); }
+          50% { transform: translateY(-40px) scale(1.08); }
+        }
+        
+        .animate-gradient {
+          animation: gradient 20s ease infinite;
+        }
+        
+        .animate-float {
+          animation: float 6s ease-in-out infinite;
+        }
+        
+        .animate-float-delayed {
+          animation: float-delayed 8s ease-in-out infinite;
+          animation-delay: 1s;
         }
       `}</style>
     </section>
