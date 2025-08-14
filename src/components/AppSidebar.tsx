@@ -225,7 +225,7 @@ export function AppSidebar({ onNavigate, activeSection }: AppSidebarProps) {
                   Deck Investisseur
                 </p>
                 <p className="text-xs font-light text-white/40">
-                  Bridge · 500k€ · 2025
+                  Bridge · 400k€ · 2025
                 </p>
               </div>
             </div>
@@ -333,7 +333,7 @@ export function AppSidebar({ onNavigate, activeSection }: AppSidebarProps) {
                   </div>
                 </div>
                 <div className="text-3xl font-light text-transparent bg-clip-text bg-gradient-to-r from-electric-blue to-electric-cyan mb-3">
-                  500k€
+                  400k€
                 </div>
                 <div className="grid grid-cols-2 gap-4 text-xs">
                   <div>

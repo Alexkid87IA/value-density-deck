@@ -7,9 +7,10 @@ import { AppSidebar } from "./components/AppSidebar";
 import HeroSection from "./components/HeroSection";
 import VisionSection from "./components/VisionSection";
 import EcosystemSection from "./components/EcosystemSection";
-import HighValueSchemaSection from "./components/HighValueSchemaSection"; // ← Ajout de l'import
-import ViralToValueSection from "./components/ViralToValueSection";
+import HighValueSchemaSection from "./components/HighValueSchemaSection";
 import BusinessModelSection from "./components/BusinessModelSection";
+import PlaybookSection from "./components/PlaybookSection";
+import ViralToValueSection from "./components/ViralToValueSection";
 import MetricsSection from "./components/MetricsSection";
 import RoadmapSection from "./components/RoadmapSection";
 import CTASection from "./components/CTASection";
@@ -26,9 +27,10 @@ export default function App() {
           <HeroSection />
           <VisionSection />
           <EcosystemSection />
-          <HighValueSchemaSection /> {/* ← Ajout du composant ici */}
-          <ViralToValueSection />
+          <HighValueSchemaSection />
           <BusinessModelSection />
+          <PlaybookSection />
+          <ViralToValueSection />
           <MetricsSection />
           <RoadmapSection />
           <CTASection />

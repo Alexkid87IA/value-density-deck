@@ -25,75 +25,96 @@ export default function HighValueSchemaSection() {
     return () => observer.disconnect();
   }, []);
 
-  // Le modèle en cascade amélioré
+  // Le modèle en cascade adapté à l'audience
   const cascadeModel = [
     {
       level: 1,
-      name: "Audience Cumulée",
-      price: "Gratuit",
-      audience: "10-30M impressions",
-      revenue: "0€",
+      name: "Reach Total",
+      audience: "10.6M comptes touchés",
+      volume: "26M vues en 90 jours",
       features: [
-        "Contenus multi-plateformes",
-        "Newsletter hebdo gratuite", 
-        "Articles blog en accès libre",
-        "Lives publics & stories"
+        "92% proviennent de non-followers",
+        "Découverte via Reels (40%) et Posts (60%)", 
+        "Peak : posts à 79k likes",
+        "+52% de reach en 30 jours"
       ],
       color: "from-gradient-start to-gradient-end",
       borderGlow: "from-white/40 to-white/20",
-      conversion: "→ 3-5% vers payant",
+      conversion: "→ 3-5% deviennent followers",
       levelNumber: "01"
     },
     {
       level: 2,
-      name: "Newsletter Premium",
-      price: "7.90€/mois",
-      audience: "500-700 membres",
-      revenue: "4-5.5k€ MRR",
+      name: "Followers Actifs",
+      audience: "120k followers",
+      volume: "216k interactions/mois",
       features: [
-        "Newsletter quotidienne exclusive",
-        "Archives complètes du site",
-        "Contenus sans publicité",
-        "Communauté Discord VIP"
+        "25-44 ans (62%)",
+        "France (63%), Belgique, Afrique",
+        "96k saves = forte valeur perçue",
+        "10% d'engagement moyen"
       ],
       color: "from-electric-blue/40 to-electric-cyan/20",
       borderGlow: "from-electric-blue to-electric-cyan",
-      conversion: "Taux de churn : 5-8%/mois",
+      conversion: "→ 5-8% prêts pour le premium",
       levelNumber: "02"
     },
     {
       level: 3,
-      name: "Communauté Skool",
-      price: "60€/mois",
-      audience: "150-200 membres",
-      revenue: "9-12k€ MRR",
+      name: "Audience Premium",
+      audience: "5-10k prospects qualifiés",
+      volume: "Newsletter + Skool potentiels",
       features: [
-        "Accès direct à Roger",
-        "Lives hebdo exclusifs",
-        "Ressources & templates premium",
-        "Networking entre membres"
+        "Entrepreneurs & dirigeants PME",
+        "Managers en transition",
+        "Sauvent régulièrement les contenus",
+        "Interactions fréquentes"
       ],
       color: "from-electric-purple/40 to-purple-500/20",
       borderGlow: "from-electric-purple to-purple-500",
-      conversion: "Rétention : 85%+",
+      conversion: "→ 10-15% taux de conversion",
       levelNumber: "03"
     },
     {
       level: 4,
-      name: "B2B & Marques",
-      price: "5-7k€/opération",
-      audience: "5-10 clients/mois",
-      revenue: "25-50k€/mois",
+      name: "Clients & Partenaires",
+      audience: "500-1000 high value",
+      volume: "B2B + Communauté VIP",
       features: [
-        "Brand content sur-mesure",
-        "Interviews collaboratives",
-        "Distribution multi-canal",
-        "Analytics détaillés"
+        "Dirigeants établis",
+        "Budget formation/conseil",
+        "Recherche de visibilité",
+        "Network effect puissant"
       ],
       color: "from-gold-400/40 to-gold-600/20",
       borderGlow: "from-gold-400 to-gold-600",
-      conversion: "Récurrence : 40%",
+      conversion: "LTV : 500-5000€",
       levelNumber: "04"
+    }
+  ];
+
+  // Personas basés sur les analytics
+  const personas = [
+    {
+      title: "L'Entrepreneur Aspirant",
+      age: "28-35 ans",
+      description: "Salarié qui rêve de liberté",
+      pain: "Peur de se lancer, manque de méthode",
+      content: "Carrousels motivationnels, success stories"
+    },
+    {
+      title: "Le Dirigeant PME",
+      age: "35-45 ans", 
+      description: "1-20 employés, veut scaler",
+      pain: "Croissance stagnante, manque de visibilité",
+      content: "LinkedIn posts, études de cas B2B"
+    },
+    {
+      title: "Le Manager en Transition",
+      age: "30-40 ans",
+      description: "Cadre qui s'ennuie",
+      pain: "Plafond de verre, quête de sens",
+      content: "Récits signatures, podcasts inspirants"
     }
   ];
 
@@ -116,9 +137,9 @@ export default function HighValueSchemaSection() {
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
         }`}>
           <h2 className="text-5xl md:text-6xl lg:text-7xl font-extralight leading-[1.1] text-white/90 max-w-5xl">
-            Un modèle simple qui
+            120k followers,
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-electric-blue via-electric-cyan to-electric-purple">
-              convertit vraiment
+              4 niveaux d'engagement
             </span>
           </h2>
         </div>
@@ -128,11 +149,11 @@ export default function HighValueSchemaSection() {
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
         }`}>
           <p className="text-xl md:text-2xl text-white/50 font-light leading-relaxed max-w-4xl">
-            De l'audience gratuite au client B2B : 
-            <span className="text-white/80 font-normal"> chaque niveau a sa logique économique</span>.
+            De la découverte virale à l'engagement premium : 
+            <span className="text-white/80 font-normal"> chaque niveau a sa stratégie de conversion</span>.
           </p>
           <p className="text-lg text-white/40 mt-4 max-w-3xl">
-            Pas de promesses folles, juste un funnel qui fonctionne avec des taux de conversion réalistes.
+            26M de vues en 90 jours. 92% viennent de non-followers. L'opportunité est massive.
           </p>
         </div>
 
@@ -183,7 +204,7 @@ export default function HighValueSchemaSection() {
                       <div className="text-5xl font-extralight text-white/20">{level.levelNumber}</div>
                       <div>
                         <h3 className="text-2xl font-light text-white/90">{level.name}</h3>
-                        <p className="text-lg text-white/50 mt-1">{level.price}</p>
+                        <p className="text-lg text-white/50 mt-1">{level.audience}</p>
                       </div>
                     </div>
                     <div className={`px-4 py-2 rounded-full bg-gradient-to-r ${level.borderGlow} bg-opacity-20`}>
@@ -191,20 +212,14 @@ export default function HighValueSchemaSection() {
                     </div>
                   </div>
 
-                  {/* Metrics Grid */}
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div className="space-y-1">
-                      <div className="text-sm text-white/40 uppercase tracking-wider">Volume</div>
-                      <div className="text-2xl font-light text-white/90">{level.audience}</div>
-                    </div>
-                    <div className="space-y-1">
-                      <div className="text-sm text-white/40 uppercase tracking-wider">Revenus</div>
-                      <div className="text-2xl font-light text-white/90">{level.revenue}</div>
-                    </div>
+                  {/* Metrics */}
+                  <div className="mb-6">
+                    <div className="text-sm text-white/40 uppercase tracking-wider">Volume</div>
+                    <div className="text-xl font-light text-white/90">{level.volume}</div>
                   </div>
 
                   {/* Features - always visible but subtle */}
-                  <div className={`mt-6 pt-6 border-t border-white/10 transition-all duration-500 ${
+                  <div className={`pt-6 border-t border-white/10 transition-all duration-500 ${
                     hoveredLevel === index ? 'opacity-100' : 'opacity-60'
                   }`}>
                     <div className="grid md:grid-cols-2 gap-3">
@@ -221,52 +236,57 @@ export default function HighValueSchemaSection() {
             ))}
           </div>
 
-          {/* Total revenue card */}
+          {/* Total audience value */}
           <div className="mt-16 flex justify-center">
             <div className="relative group">
               {/* Glow effect */}
               <div className="absolute inset-0 bg-gradient-to-r from-electric-blue via-electric-cyan to-electric-purple opacity-30 blur-2xl group-hover:opacity-50 transition-opacity duration-500" />
               
               <div className="relative p-8 rounded-2xl bg-black/40 backdrop-blur-xl border border-white/20 group-hover:border-white/40 transition-all duration-500">
-                <div className="text-sm text-white/40 uppercase tracking-wider mb-3">Objectif MRR Total</div>
+                <div className="text-sm text-white/40 uppercase tracking-wider mb-3">Valeur Audience Totale</div>
                 <div className="text-5xl font-extralight text-transparent bg-clip-text bg-gradient-to-r from-electric-blue via-electric-cyan to-electric-purple">
-                  46k€/mois
+                  10.6M reach/mois
                 </div>
-                <div className="text-base text-white/60 mt-3">Break-even : mois 10-12</div>
+                <div className="text-base text-white/60 mt-3">Prêts pour la monétisation</div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Key differentiators with modern cards */}
-        <div className={`grid md:grid-cols-3 gap-6 mb-24 transition-all duration-1200 delay-600 ease-out ${
+        {/* Personas section */}
+        <div className={`mb-24 transition-all duration-1200 delay-600 ease-out ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
         }`}>
-          {[
-            {
-              title: "Acquisition organique",
-              description: "10-30M impressions = 0€ de CAC. On monétise une audience existante."
-            },
-            {
-              title: "Prix psychologiques",
-              description: "7.90€ et 60€ : deux prix ancrés qui convertissent naturellement."
-            },
-            {
-              title: "B2B = cash rapide",
-              description: "Brand content dès le mois 1 pour financer la croissance."
-            }
-          ].map((item, index) => (
-            <div key={index} className="group relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-white/0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="relative p-8 rounded-2xl bg-white/[0.02] backdrop-blur-sm border border-white/10 group-hover:border-white/20 transition-all duration-500">
-                <h4 className="text-xl font-light text-white/90 mb-3">{item.title}</h4>
-                <p className="text-sm text-white/50 leading-relaxed">{item.description}</p>
+          <h3 className="text-2xl font-light text-white/40 mb-12 tracking-[0.2em] text-center">NOS 3 PERSONAS CLÉS</h3>
+          
+          <div className="grid md:grid-cols-3 gap-6">
+            {personas.map((persona, index) => (
+              <div key={index} className="group relative">
+                <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-white/0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="relative p-8 rounded-2xl bg-white/[0.02] backdrop-blur-sm border border-white/10 group-hover:border-white/20 transition-all duration-500">
+                  <h4 className="text-xl font-light text-white/90 mb-2">{persona.title}</h4>
+                  <p className="text-sm text-white/60 mb-4">{persona.age}</p>
+                  <div className="space-y-3">
+                    <div>
+                      <p className="text-xs text-white/40 uppercase tracking-wider mb-1">Profil</p>
+                      <p className="text-sm text-white/70">{persona.description}</p>
+                    </div>
+                    <div>
+                      <p className="text-xs text-white/40 uppercase tracking-wider mb-1">Pain point</p>
+                      <p className="text-sm text-white/70">{persona.pain}</p>
+                    </div>
+                    <div>
+                      <p className="text-xs text-white/40 uppercase tracking-wider mb-1">Content préféré</p>
+                      <p className="text-sm text-white/70">{persona.content}</p>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
 
-        {/* Comparison section with gradient border */}
+        {/* Geographic distribution */}
         <div className={`relative transition-all duration-1200 delay-800 ease-out ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
         }`}>
@@ -277,54 +297,50 @@ export default function HighValueSchemaSection() {
           
           <div className="relative p-10 rounded-2xl">
             <h3 className="text-2xl font-light text-transparent bg-clip-text bg-gradient-to-r from-electric-blue to-electric-cyan mb-8">
-              Avantage compétitif
+              Répartition géographique
             </h3>
             <div className="grid md:grid-cols-2 gap-12">
               <div>
-                <h4 className="text-lg text-white/80 mb-4 flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-red-400"></span>
-                  Médias classiques
-                </h4>
-                <ul className="space-y-3 text-sm text-white/50">
-                  <li className="flex items-start gap-2">
-                    <span className="text-white/30 mt-1">•</span>
-                    <span>90% pub programmatique (CPM en chute)</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-white/30 mt-1">•</span>
-                    <span>Paywall unique à 10-20€</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-white/30 mt-1">•</span>
-                    <span>Pas de communauté monétisée</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-white/30 mt-1">•</span>
-                    <span>B2B = native advertising basique</span>
-                  </li>
-                </ul>
+                <h4 className="text-lg text-white/80 mb-4">Top 5 pays</h4>
+                <div className="space-y-3">
+                  {[
+                    { country: "France", percentage: 62.7 },
+                    { country: "Belgique", percentage: 3.9 },
+                    { country: "Sénégal", percentage: 3.5 },
+                    { country: "Canada", percentage: 3.0 },
+                    { country: "Suisse", percentage: 2.8 }
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-center gap-4">
+                      <span className="text-sm text-white/60 w-20">{item.country}</span>
+                      <div className="flex-1 h-2 bg-white/10 rounded-full overflow-hidden">
+                        <div 
+                          className="h-full bg-gradient-to-r from-electric-blue to-electric-cyan rounded-full transition-all duration-1000"
+                          style={{ width: `${item.percentage * 1.5}%` }}
+                        />
+                      </div>
+                      <span className="text-sm text-white/80 w-12 text-right">{item.percentage}%</span>
+                    </div>
+                  ))}
+                </div>
               </div>
               <div>
-                <h4 className="text-lg text-white/80 mb-4 flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-electric-cyan"></span>
-                  High Value
-                </h4>
+                <h4 className="text-lg text-white/80 mb-4">Insights clés</h4>
                 <ul className="space-y-3 text-sm text-white/50">
                   <li className="flex items-start gap-2">
                     <span className="text-electric-cyan mt-1">•</span>
-                    <span>6 sources de revenus équilibrées</span>
+                    <span>Forte concentration francophone (75%+)</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-electric-cyan mt-1">•</span>
-                    <span>2 niveaux de prix (7.90€ + 60€)</span>
+                    <span>Diaspora africaine engagée (10%)</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-electric-cyan mt-1">•</span>
-                    <span>Communauté Skool haute valeur</span>
+                    <span>Potentiel international sous-exploité</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-electric-cyan mt-1">•</span>
-                    <span>Brand content premium 5-7k€</span>
+                    <span>127 pays touchés = scalabilité globale</span>
                   </li>
                 </ul>
               </div>
@@ -338,9 +354,9 @@ export default function HighValueSchemaSection() {
         }`}>
           <button
             onClick={() => {
-              const businessElement = document.getElementById('business');
-              if (businessElement) {
-                businessElement.scrollIntoView({ behavior: 'smooth' });
+              const viralElement = document.getElementById('mecanisme');
+              if (viralElement) {
+                viralElement.scrollIntoView({ behavior: 'smooth' });
               }
             }}
             className="group relative inline-flex items-center gap-4 px-10 py-5 overflow-hidden rounded-full transition-all duration-500"
@@ -351,7 +367,7 @@ export default function HighValueSchemaSection() {
             
             {/* Content */}
             <span className="relative text-lg text-white/70 group-hover:text-white transition-colors duration-500">
-              Voir le détail des revenus
+              Découvrir notre moteur de croissance
             </span>
             <svg className="relative w-5 h-5 text-white/50 group-hover:text-white transition-all duration-500 group-hover:translate-x-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />

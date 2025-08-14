@@ -10,16 +10,17 @@ import VisionSection from "@/components/VisionSection";
 // Lazy (sections plus lourdes)
 const EcosystemSection = lazy(() => import("@/components/EcosystemSection"));
 const HighValueSchemaSection = lazy(() => import("@/components/HighValueSchemaSection"));
-const ViralToValueSection = lazy(() => import("@/components/ViralToValueSection"));
 const BusinessModelSection = lazy(() => import("@/components/BusinessModelSection"));
-const RoadmapSection = lazy(() => import("@/components/RoadmapSection"));
+const PlaybookSection = lazy(() => import("@/components/PlaybookSection"));
+const ViralToValueSection = lazy(() => import("@/components/ViralToValueSection"));
 const MetricsSection = lazy(() => import("@/components/MetricsSection"));
+const RoadmapSection = lazy(() => import("@/components/RoadmapSection"));
 const CTASection = lazy(() => import("@/components/CTASection"));
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState("");
 
-  // Libellés → IDs du DOM (ajout de la section high-value-schema)
+  // Libellés → IDs du DOM
   const scrollToSection = (sectionName: string) => {
     const key = sectionName.toLowerCase().trim();
 
@@ -32,28 +33,32 @@ const Index = () => {
       "écosystème": "écosystème",
       ecosystem: "écosystème",
 
-      // ---- NOUVEAU : carte écosystème High Value
       schema: "high-value-schema",
       "schéma": "high-value-schema",
       "high value": "high-value-schema",
       "high-value": "high-value-schema",
       "high-value schema": "high-value-schema",
 
-      // Mécanisme Viral → Value
-      mecanisme: "mecanisme",
-      "mécanisme": "mecanisme",
-      mechanism: "mecanisme",
-
       business: "business-model",
       "business model": "business-model",
 
-      roadmap: "roadmap",
+      playbook: "playbook",
+      "plan d'exécution": "playbook",
+      execution: "playbook",
+
+      // Mécanisme Viral → Value
+      mecanisme: "viral-to-value",
+      "mécanisme": "viral-to-value",
+      mechanism: "viral-to-value",
+      "viral to value": "viral-to-value",
 
       kpis: "métriques",
       métriques: "métriques",
       metrics: "métriques",
 
-      impact: "impact",
+      roadmap: "roadmap",
+
+      impact: "investir",
       investir: "investir",
     };
 
@@ -64,22 +69,22 @@ const Index = () => {
 
   // Scroll spy
   useEffect(() => {
-    // Liste ordonnée pour que l’élément visible le plus “haut” prenne la priorité
+    // Liste ordonnée pour que l'élément visible le plus "haut" prenne la priorité
     const ids = [
       "hero",
       "vision",
       "écosystème",
-      "high-value-schema", // 👈 ajouté
-      "mecanisme",
+      "high-value-schema",
       "business-model",
-      "roadmap",
+      "playbook",
+      "viral-to-value",
       "métriques",
-      "impact",
+      "roadmap",
       "investir",
     ];
 
     const onScroll = () => {
-      const y = 200; // offset pour le haut de l’écran
+      const y = 200; // offset pour le haut de l'écran
       const current = ids.find((id) => {
         const el = document.getElementById(id);
         if (!el) return false;
@@ -119,33 +124,45 @@ const Index = () => {
               <VisionSection />
             </section>
 
-            {/* ÉCOSYSTÈME (vue éditoriale générale) */}
-            <Suspense fallback={<div className="py-24 text-center text-muted-foreground">Chargement de l’écosystème…</div>}>
+            {/* ÉCOSYSTÈME */}
+            <Suspense fallback={<div className="py-24 text-center text-muted-foreground">Chargement de l'écosystème…</div>}>
               <section id="écosystème">
                 <EcosystemSection />
               </section>
             </Suspense>
 
-            {/* 🆕 SCHÉMA HIGH VALUE – la carte circulaire des 4 pôles */}
+            {/* SCHÉMA HIGH VALUE */}
             <Suspense fallback={<div className="py-24 text-center text-muted-foreground">Chargement du schéma High Value…</div>}>
-              {/* Le composant a déjà son propre id="high-value-schema" à l’intérieur,
-                  on ajoute quand même un wrapper pour la navigation/spy */}
               <section id="high-value-schema">
                 <HighValueSchemaSection />
               </section>
             </Suspense>
 
-            {/* 🔁 MÉCANISME Viral → Data → Retargeting → Monétisation */}
-            <Suspense fallback={<div className="py-24 text-center text-muted-foreground">Chargement du mécanisme…</div>}>
-              <section id="mecanisme">
+            {/* BUSINESS MODEL (remonté) */}
+            <Suspense fallback={<div className="py-24 text-center text-muted-foreground">Chargement du modèle économique…</div>}>
+              <section id="business-model">
+                <BusinessModelSection />
+              </section>
+            </Suspense>
+
+            {/* PLAYBOOK - Plan d'exécution détaillé */}
+            <Suspense fallback={<div className="py-24 text-center text-muted-foreground">Chargement du playbook…</div>}>
+              <section id="playbook">
+                <PlaybookSection />
+              </section>
+            </Suspense>
+
+            {/* VIRAL TO VALUE */}
+            <Suspense fallback={<div className="py-24 text-center text-muted-foreground">Chargement du mécanisme de croissance…</div>}>
+              <section id="viral-to-value">
                 <ViralToValueSection />
               </section>
             </Suspense>
 
-            {/* BUSINESS MODEL */}
-            <Suspense fallback={<div className="py-24 text-center text-muted-foreground">Chargement du modèle économique…</div>}>
-              <section id="business-model">
-                <BusinessModelSection />
+            {/* MÉTRIQUES (remonté) */}
+            <Suspense fallback={<div className="py-24 text-center text-muted-foreground">Chargement des métriques…</div>}>
+              <section id="métriques">
+                <MetricsSection />
               </section>
             </Suspense>
 
@@ -153,13 +170,6 @@ const Index = () => {
             <Suspense fallback={<div className="py-24 text-center text-muted-foreground">Chargement de la roadmap…</div>}>
               <section id="roadmap">
                 <RoadmapSection />
-              </section>
-            </Suspense>
-
-            {/* MÉTRIQUES */}
-            <Suspense fallback={<div className="py-24 text-center text-muted-foreground">Chargement des métriques…</div>}>
-              <section id="métriques">
-                <MetricsSection />
               </section>
             </Suspense>
 
