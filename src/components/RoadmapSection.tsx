@@ -1,20 +1,18 @@
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from 'react';
+import { motion } from 'framer-motion';
+import { Rocket, Target, TrendingUp, Star } from 'lucide-react';
 
 export default function RoadmapSection() {
-  const sectionRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  const [activePhase, setActivePhase] = useState<number | null>(null);
+  const [activePhase, setActivePhase] = useState(0);
+  const sectionRef = useRef<HTMLDivElement>(null);
 
-  // Intersection Observer
   useEffect(() => {
     const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true);
-          }
-        });
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
       },
       { threshold: 0.1 }
     );
@@ -26,33 +24,26 @@ export default function RoadmapSection() {
     return () => observer.disconnect();
   }, []);
 
-  // Parallax mouse effect
+  // Auto-progression des phases
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!sectionRef.current) return;
-      
-      const rect = sectionRef.current.getBoundingClientRect();
-      const x = (e.clientX - rect.left) / rect.width;
-      const y = (e.clientY - rect.top) / rect.height;
-      
-      setMousePos({ x: x - 0.5, y: y - 0.5 });
-    };
+    if (!isVisible) return;
+    const interval = setInterval(() => {
+      setActivePhase((prev) => (prev + 1) % 4);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [isVisible]);
 
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
-
-  // Roadmap phases data RÉALISTES
-  const phases = [
+  // Roadmap data SANS SKOOL
+  const roadmapPhases = [
     {
       period: "T1 2025",
       subtitle: "Phase 1",
-      title: "Lancement",
+      title: "Foundation",
       objectives: [
-        "Setup bureau + équipe core (5→7 pers)",
-        "Lancer Skool à 60€ (objectif : 50 membres)",
-        "Newsletter payante 7.90€ (objectif : 200 abonnés)",
-        "2 brand contents/mois à 5k€"
+        "Newsletter premium lancée (200 abonnés)",
+        "2 brand contents signés",
+        "Site média en ligne",
+        "Équipe de 7 personnes"
       ],
       metrics: {
         mrr: "8-10k€",
@@ -72,9 +63,9 @@ export default function RoadmapSection() {
       title: "Accélération",
       objectives: [
         "Monétiser Facebook/TikTok (3-4M vues/mois)",
-        "Skool : 100 membres (+100%)",
-        "Newsletter : 400 abonnés (+100%)",
-        "3-4 brand contents/mois"
+        "Newsletter : 500 abonnés (+150%)",
+        "4-5 brand contents/mois",
+        "Optimisation CPM réseaux sociaux"
       ],
       metrics: {
         mrr: "20-25k€",
@@ -83,8 +74,8 @@ export default function RoadmapSection() {
       },
       milestones: [
         "Premiers sponsors newsletter",
-        "Communauté Skool active",
-        "Pipeline B2B régulier"
+        "Pipeline B2B régulier",
+        "Audience multi-plateforme"
       ],
       phase: 2
     },
@@ -93,10 +84,10 @@ export default function RoadmapSection() {
       subtitle: "Phase 3",
       title: "Break-even",
       objectives: [
-        "150 membres Skool × 60€ = 9k€",
-        "500 newsletter × 7.90€ = 4k€",
-        "RS monétisés = 6k€/mois",
-        "Brand content = 24k€/mois"
+        "1000 newsletter × 7.90€ = 7.9k€",
+        "RS monétisés = 8k€/mois",
+        "Brand content = 28k€/mois",
+        "Site programmatique = 2.1k€/mois"
       ],
       metrics: {
         mrr: "43-46k€",
@@ -115,23 +106,55 @@ export default function RoadmapSection() {
       subtitle: "Phase 4",
       title: "Scaling",
       objectives: [
-        "300+ membres Skool",
-        "1500+ abonnés newsletter",
+        "2000+ abonnés newsletter",
         "YouTube 500k vues/mois",
-        "International (EN)"
+        "International (EN)",
+        "10+ brand contents/mois"
       ],
       metrics: {
         mrr: "80-100k€",
         costs: "60k€/mois",
-        status: "Profitable : +40k€/mois"
+        status: "Marge : +40k€/mois"
       },
       milestones: [
-        "Équipe 15 personnes",
-        "Série A : 2-3M€",
-        "Expansion Europe"
+        "Leader du marché",
+        "Expansion internationale",
+        "Exit possible"
       ],
       phase: 4
     }
+  ];
+
+  // Key success factors
+  const successFactors = [
+    {
+      icon: <Rocket className="w-5 h-5" />,
+      title: "Exécution rapide",
+      description: "3 mois pour valider, 12 pour rentabiliser"
+    },
+    {
+      icon: <Target className="w-5 h-5" />,
+      title: "Focus revenus",
+      description: "Brand content immédiat + récurrence newsletter"
+    },
+    {
+      icon: <TrendingUp className="w-5 h-5" />,
+      title: "Growth organique",
+      description: "400k followers visés en 12 mois"
+    },
+    {
+      icon: <Star className="w-5 h-5" />,
+      title: "Premium positioning",
+      description: "Contenu haute valeur, audience qualifiée"
+    }
+  ];
+
+  // Investment allocation
+  const investmentAllocation = [
+    { category: "Équipe", amount: "150k€", percentage: 50, description: "5 → 8 personnes" },
+    { category: "Production", amount: "60k€", percentage: 20, description: "Studio, équipement, outils" },
+    { category: "Marketing", amount: "60k€", percentage: 20, description: "Acquisition, paid ads, PR" },
+    { category: "Tech & Ops", amount: "30k€", percentage: 10, description: "Site, CRM, automation" }
   ];
 
   return (
@@ -140,311 +163,195 @@ export default function RoadmapSection() {
       id="roadmap" 
       className="relative min-h-screen py-32 bg-[#050505] overflow-hidden"
     >
-      {/* Noise texture */}
-      <div className="absolute inset-0 opacity-[0.015]">
-        <svg width="100%" height="100%">
-          <filter id="noise-roadmap">
-            <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" />
-            <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0" />
-          </filter>
-          <rect width="100%" height="100%" filter="url(#noise-roadmap)" />
-        </svg>
-      </div>
-
-      {/* Gradient mesh */}
+      {/* Background effects */}
       <div className="absolute inset-0">
-        <div 
-          className="absolute inset-0 opacity-20"
-          style={{
-            background: `
-              radial-gradient(circle at 30% 20%, rgba(56, 189, 248, 0.05) 0%, transparent 50%),
-              radial-gradient(circle at 70% 80%, rgba(125, 211, 252, 0.04) 0%, transparent 50%),
-              radial-gradient(circle at 50% 50%, rgba(56, 189, 248, 0.02) 0%, transparent 60%)
-            `,
-            transform: `translate(${mousePos.x * 20}px, ${mousePos.y * 20}px)`,
-            transition: 'transform 2s cubic-bezier(0.23, 1, 0.32, 1)'
-          }}
-        />
+        <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl" />
       </div>
 
-      {/* Main content */}
-      <div className="relative z-10 max-w-6xl mx-auto px-8">
-        {/* Title */}
-        <div className={`mb-16 transition-all duration-1200 ease-out ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-        }`}>
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-light leading-[1.1] text-white/90 max-w-5xl">
-            12 mois pour atteindre la rentabilité
+      {/* Grid pattern */}
+      <div className="absolute inset-0 opacity-[0.02]">
+        <div className="h-full w-full" style={{
+          backgroundImage: `linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+                           linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px)`,
+          backgroundSize: '50px 50px'
+        }} />
+      </div>
+
+      <div className="relative z-10 max-w-7xl mx-auto px-8">
+        {/* Header */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={isVisible ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8 }}
+          className="mb-20 text-center"
+        >
+          <h2 className="text-5xl md:text-6xl lg:text-7xl font-light text-white/90 mb-6">
+            De 0 à 46k€ MRR en 12 mois
           </h2>
-        </div>
-
-        {/* Intro */}
-        <div className={`mb-20 transition-all duration-1200 delay-200 ease-out ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-        }`}>
-          <p className="text-xl md:text-2xl text-white/60 font-light leading-relaxed max-w-4xl">
-            Un plan d'exécution <span className="text-white/80">trimestre par trimestre</span> avec des objectifs clairs et atteignables.
-            <span className="block mt-4">
-              Pas de hockey stick irréaliste, juste une croissance progressive et maîtrisée.
-            </span>
+          <p className="text-xl text-white/60 max-w-3xl mx-auto">
+            Une roadmap ambitieuse mais réaliste, basée sur nos premiers résultats 
+            et notre expertise du marché média.
           </p>
-        </div>
+        </motion.div>
 
-        {/* Timeline visualization */}
-        <div className={`relative mb-24 transition-all duration-1200 delay-400 ease-out ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-        }`}>
-          {/* Timeline line - hidden on mobile */}
-          <div className="hidden lg:block absolute top-20 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-          
+        {/* Timeline */}
+        <div className="relative mb-32">
+          {/* Progress line */}
+          <div className="absolute left-0 right-0 top-1/2 h-px bg-white/10 transform -translate-y-1/2" />
+          <div 
+            className="absolute left-0 top-1/2 h-px bg-gradient-to-r from-blue-500 to-cyan-500 transform -translate-y-1/2 transition-all duration-1000"
+            style={{ width: `${(activePhase + 1) * 25}%` }}
+          />
+
           {/* Phases */}
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 lg:gap-4">
-            {phases.map((phase, index) => (
-              <div
+          <div className="relative grid grid-cols-1 md:grid-cols-4 gap-8">
+            {roadmapPhases.map((phase, index) => (
+              <motion.div
                 key={index}
-                className={`group relative cursor-pointer transition-all duration-700 ${
-                  activePhase === index ? 'scale-[1.02]' : ''
-                }`}
-                onMouseEnter={() => setActivePhase(index)}
-                onMouseLeave={() => setActivePhase(null)}
+                initial={{ opacity: 0, y: 20 }}
+                animate={isVisible ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.8, delay: index * 0.1 }}
+                className={`relative ${index % 2 === 0 ? 'md:mt-0' : 'md:mt-20'}`}
               >
-                {/* Phase node - visible on desktop */}
-                <div className="hidden lg:block relative mb-8">
-                  <div className="w-32 h-32 mx-auto relative">
-                    {/* Outer ring */}
-                    <div className={`absolute inset-0 rounded-full transition-all duration-700 ${
-                      activePhase === index ? 'bg-white/[0.08]' : 'bg-white/[0.03]'
-                    }`} />
-                    {/* Inner circle */}
-                    <div className="absolute inset-4 rounded-full bg-[#050505] flex items-center justify-center">
-                      <div className="text-center">
-                        <div className="text-2xl font-light text-white/20 mb-1">T{phase.phase}</div>
-                        <div className="text-sm text-white/60 font-light">{phase.title}</div>
-                      </div>
-                    </div>
-                    {/* Progress indicator */}
-                    {index < phases.length - 1 && (
-                      <div className="absolute top-1/2 left-full w-full h-px bg-gradient-to-r from-white/10 to-transparent" />
-                    )}
+                {/* Connector dot */}
+                <div className={`absolute left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full transition-all duration-500 ${
+                  index <= activePhase 
+                    ? 'bg-gradient-to-br from-blue-400 to-cyan-400 scale-125' 
+                    : 'bg-white/20'
+                } ${index % 2 === 0 ? 'top-0' : 'bottom-0'}`} />
+
+                {/* Phase card */}
+                <div className={`p-6 rounded-xl bg-white/[0.02] border transition-all duration-500 cursor-pointer
+                  ${activePhase === index 
+                    ? 'border-white/20 bg-white/[0.04]' 
+                    : 'border-white/10 hover:border-white/15'
+                  } ${index % 2 === 0 ? 'mt-8' : 'mb-8'}`}
+                  onClick={() => setActivePhase(index)}
+                >
+                  {/* Header */}
+                  <div className="mb-4">
+                    <span className="text-xs text-blue-400/60 uppercase tracking-wider">{phase.subtitle}</span>
+                    <h3 className="text-xl font-light text-white/90 mt-1">{phase.title}</h3>
+                    <p className="text-sm text-white/50 mt-1">{phase.period}</p>
                   </div>
-                </div>
 
-                {/* Mobile header */}
-                <div className="lg:hidden mb-4">
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="w-10 h-10 rounded-full bg-white/[0.05] flex items-center justify-center">
-                      <span className="text-sm font-light text-white/40">{phase.phase}</span>
-                    </div>
-                    <h3 className="text-2xl text-white/80 font-light">{phase.title}</h3>
-                  </div>
-                </div>
-
-                {/* Content card */}
-                <div className={`relative overflow-hidden rounded-lg transition-all duration-700 ${
-                  activePhase === index ? 'bg-white/[0.05]' : 'bg-white/[0.02]'
-                }`}>
-                  {/* Gradient accent */}
-                  <div className={`absolute inset-0 bg-gradient-to-br from-electric-blue/10 via-transparent to-transparent opacity-0 ${
-                    activePhase === index ? 'opacity-100' : ''
-                  } transition-opacity duration-700`} />
-                  
-                  <div className="relative p-6">
-                    {/* Period */}
-                    <div className="mb-4">
-                      <div className="text-lg text-white/90 font-light">{phase.period}</div>
-                      {phase.subtitle && (
-                        <div className="text-xs text-white/40 mt-1">{phase.subtitle}</div>
-                      )}
-                    </div>
-
-                    {/* Objectives */}
-                    <div className="mb-6">
-                      <h4 className="text-xs text-white/40 uppercase tracking-wider mb-3">Objectifs</h4>
-                      <ul className="space-y-2">
-                        {phase.objectives.map((obj, i) => (
-                          <li key={i} className="text-sm text-white/60 font-light flex items-start">
-                            <span className="text-white/20 mr-2">•</span>
-                            <span>{obj}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    {/* Metrics */}
-                    <div className="border-t border-white/10 pt-4">
-                      <div className="grid grid-cols-2 gap-4 mb-3">
-                        <div>
-                          <div className="text-xs text-white/40">MRR</div>
-                          <div className="text-lg text-white/80">{phase.metrics.mrr}</div>
-                        </div>
-                        <div>
-                          <div className="text-xs text-white/40">Coûts</div>
-                          <div className="text-lg text-white/60">{phase.metrics.costs}</div>
-                        </div>
+                  {/* Objectives */}
+                  <div className="space-y-2 mb-4">
+                    {phase.objectives.map((obj, i) => (
+                      <div key={i} className="flex items-start gap-2">
+                        <div className="w-1 h-1 rounded-full bg-white/40 mt-2" />
+                        <p className="text-xs text-white/60 leading-relaxed">{obj}</p>
                       </div>
-                      <div className={`text-sm ${
-                        phase.metrics.status.includes('Rentable') || phase.metrics.status.includes('Profitable')
-                          ? 'text-electric-blue/70'
-                          : 'text-white/50'
+                    ))}
+                  </div>
+
+                  {/* Metrics */}
+                  <div className="pt-4 border-t border-white/10">
+                    <div className="flex justify-between items-center mb-2">
+                      <span className="text-xs text-white/40">MRR</span>
+                      <span className="text-sm text-white/80">{phase.metrics.mrr}</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-xs text-white/40">Status</span>
+                      <span className={`text-xs ${
+                        phase.metrics.status.includes('Rentable') || phase.metrics.status.includes('Marge')
+                          ? 'text-green-400' 
+                          : 'text-yellow-400'
                       }`}>
                         {phase.metrics.status}
-                      </div>
+                      </span>
                     </div>
-
-                    {/* Milestones on hover */}
-                    {activePhase === index && (
-                      <div className="mt-4 pt-4 border-t border-white/10 animate-fadeIn">
-                        <h5 className="text-xs text-white/40 uppercase tracking-wider mb-2">Milestones</h5>
-                        <ul className="space-y-1">
-                          {phase.milestones.map((milestone, i) => (
-                            <li key={i} className="text-xs text-white/50">• {milestone}</li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
 
-        {/* Key points */}
-        <div className={`grid md:grid-cols-3 gap-8 mb-20 transition-all duration-1200 delay-600 ease-out ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-        }`}>
-          <div className="group">
-            <div className="h-px w-12 bg-gradient-to-r from-transparent via-white/20 to-transparent mb-6 group-hover:w-24 transition-all duration-700" />
-            <h4 className="text-base font-normal text-white/80 mb-3">Burn maîtrisé</h4>
-            <p className="text-sm text-white/40 font-light">
-              -15k€/mois au début, break-even en 10-12 mois.
-            </p>
-          </div>
-          <div className="group">
-            <div className="h-px w-12 bg-gradient-to-r from-transparent via-white/20 to-transparent mb-6 group-hover:w-24 transition-all duration-700" />
-            <h4 className="text-base font-normal text-white/80 mb-3">Croissance organique</h4>
-            <p className="text-sm text-white/40 font-light">
-              Pas de paid acquisition avant d'avoir validé le modèle.
-            </p>
-          </div>
-          <div className="group">
-            <div className="h-px w-12 bg-gradient-to-r from-transparent via-white/20 to-transparent mb-6 group-hover:w-24 transition-all duration-700" />
-            <h4 className="text-base font-normal text-white/80 mb-3">Milestones clairs</h4>
-            <p className="text-sm text-white/40 font-light">
-              Des objectifs trimestriels mesurables et atteignables.
-            </p>
-          </div>
-        </div>
-
-        {/* Financing box */}
-        <div className={`relative p-8 rounded-lg bg-white/[0.02] mb-16 transition-all duration-1200 delay-800 ease-out ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-        }`}>
-          <h3 className="text-sm font-light text-white/40 mb-6 tracking-[0.2em]">UTILISATION DES FONDS</h3>
-          <div className="grid md:grid-cols-2 gap-8">
-            <div>
-              <div className="text-3xl font-light text-transparent bg-clip-text bg-gradient-to-br from-white via-white/80 to-electric-blue/50 mb-2">
-                400k€ recherchés
+        {/* Investment allocation */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={isVisible ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.5 }}
+          className="mb-24"
+        >
+          <h3 className="text-lg font-light text-white/40 mb-12 tracking-[0.2em] text-center">
+            ALLOCATION DES 300K€
+          </h3>
+          
+          <div className="grid md:grid-cols-4 gap-6">
+            {investmentAllocation.map((item, index) => (
+              <div key={index} className="relative p-6 rounded-lg bg-white/[0.02] border border-white/10">
+                <div className="mb-4">
+                  <h4 className="text-lg text-white/80 mb-1">{item.category}</h4>
+                  <p className="text-2xl font-light text-white/90">{item.amount}</p>
+                  <p className="text-xs text-white/40 mt-2">{item.description}</p>
+                </div>
+                
+                {/* Progress bar */}
+                <div className="h-2 bg-white/5 rounded-full overflow-hidden">
+                  <motion.div 
+                    className="h-full bg-gradient-to-r from-blue-500 to-cyan-500"
+                    initial={{ width: 0 }}
+                    animate={isVisible ? { width: `${item.percentage}%` } : {}}
+                    transition={{ duration: 1, delay: 0.5 + index * 0.1 }}
+                  />
+                </div>
+                <p className="text-xs text-white/40 mt-2 text-right">{item.percentage}%</p>
               </div>
-              <p className="text-sm text-white/40 font-light">Runway : 15-18 mois</p>
-            </div>
-            <div>
-              <h4 className="text-sm text-white/60 mb-3">Allocation</h4>
-              <div className="space-y-2">
-                <div className="flex justify-between text-sm">
-                  <span className="text-white/40">Équipe (7-10 pers)</span>
-                  <span className="text-white/60">60%</span>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Success factors */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={isVisible ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.7 }}
+          className="mb-24"
+        >
+          <h3 className="text-lg font-light text-white/40 mb-12 tracking-[0.2em] text-center">
+            FACTEURS CLÉS DE SUCCÈS
+          </h3>
+          
+          <div className="grid md:grid-cols-4 gap-6">
+            {successFactors.map((factor, index) => (
+              <div key={index} className="text-center">
+                <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-gradient-to-br from-blue-500/20 to-cyan-500/20 flex items-center justify-center text-white/60">
+                  {factor.icon}
                 </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-white/40">Bureau + Studio</span>
-                  <span className="text-white/60">15%</span>
-                </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-white/40">Production contenu</span>
-                  <span className="text-white/60">15%</span>
-                </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-white/40">Marketing & Tech</span>
-                  <span className="text-white/60">10%</span>
-                </div>
+                <h4 className="text-sm text-white/80 mb-2">{factor.title}</h4>
+                <p className="text-xs text-white/50">{factor.description}</p>
               </div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Bottom CTA */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={isVisible ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.9 }}
+          className="text-center"
+        >
+          <p className="text-sm text-white/40 mb-8">
+            Nous avons prouvé la traction. Maintenant, nous passons à l'échelle.
+          </p>
+          
+          <div className="inline-flex items-center gap-8 p-6 rounded-lg bg-white/[0.02] border border-white/10">
+            <div className="text-left">
+              <p className="text-xs text-white/40 mb-1">Aujourd'hui</p>
+              <p className="text-lg text-white/80">120k followers</p>
+            </div>
+            <div className="w-12 h-px bg-gradient-to-r from-blue-500 to-cyan-500" />
+            <div className="text-left">
+              <p className="text-xs text-white/40 mb-1">Objectif 12 mois</p>
+              <p className="text-lg text-white/80">46k€ MRR</p>
             </div>
           </div>
-          <div className="mt-6 pt-6 border-t border-white/10">
-            <p className="text-sm text-white/40 font-light">
-              Prochaine levée : <span className="text-white/60">Série A de 2-3M€ quand MRR &gt; 80k€</span>
-            </p>
-          </div>
-        </div>
-
-        {/* CTA */}
-        <div className={`text-center transition-all duration-1200 delay-1000 ease-out ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-        }`}>
-          <button
-            onClick={() => {
-              const metricsElement = document.getElementById('metrics');
-              if (metricsElement) {
-                metricsElement.scrollIntoView({ behavior: 'smooth' });
-              }
-            }}
-            className="group inline-flex items-center gap-4 text-white/60 hover:text-white/90 transition-all duration-500"
-          >
-            <span className="text-sm font-light tracking-wider">Voir nos métriques actuelles</span>
-            <svg 
-              className="w-4 h-4 transition-transform duration-500 group-hover:translate-x-2" 
-              fill="none" 
-              viewBox="0 0 24 24" 
-              stroke="currentColor"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </button>
-        </div>
+        </motion.div>
       </div>
-
-      {/* Floating particles */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(30)].map((_, i) => (
-          <div
-            key={i}
-            className={`absolute rounded-full transition-all duration-1000 ${
-              isVisible ? 'opacity-100' : 'opacity-0'
-            }`}
-            style={{
-              width: `${1 + Math.random() * 2}px`,
-              height: `${1 + Math.random() * 2}px`,
-              background: `radial-gradient(circle, rgba(255,255,255,${0.1 + Math.random() * 0.2}) 0%, transparent 70%)`,
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animation: `float-orbit ${25 + Math.random() * 15}s infinite`,
-              animationDelay: `${i * 0.15}s`
-            }}
-          />
-        ))}
-      </div>
-
-      <style jsx>{`
-        @keyframes float-orbit {
-          0%, 100% { 
-            transform: translate(0, 0) scale(1);
-            opacity: 0.1;
-          }
-          50% { 
-            transform: translate(${Math.random() * 40 - 20}px, ${Math.random() * 40 - 20}px) scale(1.5);
-            opacity: 0.3;
-          }
-        }
-
-        @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(-5px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .animate-fadeIn {
-          animation: fadeIn 0.3s ease-out;
-        }
-      `}</style>
     </section>
   );
 }

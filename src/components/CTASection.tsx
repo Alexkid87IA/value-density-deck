@@ -4,7 +4,7 @@ export default function CTASection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  const [hoveredPriority, setHoveredPriority] = useState(null);
+  const [hoveredPriority, setHoveredPriority] = useState<number | null>(null);
 
   // Intersection Observer
   useEffect(() => {
@@ -42,39 +42,39 @@ export default function CTASection() {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  // Investment priorities data RÉALISTES
+  // Investment priorities data RÉALISTES - 300k€
   const priorities = [
     {
       title: "Équipe & Salaires",
-      cost: "240k€",
-      impact: "7-10 personnes pendant 12 mois",
+      cost: "180k€",
+      impact: "6-8 personnes pendant 12 mois",
       icon: "👥",
       category: "team"
     },
     {
       title: "Bureau & Studio",
-      cost: "60k€",
-      impact: "10 postes + studio vidéo intégré Paris",
+      cost: "45k€",
+      impact: "8 postes + studio vidéo intégré Paris",
       icon: "🏢",
       category: "infra"
     },
     {
       title: "Production contenu",
-      cost: "60k€",
+      cost: "45k€",
       impact: "200+ contenus/mois en qualité premium",
       icon: "🎬",
       category: "content"
     },
     {
       title: "Tech & Outils",
-      cost: "20k€",
+      cost: "15k€",
       impact: "Stack complète : site, CRM, analytics",
       icon: "🛠️",
       category: "tech"
     },
     {
       title: "Marketing & Growth",
-      cost: "20k€",
+      cost: "15k€",
       impact: "Tests paid, PR, partenariats",
       icon: "📈",
       category: "growth"
@@ -88,7 +88,7 @@ export default function CTASection() {
     },
     {
       title: "Cash rapide",
-      desc: "Brand content dès le mois 1 : 10-15k€/mois garantis"
+      desc: "Brand content dès le mois 1 : 15-20k€/mois garantis"
     },
     {
       title: "Break-even rapide",
@@ -149,7 +149,7 @@ export default function CTASection() {
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
         }`}>
           <p className="text-xl md:text-2xl text-white/60 font-light leading-relaxed max-w-4xl mx-auto">
-            Nous levons <span className="text-white/80">400k€</span> pour transformer High Value 
+            Nous levons <span className="text-white/80">300k€</span> pour transformer High Value 
             en premier média rentable nouvelle génération.
             <span className="block mt-4">
               Pas de promesses folles, juste un plan solide avec des chiffres réalistes.
@@ -165,9 +165,9 @@ export default function CTASection() {
             <div className="absolute inset-0 bg-gradient-to-r from-electric-blue/20 to-electric-cyan/20 blur-xl" />
             <div className="relative px-12 py-8 rounded-lg bg-white/[0.02] border border-white/10">
               <div className="text-5xl md:text-6xl font-light text-transparent bg-clip-text bg-gradient-to-r from-electric-blue to-electric-cyan mb-2">
-                400k€
+                300k€
               </div>
-              <p className="text-sm text-white/60">Seed • 15-18 mois de runway</p>
+              <p className="text-sm text-white/60">Seed • 12-15 mois de runway</p>
               <p className="text-xs text-white/40 mt-2">Ticket minimum : 25k€</p>
             </div>
           </div>
@@ -197,36 +197,31 @@ export default function CTASection() {
                   hoveredPriority === index ? 'opacity-100' : ''
                 } transition-opacity duration-700`} />
 
-                <div className="relative grid md:grid-cols-12 gap-6 items-center">
-                  {/* Priority title */}
-                  <div className="md:col-span-5">
-                    <h4 className="text-base md:text-lg text-white/80 font-light leading-tight">
-                      {priority.title}
-                    </h4>
+                <div className="relative flex items-center gap-8">
+                  {/* Icon */}
+                  <div className="text-3xl">{priority.icon}</div>
+                  
+                  {/* Content */}
+                  <div className="flex-1">
+                    <div className="flex items-baseline justify-between mb-2">
+                      <h4 className="text-lg text-white/80">{priority.title}</h4>
+                      <span className="text-2xl font-light text-white/90">{priority.cost}</span>
+                    </div>
+                    <p className="text-sm text-white/50">{priority.impact}</p>
                   </div>
 
-                  {/* Cost */}
-                  <div className="md:col-span-2">
-                    <p className="text-lg text-white/90 font-light">{priority.cost}</p>
-                  </div>
-
-                  {/* Impact */}
-                  <div className="md:col-span-5">
-                    <p className="text-sm text-white/60 font-light leading-relaxed">{priority.impact}</p>
-                  </div>
+                  {/* Progress indicator */}
+                  <div className={`absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-electric-blue/50 to-transparent ${
+                    hoveredPriority === index ? 'scale-y-100' : 'scale-y-0'
+                  } transition-transform duration-700`} />
                 </div>
-
-                {/* Category indicator line */}
-                <div className={`absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-electric-blue/30 to-transparent transform origin-top ${
-                  hoveredPriority === index ? 'scale-y-100' : 'scale-y-0'
-                } transition-transform duration-700`} />
               </div>
             ))}
           </div>
 
           {/* Total */}
           <div className="mt-4 text-right">
-            <p className="text-sm text-white/40">Total : <span className="text-white/60">400k€</span></p>
+            <p className="text-sm text-white/40">Total : <span className="text-white/60">300k€</span></p>
           </div>
         </div>
 
@@ -273,7 +268,7 @@ export default function CTASection() {
             <p className="text-sm text-white/40">mois to break-even</p>
           </div>
           <div className="text-center">
-            <div className="text-4xl font-light text-white/80 mb-2">6</div>
+            <div className="text-4xl font-light text-white/80 mb-2">3</div>
             <p className="text-sm text-white/40">sources de revenus</p>
           </div>
         </div>
@@ -290,7 +285,7 @@ export default function CTASection() {
                 <div className="space-y-4">
                   <div>
                     <p className="text-xs text-white/40 mb-1">Montant recherché</p>
-                    <p className="text-2xl text-white/80 font-light">400k€</p>
+                    <p className="text-2xl text-white/80 font-light">300k€</p>
                   </div>
                   <div>
                     <p className="text-xs text-white/40 mb-1">Type</p>
@@ -338,104 +333,42 @@ export default function CTASection() {
         <div className={`text-center mb-20 transition-all duration-1200 delay-1000 ease-out ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
         }`}>
-          <div className="relative max-w-3xl mx-auto">
-            {/* Quote marks */}
-            <div className="absolute -top-6 -left-8 text-6xl text-white/5 font-serif">"</div>
-            <div className="absolute -bottom-6 -right-8 text-6xl text-white/5 font-serif rotate-180">"</div>
-            
-            <p className="text-2xl md:text-3xl text-white/70 font-light leading-relaxed italic">
-              Les médias qui survivront sont ceux qui sauront mixer contenus, communauté et revenus diversifiés. 
-              C'est exactement ce que nous construisons.
-            </p>
-            
-            <cite className="block mt-6 text-sm text-white/40">
-              — Roger, Fondateur High Value
-            </cite>
-          </div>
+          <blockquote className="text-2xl md:text-3xl font-light text-white/60 italic max-w-4xl mx-auto">
+            "Les médias traditionnels sont morts. Les créateurs brûlent leur audience. 
+            <span className="text-white/80"> Nous construisons la troisième voie.</span>"
+          </blockquote>
+          <p className="text-sm text-white/40 mt-4">— Roger, CEO High Value</p>
         </div>
 
-        {/* CTAs */}
+        {/* Final CTA */}
         <div className={`text-center transition-all duration-1200 delay-1100 ease-out ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
         }`}>
-          <h3 className="text-lg font-light text-white/40 mb-12 tracking-[0.2em]">
-            INTÉRESSÉ(E) ?
-          </h3>
+          <p className="text-sm text-white/40 mb-8">
+            Rejoignez-nous pour créer le futur des médias.
+          </p>
           
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-            {/* Primary CTA */}
+          <div className="flex justify-center gap-6">
             <button className="group relative overflow-hidden">
-              <div className="relative px-12 py-5">
-                {/* Background gradient */}
-                <div className="absolute inset-0 bg-gradient-to-r from-electric-blue/20 to-electric-cyan/20 rounded transition-all duration-700 group-hover:from-electric-blue/30 group-hover:to-electric-cyan/30" />
-                {/* Border */}
-                <div className="absolute inset-0 rounded border border-electric-blue/30 group-hover:border-electric-blue/50 transition-colors duration-700" />
-                {/* Glow effect */}
-                <div className="absolute inset-0 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-xl bg-gradient-to-r from-electric-blue/20 to-electric-cyan/20" />
-                
-                <span className="relative z-10 text-white/90 font-light tracking-wide">
+              <div className="relative px-10 py-4">
+                <div className="absolute inset-0 bg-gradient-to-r from-electric-blue to-electric-cyan rounded-lg transition-all duration-700 group-hover:scale-105" />
+                <span className="relative z-10 text-black font-medium tracking-wide">
                   Planifier un call
                 </span>
               </div>
             </button>
-
-            {/* Secondary CTA */}
+            
             <button className="group relative overflow-hidden">
-              <div className="relative px-12 py-5">
-                <div className="absolute inset-0 bg-white/[0.03] backdrop-blur-sm border border-white/10 rounded transition-all duration-700 group-hover:bg-white/[0.06] group-hover:border-white/20" />
-                <span className="relative z-10 text-white/70 font-light tracking-wide group-hover:text-white/90 transition-colors duration-500">
-                  Recevoir le deck complet
+              <div className="relative px-10 py-4">
+                <div className="absolute inset-0 bg-white/[0.03] backdrop-blur-sm border border-white/10 rounded-lg transition-all duration-700 group-hover:bg-white/[0.06] group-hover:border-white/20" />
+                <span className="relative z-10 text-white/90 font-light tracking-wide group-hover:text-white transition-colors duration-500">
+                  Télécharger le deck
                 </span>
               </div>
             </button>
           </div>
-
-          <p className="mt-8 text-xs text-white/30">
-            Contact : roger@highvalue.fr • +33 6 XX XX XX XX
-          </p>
-        </div>
-
-        {/* Footer signature */}
-        <div className={`text-center mt-32 pt-16 border-t border-white/5 transition-all duration-1200 delay-1200 ease-out ${
-          isVisible ? 'opacity-100' : 'opacity-0'
-        }`}>
-          <div className="text-xs text-white/20 font-light tracking-[0.3em]">
-            HIGH VALUE · MÉDIA NOUVELLE GÉNÉRATION · 2025
-          </div>
         </div>
       </div>
-
-      {/* Orbiting particles */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(40)].map((_, i) => (
-          <div
-            key={i}
-            className={`absolute rounded-full transition-all duration-1000 ${
-              isVisible ? 'opacity-100' : 'opacity-0'
-            }`}
-            style={{
-              width: `${2 + Math.random() * 3}px`,
-              height: `${2 + Math.random() * 3}px`,
-              background: `radial-gradient(circle, rgba(255,255,255,${0.2 + Math.random() * 0.3}) 0%, transparent 70%)`,
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animation: `orbit ${20 + Math.random() * 20}s infinite linear`,
-              animationDelay: `${i * 0.1}s`
-            }}
-          />
-        ))}
-      </div>
-
-      <style jsx>{`
-        @keyframes orbit {
-          from {
-            transform: rotate(0deg) translateX(100px) rotate(0deg);
-          }
-          to {
-            transform: rotate(360deg) translateX(100px) rotate(-360deg);
-          }
-        }
-      `}</style>
     </section>
   );
 }

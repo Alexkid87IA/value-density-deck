@@ -25,7 +25,7 @@ export default function HighValueSchemaSection() {
     return () => observer.disconnect();
   }, []);
 
-  // Le modèle en cascade adapté à l'audience
+  // Le modèle en cascade adapté - SANS SKOOL
   const cascadeModel = [
     {
       level: 1,
@@ -56,39 +56,39 @@ export default function HighValueSchemaSection() {
       ],
       color: "from-electric-blue/40 to-electric-cyan/20",
       borderGlow: "from-electric-blue to-electric-cyan",
-      conversion: "→ 5-8% prêts pour le premium",
+      conversion: "→ 8-10% s'inscrivent newsletter",
       levelNumber: "02"
     },
     {
       level: 3,
-      name: "Audience Premium",
-      audience: "5-10k prospects qualifiés",
-      volume: "Newsletter + Skool potentiels",
+      name: "Newsletter Premium",
+      audience: "10k abonnés cible",
+      volume: "The High Value Daily",
       features: [
         "Entrepreneurs & dirigeants PME",
-        "Managers en transition",
-        "Sauvent régulièrement les contenus",
-        "Interactions fréquentes"
+        "Content exclusif quotidien",
+        "45% open rate moyen",
+        "Version premium 29€/mois"
       ],
       color: "from-electric-purple/40 to-purple-500/20",
       borderGlow: "from-electric-purple to-purple-500",
-      conversion: "→ 10-15% taux de conversion",
+      conversion: "→ 5-10% deviennent clients",
       levelNumber: "03"
     },
     {
       level: 4,
-      name: "Clients & Partenaires",
-      audience: "500-1000 high value",
-      volume: "B2B + Communauté VIP",
+      name: "Brand Deals & Partenaires",
+      audience: "50-100 clients B2B",
+      volume: "28k€ MRR brand content",
       features: [
-        "Dirigeants établis",
-        "Budget formation/conseil",
-        "Recherche de visibilité",
-        "Network effect puissant"
+        "Entreprises tech & SaaS",
+        "Campagnes 3-15k€",
+        "Contrats annuels 150k€",
+        "ROI mesuré et garanti"
       ],
       color: "from-gold-400/40 to-gold-600/20",
       borderGlow: "from-gold-400 to-gold-600",
-      conversion: "LTV : 500-5000€",
+      conversion: "LTV : 5-150k€",
       levelNumber: "04"
     }
   ];
@@ -139,7 +139,7 @@ export default function HighValueSchemaSection() {
           <h2 className="text-5xl md:text-6xl lg:text-7xl font-extralight leading-[1.1] text-white/90 max-w-5xl">
             120k followers,
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-electric-blue via-electric-cyan to-electric-purple">
-              4 niveaux d'engagement
+              4 niveaux de monétisation
             </span>
           </h2>
         </div>
@@ -149,7 +149,7 @@ export default function HighValueSchemaSection() {
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
         }`}>
           <p className="text-xl md:text-2xl text-white/50 font-light leading-relaxed max-w-4xl">
-            De la découverte virale à l'engagement premium : 
+            De la découverte virale aux partenariats premium : 
             <span className="text-white/80 font-normal"> chaque niveau a sa stratégie de conversion</span>.
           </p>
           <p className="text-lg text-white/40 mt-4 max-w-3xl">
@@ -247,7 +247,7 @@ export default function HighValueSchemaSection() {
                 <div className="text-5xl font-extralight text-transparent bg-clip-text bg-gradient-to-r from-electric-blue via-electric-cyan to-electric-purple">
                   10.6M reach/mois
                 </div>
-                <div className="text-base text-white/60 mt-3">Prêts pour la monétisation</div>
+                <div className="text-base text-white/60 mt-3">46k€ MRR cible en 12 mois</div>
               </div>
             </div>
           </div>
@@ -257,28 +257,30 @@ export default function HighValueSchemaSection() {
         <div className={`mb-24 transition-all duration-1200 delay-600 ease-out ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
         }`}>
-          <h3 className="text-2xl font-light text-white/40 mb-12 tracking-[0.2em] text-center">NOS 3 PERSONAS CLÉS</h3>
+          <h3 className="text-lg font-light text-white/40 mb-12 tracking-[0.2em]">NOS 3 PERSONAS CLÉS</h3>
           
           <div className="grid md:grid-cols-3 gap-6">
             {personas.map((persona, index) => (
-              <div key={index} className="group relative">
-                <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-white/0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="relative p-8 rounded-2xl bg-white/[0.02] backdrop-blur-sm border border-white/10 group-hover:border-white/20 transition-all duration-500">
-                  <h4 className="text-xl font-light text-white/90 mb-2">{persona.title}</h4>
-                  <p className="text-sm text-white/60 mb-4">{persona.age}</p>
-                  <div className="space-y-3">
-                    <div>
-                      <p className="text-xs text-white/40 uppercase tracking-wider mb-1">Profil</p>
-                      <p className="text-sm text-white/70">{persona.description}</p>
-                    </div>
-                    <div>
-                      <p className="text-xs text-white/40 uppercase tracking-wider mb-1">Pain point</p>
-                      <p className="text-sm text-white/70">{persona.pain}</p>
-                    </div>
-                    <div>
-                      <p className="text-xs text-white/40 uppercase tracking-wider mb-1">Content préféré</p>
-                      <p className="text-sm text-white/70">{persona.content}</p>
-                    </div>
+              <div 
+                key={index}
+                className="relative p-6 rounded-xl bg-gradient-to-br from-white/[0.02] to-transparent border border-white/[0.05] hover:border-white/10 transition-all duration-500"
+              >
+                <div className="space-y-4">
+                  <div>
+                    <h4 className="text-xl font-light text-white/90 mb-1">{persona.title}</h4>
+                    <span className="text-sm text-white/40">{persona.age}</span>
+                  </div>
+                  
+                  <p className="text-sm text-white/60">{persona.description}</p>
+                  
+                  <div className="pt-4 border-t border-white/[0.05]">
+                    <div className="text-xs text-white/40 uppercase tracking-wider mb-2">Pain point</div>
+                    <p className="text-sm text-white/70">{persona.pain}</p>
+                  </div>
+                  
+                  <div>
+                    <div className="text-xs text-white/40 uppercase tracking-wider mb-2">Content stratégie</div>
+                    <p className="text-sm text-blue-400/60">{persona.content}</p>
                   </div>
                 </div>
               </div>
@@ -287,27 +289,23 @@ export default function HighValueSchemaSection() {
         </div>
 
         {/* Geographic distribution */}
-        <div className={`relative transition-all duration-1200 delay-800 ease-out ${
+        <div className={`transition-all duration-1200 delay-800 ease-out ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
         }`}>
-          {/* Gradient border effect */}
-          <div className="absolute inset-0 bg-gradient-to-r from-electric-blue via-electric-cyan to-electric-purple p-[1px] rounded-2xl">
-            <div className="h-full w-full bg-[#050505] rounded-2xl" />
-          </div>
+          <h3 className="text-lg font-light text-white/40 mb-12 tracking-[0.2em]">RÉPARTITION GÉOGRAPHIQUE</h3>
           
-          <div className="relative p-10 rounded-2xl">
-            <h3 className="text-2xl font-light text-transparent bg-clip-text bg-gradient-to-r from-electric-blue to-electric-cyan mb-8">
-              Répartition géographique
-            </h3>
+          <div className="relative p-8 rounded-2xl bg-gradient-to-br from-white/[0.02] to-transparent border border-white/[0.05]">
             <div className="grid md:grid-cols-2 gap-12">
               <div>
-                <h4 className="text-lg text-white/80 mb-4">Top 5 pays</h4>
+                <h4 className="text-lg text-white/80 mb-6">Top 10 pays</h4>
                 <div className="space-y-3">
                   {[
-                    { country: "France", percentage: 62.7 },
-                    { country: "Belgique", percentage: 3.9 },
-                    { country: "Sénégal", percentage: 3.5 },
-                    { country: "Canada", percentage: 3.0 },
+                    { country: "France", percentage: 63.2 },
+                    { country: "Belgique", percentage: 8.1 },
+                    { country: "Canada", percentage: 5.3 },
+                    { country: "Côte d'Ivoire", percentage: 4.7 },
+                    { country: "Maroc", percentage: 3.9 },
+                    { country: "Algérie", percentage: 3.2 },
                     { country: "Suisse", percentage: 2.8 }
                   ].map((item, i) => (
                     <div key={i} className="flex items-center gap-4">
@@ -352,61 +350,16 @@ export default function HighValueSchemaSection() {
         <div className={`text-center mt-24 transition-all duration-1200 delay-1000 ease-out ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
         }`}>
-          <button
-            onClick={() => {
-              const viralElement = document.getElementById('mecanisme');
-              if (viralElement) {
-                viralElement.scrollIntoView({ behavior: 'smooth' });
-              }
-            }}
-            className="group relative inline-flex items-center gap-4 px-10 py-5 overflow-hidden rounded-full transition-all duration-500"
-          >
-            {/* Background gradient animation */}
-            <div className="absolute inset-0 bg-gradient-to-r from-electric-blue via-electric-cyan to-electric-purple opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            <div className="absolute inset-0 bg-white/[0.05] backdrop-blur-sm border border-white/10 group-hover:border-transparent rounded-full transition-all duration-500" />
-            
-            {/* Content */}
-            <span className="relative text-lg text-white/70 group-hover:text-white transition-colors duration-500">
-              Découvrir notre moteur de croissance
+          <div className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-electric-blue/20 to-electric-purple/20 border border-white/10 hover:border-white/20 transition-all duration-500 cursor-pointer group">
+            <span className="text-white/80 group-hover:text-white transition-colors">
+              Voir notre stratégie de monétisation
             </span>
-            <svg className="relative w-5 h-5 text-white/50 group-hover:text-white transition-all duration-500 group-hover:translate-x-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            <svg className="w-5 h-5 text-white/60 group-hover:text-white group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
-          </button>
+          </div>
         </div>
       </div>
-
-      <style jsx>{`
-        @keyframes gradient {
-          0%, 100% { transform: translateX(0%) translateY(0%) rotate(0deg) scale(1); }
-          25% { transform: translateX(-5%) translateY(10%) rotate(1deg) scale(1.1); }
-          50% { transform: translateX(5%) translateY(5%) rotate(-1deg) scale(1); }
-          75% { transform: translateX(0%) translateY(-5%) rotate(1deg) scale(1.1); }
-        }
-        
-        @keyframes float {
-          0%, 100% { transform: translateY(0px) scale(1); }
-          50% { transform: translateY(-30px) scale(1.05); }
-        }
-        
-        @keyframes float-delayed {
-          0%, 100% { transform: translateY(0px) scale(1); }
-          50% { transform: translateY(-40px) scale(1.08); }
-        }
-        
-        .animate-gradient {
-          animation: gradient 20s ease infinite;
-        }
-        
-        .animate-float {
-          animation: float 6s ease-in-out infinite;
-        }
-        
-        .animate-float-delayed {
-          animation: float-delayed 8s ease-in-out infinite;
-          animation-delay: 1s;
-        }
-      `}</style>
     </section>
   );
 }

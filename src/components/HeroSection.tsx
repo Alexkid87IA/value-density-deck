@@ -67,7 +67,7 @@ export default function HeroSection({ onNavigate }: HeroSectionProps) {
         <div className="max-w-5xl">
           {/* Phase indicator */}
           <div 
-            className={`mb-8 transition-all duration-1200 ease-out ${
+            className={`mb-8 transition-all duration-1000 ease-out ${
               isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
             }`}
           >
@@ -93,7 +93,7 @@ export default function HeroSection({ onNavigate }: HeroSectionProps) {
             </span>
           </h1>
 
-          {/* Context - L'ÉCOSYSTÈME */}
+          {/* Context - L'ÉCOSYSTÈME AJUSTÉ */}
           <div 
             className={`mt-12 mb-8 transition-all duration-1200 delay-300 ease-out ${
               isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
@@ -102,9 +102,9 @@ export default function HeroSection({ onNavigate }: HeroSectionProps) {
             <p className="text-xl md:text-2xl text-white/70 font-light leading-relaxed max-w-4xl">
               <span className="text-white/90">High Value</span> n'est pas un média de plus. 
               C'est un écosystème complet : production vidéo, interviews premium, brand content, 
-              formations, conseil et communauté. 
+              newsletter et monétisation multi-canal. 
               <span className="block mt-3 text-white/50">
-                15 ans d'expérience média. 6 sources de revenus diversifiées. Pas de dépendance à un seul modèle.
+                15 ans d'expérience média. 3 sources de revenus diversifiées. Pas de dépendance à un seul modèle.
               </span>
             </p>
           </div>
@@ -145,26 +145,25 @@ export default function HeroSection({ onNavigate }: HeroSectionProps) {
 
             {/* Objectifs */}
             <p className="text-base md:text-lg text-white/60 font-light leading-relaxed">
-              Nous levons <span className="text-white/90 font-normal">400k€</span> pour structurer l'écosystème :
-              passer à 10 personnes, professionnaliser la production, lancer les 6 verticales de revenus.
+              Nous levons <span className="text-white/90 font-normal">300k€</span> pour structurer l'écosystème :
+              passer à 10 personnes, professionnaliser la production, lancer les 3 verticales de revenus.
               <span className="block mt-2 text-white/40">
                 Objectif : 46k€ MRR d'ici septembre 2026. Break-even en 10-12 mois.
               </span>
             </p>
           </div>
 
-          {/* L'écosystème détaillé */}
+          {/* L'écosystème détaillé - SANS FORMATION/COMMUNAUTÉ */}
           <div 
-            className={`grid md:grid-cols-5 gap-4 mb-12 transition-all duration-1200 delay-600 ease-out ${
+            className={`grid md:grid-cols-4 gap-4 mb-12 transition-all duration-1200 delay-600 ease-out ${
               isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
             }`}
           >
             {[
-              { name: "Contenu", items: "Site, newsletter, RS" },
+              { name: "Contenu", items: "Site, newsletter premium, RS" },
               { name: "Production", items: "Vidéos, interviews, podcasts" },
               { name: "Services", items: "Brand content, conseil" },
-              { name: "Communauté", items: "Skool, événements" },
-              { name: "Formation", items: "Masterclass, coaching" }
+              { name: "Événements", items: "Lives, webinars, rencontres" }
             ].map((vertical, index) => (
               <div key={index} className="p-4 rounded-lg bg-white/[0.02] border border-white/10">
                 <h4 className="text-sm font-medium text-white/70 mb-1">{vertical.name}</h4>
@@ -197,71 +196,40 @@ export default function HeroSection({ onNavigate }: HeroSectionProps) {
             >
               <div className="relative px-10 py-4">
                 <div className="absolute inset-0 bg-blue-500/10 backdrop-blur-sm border border-blue-500/20 rounded-lg transition-all duration-700 group-hover:bg-blue-500/15 group-hover:border-blue-500/30" />
-                <span className="relative z-10 text-blue-400/90 font-light tracking-wide group-hover:text-blue-400 transition-colors duration-500">
-                  Voir la roadmap 12 mois
+                <span className="relative z-10 text-blue-400/90 font-light tracking-wide group-hover:text-blue-300 transition-colors duration-500">
+                  Voir la roadmap 2025
                 </span>
               </div>
             </button>
           </div>
-        </div>
-      </div>
 
-      {/* Bottom section - Minimaliste */}
-      <div className="absolute bottom-0 left-0 right-0">
-        <div className="border-t border-white/5">
-          <div className="max-w-7xl mx-auto px-8 py-6">
-            <div className="flex items-center justify-between">
-              {/* Left */}
-              <div className="text-sm text-white/40">
-                <span className="text-white/60">Phase actuelle :</span> Post-test, pré-scaling
+          {/* Bottom metrics */}
+          <div 
+            className={`mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 transition-all duration-1200 delay-800 ease-out ${
+              isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+            }`}
+          >
+            {[
+              { value: "10M", label: "impressions/mois" },
+              { value: "4-6%", label: "taux d'engagement" },
+              { value: "46k€", label: "MRR objectif" },
+              { value: "10-12", label: "mois to break-even" }
+            ].map((metric, index) => (
+              <div key={index} className="text-center">
+                <div className="text-2xl font-light text-white/80">{metric.value}</div>
+                <div className="text-xs text-white/40 mt-1">{metric.label}</div>
               </div>
-              
-              {/* Center */}
-              <div className="text-xs text-white/20 font-light tracking-[0.3em] hidden md:block">
-                HIGH VALUE · ÉCOSYSTÈME MÉDIA
-              </div>
-              
-              {/* Right */}
-              <div className="text-sm text-white/40">
-                <span className="text-white/60">Runway visé :</span> 18 mois
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>
 
-      {/* Floating particles - très subtiles */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(3)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute rounded-full"
-            style={{
-              width: '2px',
-              height: '2px',
-              background: `radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%)`,
-              left: `${30 + i * 20}%`,
-              top: `${20 + i * 20}%`,
-              animation: `float-subtle ${30 + i * 5}s infinite ease-in-out`,
-              animationDelay: `${i * 3}s`
-            }}
-          />
-        ))}
+      {/* Scroll indicator */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+        <div className="w-6 h-10 border border-white/20 rounded-full flex items-start justify-center p-2">
+          <div className="w-1 h-2 bg-white/40 rounded-full animate-bounce" />
+        </div>
       </div>
-
-      <style jsx>{`
-        @keyframes float-subtle {
-          0%, 100% { 
-            transform: translate(0, 0) scale(1);
-          }
-          33% { 
-            transform: translate(15px, -20px) scale(1.1);
-          }
-          66% { 
-            transform: translate(-15px, 15px) scale(0.9);
-          }
-        }
-      `}</style>
     </section>
   );
 }

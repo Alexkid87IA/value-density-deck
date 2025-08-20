@@ -42,59 +42,46 @@ export default function BusinessModelSection() {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  // Revenue motors data RÉALISTES
+  // Revenue motors data RÉALISTES - SANS SKOOL
   const revenueMotors = [
     {
       name: "Brand content & Collabs",
-      percentage: 52,
-      revenue: "24k€/mois",
+      percentage: 61,
+      revenue: "28k€/mois",
       margin: 70,
-      details: "2-3 ops/mois × 5-7k€",
+      details: "4-5 ops/mois × 5-7k€",
       breakdown: [
-        { type: "Brand content", count: "2-3/mois", price: "5-7k€", total: "15k€" },
-        { type: "Interview collab", count: "2-3/mois", price: "3k€", total: "9k€" }
+        { type: "Brand content", count: "3-4/mois", price: "5-7k€", total: "20k€" },
+        { type: "Interview collab", count: "2-3/mois", price: "3k€", total: "8k€" }
       ],
       color: "rgba(56, 189, 248, 0.5)"
     },
     {
-      name: "Communauté Skool",
-      percentage: 20,
-      revenue: "9k€/mois",
-      margin: 85,
-      details: "150 membres × 60€/mois",
+      name: "Newsletter & Site Premium",
+      percentage: 22,
+      revenue: "10k€/mois",
+      margin: 80,
+      details: "1000 abonnés × 7.90€ + pub",
       breakdown: [
-        { type: "Accès communauté Roger", desc: "Lives hebdo + ressources" },
-        { type: "Coaching groupe", desc: "Sessions mensuelles" },
-        { type: "Network exclusif", desc: "Mise en relation membres" }
+        { type: "Newsletter premium", count: "1000", price: "7.90€", total: "7.9k€" },
+        { type: "Programmatique site", visitors: "300k", cpm: "4€", total: "1.5k€" },
+        { type: "Sponsors newsletter", count: "2/mois", total: "0.6k€" }
       ],
       color: "rgba(125, 211, 252, 0.5)"
     },
     {
       name: "Monétisation RS",
-      percentage: 13,
-      revenue: "6k€/mois",
+      percentage: 17,
+      revenue: "8k€/mois",
       margin: 95,
       details: "TikTok + Facebook + YouTube",
       breakdown: [
-        { type: "Facebook", views: "4M vues", cpm: "0.7€", total: "2.8k€" },
-        { type: "TikTok", views: "5M vues", cpm: "0.4€", total: "2k€" },
-        { type: "YouTube", views: "200k vues", cpm: "2€", total: "0.4k€" },
-        { type: "Sponsors posts", count: "2/mois", total: "0.8k€" }
+        { type: "Facebook", views: "5M vues", cpm: "0.8€", total: "4k€" },
+        { type: "TikTok", views: "6M vues", cpm: "0.5€", total: "3k€" },
+        { type: "YouTube", views: "300k vues", cpm: "2.5€", total: "0.75k€" },
+        { type: "Sponsors posts", count: "1/mois", total: "0.25k€" }
       ],
       color: "rgba(56, 189, 248, 0.3)"
-    },
-    {
-      name: "Newsletter & Site",
-      percentage: 15,
-      revenue: "7k€/mois",
-      margin: 80,
-      details: "Abonnements + programmatique",
-      breakdown: [
-        { type: "Newsletter premium", count: "500", price: "7.90€", total: "4k€" },
-        { type: "Programmatique site", visitors: "250k", cpm: "3€", total: "2.5k€" },
-        { type: "Sponsors newsletter", count: "2/mois", total: "0.5k€" }
-      ],
-      color: "rgba(125, 211, 252, 0.3)"
     }
   ];
 
@@ -186,7 +173,7 @@ export default function BusinessModelSection() {
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
         }`}>
           <h2 className="text-5xl md:text-6xl lg:text-7xl font-light leading-[1.1] text-white/90 max-w-5xl">
-            6 sources de revenus pour 46k€/mois
+            3 sources de revenus pour 46k€/mois
           </h2>
         </div>
 
@@ -197,8 +184,8 @@ export default function BusinessModelSection() {
           <p className="text-xl md:text-2xl text-white/60 font-light leading-relaxed max-w-4xl">
             Un modèle <span className="text-white/80">diversifié et réaliste</span> qui ne dépend pas d'une seule source.
             <span className="block mt-4">
-              Brand content pour le cash-flow immédiat, communauté pour la récurrence, 
-              monétisation des 10M d'impressions existantes.
+              Brand content pour le cash-flow immédiat, newsletter premium pour la récurrence, 
+              monétisation optimisée des 10M d'impressions existantes.
             </span>
           </p>
         </div>
@@ -207,126 +194,89 @@ export default function BusinessModelSection() {
         <div className={`mb-24 transition-all duration-1200 delay-400 ease-out ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
         }`}>
-          <h3 className="text-lg font-light text-white/40 mb-12 tracking-[0.2em] text-center md:text-left">
-            MIX REVENUS À 12 MOIS
-          </h3>
-          
-          <div className="relative">
-            {/* Donut chart container */}
-            <div className="relative mx-auto mb-12 md:mb-16" style={{ maxWidth: '320px' }}>
-              <svg viewBox="0 0 260 260" className="w-full transform -rotate-90">
-                <defs>
-                  <filter id="glow">
-                    <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
-                    <feMerge>
-                      <feMergeNode in="coloredBlur"/>
-                      <feMergeNode in="SourceGraphic"/>
-                    </feMerge>
-                  </filter>
-                  <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="rgba(56, 189, 248, 0.8)" />
-                    <stop offset="100%" stopColor="rgba(56, 189, 248, 0.3)" />
-                  </linearGradient>
-                  <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="rgba(125, 211, 252, 0.8)" />
-                    <stop offset="100%" stopColor="rgba(125, 211, 252, 0.3)" />
-                  </linearGradient>
-                </defs>
-                
-                {/* Background circle */}
-                <circle
-                  cx="130"
-                  cy="130"
-                  r="100"
-                  fill="none"
-                  stroke="rgba(255,255,255,0.03)"
-                  strokeWidth="40"
-                />
-                
-                {/* Revenue segments */}
+          <div className="grid md:grid-cols-2 gap-12">
+            {/* Donut chart */}
+            <div className="relative">
+              <svg width="300" height="300" viewBox="0 0 220 220" className="mx-auto">
                 {donutSegments.map((segment, index) => (
-                  <g key={index}>
-                    <circle
-                      cx="130"
-                      cy="130"
-                      r={segment.path.radius}
-                      fill="none"
-                      stroke={index % 2 === 0 ? "url(#gradient1)" : "url(#gradient2)"}
-                      strokeWidth="40"
-                      strokeDasharray={segment.path.strokeDasharray}
-                      strokeDashoffset={segment.path.strokeDashoffset}
-                      className={`transition-all duration-700 cursor-pointer ${
-                        hoveredMotor === index ? 'opacity-100' : hoveredMotor !== null ? 'opacity-40' : 'opacity-70'
-                      }`}
-                      filter={hoveredMotor === index ? "url(#glow)" : ""}
-                      onMouseEnter={() => setHoveredMotor(index)}
-                      onMouseLeave={() => setHoveredMotor(null)}
-                      style={{
-                        transform: hoveredMotor === index ? 'scale(1.02)' : 'scale(1)',
-                        transformOrigin: '130px 130px'
-                      }}
-                    />
-                  </g>
+                  <circle
+                    key={index}
+                    cx="110"
+                    cy="110"
+                    r={segment.path.radius}
+                    fill="none"
+                    stroke={segment.color}
+                    strokeWidth="40"
+                    strokeDasharray={segment.path.strokeDasharray}
+                    strokeDashoffset={segment.path.strokeDashoffset}
+                    transform="rotate(-90 110 110)"
+                    className="transition-all duration-700"
+                    style={{
+                      filter: hoveredMotor === index ? 'brightness(1.3)' : 'brightness(1)',
+                      cursor: 'pointer'
+                    }}
+                    onMouseEnter={() => setHoveredMotor(index)}
+                    onMouseLeave={() => setHoveredMotor(null)}
+                  />
                 ))}
+                {/* Center text */}
+                <text x="110" y="105" textAnchor="middle" className="fill-white/90 text-3xl font-light">
+                  46k€
+                </text>
+                <text x="110" y="125" textAnchor="middle" className="fill-white/50 text-sm">
+                  /mois
+                </text>
               </svg>
               
-              {/* Center content */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-center transform rotate-90">
-                  <div className="text-3xl md:text-4xl font-light text-white/90">46k€</div>
-                  <div className="text-xs md:text-sm text-white/40 font-light mt-1 tracking-wider">MRR</div>
-                </div>
+              {/* Legend */}
+              <div className="mt-8 space-y-3">
+                {revenueMotors.map((motor, index) => (
+                  <div 
+                    key={index}
+                    className="flex items-center justify-between p-3 rounded-lg bg-white/[0.02] hover:bg-white/[0.04] transition-all cursor-pointer"
+                    onMouseEnter={() => setHoveredMotor(index)}
+                    onMouseLeave={() => setHoveredMotor(null)}
+                  >
+                    <div className="flex items-center gap-3">
+                      <div 
+                        className="w-3 h-3 rounded-full"
+                        style={{ backgroundColor: motor.color }}
+                      />
+                      <span className="text-sm text-white/70">{motor.name}</span>
+                    </div>
+                    <span className="text-sm text-white/90 font-light">{motor.revenue}</span>
+                  </div>
+                ))}
               </div>
             </div>
 
-            {/* Revenue details */}
-            <div className="space-y-4">
+            {/* Details panel */}
+            <div className="space-y-6">
               {revenueMotors.map((motor, index) => (
-                <div
+                <div 
                   key={index}
-                  className={`group relative overflow-hidden rounded-lg transition-all duration-700 cursor-pointer ${
-                    hoveredMotor === index ? 'bg-white/[0.05] scale-[1.01]' : 'bg-white/[0.02]'
+                  className={`p-6 rounded-lg bg-white/[0.02] border transition-all duration-500 ${
+                    hoveredMotor === index 
+                      ? 'border-white/20 bg-white/[0.04]' 
+                      : 'border-white/10'
                   }`}
-                  onMouseEnter={() => setHoveredMotor(index)}
-                  onMouseLeave={() => setHoveredMotor(null)}
                 >
-                  <div className="p-6">
-                    {/* Header */}
-                    <div className="flex items-center justify-between mb-4">
-                      <div>
-                        <h4 className="text-lg text-white/90">{motor.name}</h4>
-                        <p className="text-sm text-white/50 mt-1">{motor.details}</p>
+                  <div className="flex justify-between items-start mb-4">
+                    <h3 className="text-lg text-white/80">{motor.name}</h3>
+                    <span className="text-xs text-white/40 px-2 py-1 rounded bg-white/5">
+                      Marge {motor.margin}%
+                    </span>
+                  </div>
+                  <p className="text-sm text-white/50 mb-4">{motor.details}</p>
+                  <div className="space-y-2">
+                    {motor.breakdown.map((item, i) => (
+                      <div key={i} className="flex justify-between text-xs">
+                        <span className="text-white/40">
+                          {item.type} {item.count && `(${item.count})`}
+                        </span>
+                        <span className="text-white/60">{item.total}</span>
                       </div>
-                      <div className="text-right">
-                        <div className="text-2xl font-light text-white/80">{motor.percentage}%</div>
-                        <div className="text-sm text-white/60">{motor.revenue}</div>
-                      </div>
-                    </div>
-                    
-                    {/* Breakdown - shown on hover */}
-                    {hoveredMotor === index && motor.breakdown && (
-                      <div className="pt-4 border-t border-white/10 animate-fadeIn">
-                        <div className="space-y-2">
-                          {motor.breakdown.map((item, i) => (
-                            <div key={i} className="flex justify-between items-center text-sm">
-                              <div className="text-white/50">
-                                {item.type}
-                                {item.count && <span className="text-white/30"> • {item.count}</span>}
-                                {item.price && <span className="text-white/30"> × {item.price}</span>}
-                                {item.desc && <span className="text-white/30"> : {item.desc}</span>}
-                              </div>
-                              <div className="text-white/70">
-                                {item.total || item.views || ''}
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                        <div className="mt-3 pt-3 border-t border-white/10 flex justify-between items-center">
-                          <span className="text-xs text-white/40">Marge</span>
-                          <span className="text-sm text-white/70">{motor.margin}%</span>
-                        </div>
-                      </div>
-                    )}
+                    ))}
                   </div>
                 </div>
               ))}
@@ -334,60 +284,38 @@ export default function BusinessModelSection() {
           </div>
         </div>
 
-        {/* Growth trajectory */}
-        <div className={`mb-24 transition-all duration-1200 delay-600 ease-out ${
+        {/* Financial projections */}
+        <div className={`mb-16 transition-all duration-1200 delay-600 ease-out ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
         }`}>
-          <h3 className="text-lg font-light text-white/40 mb-12 tracking-[0.2em]">TRAJECTOIRE VERS LA RENTABILITÉ</h3>
-          
-          <div className="relative">
-            {/* Timeline line */}
-            <div className="absolute top-12 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-            
-            <div className="grid grid-cols-3 gap-8">
-              {projections.map((proj, index) => (
-                <div key={index} className="relative group">
-                  {/* Node */}
-                  <div className="relative text-center mb-8">
-                    <div className="w-24 h-24 mx-auto relative">
-                      <div className="absolute inset-0 bg-white/[0.02] rounded-full transition-all duration-700 group-hover:bg-white/[0.05]" />
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <span className="text-lg text-white/60 font-light">{proj.period}</span>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  {/* Metrics */}
-                  <div className="space-y-4">
-                    <div className="text-center">
-                      <div className="text-xs text-white/40 mb-1">MRR</div>
-                      <div className="text-2xl text-white/90 font-light">{proj.mrr}</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-xs text-white/40 mb-1">Coûts</div>
-                      <div className="text-xl text-white/60 font-light">{proj.costs}</div>
-                    </div>
-                    <div className="text-center">
-                      <div className={`text-sm font-light ${
-                        proj.status === 'Rentable' || proj.status === 'Profitable' 
-                          ? 'text-electric-blue/80' 
-                          : 'text-white/50'
-                      }`}>
-                        {proj.status}
-                      </div>
-                    </div>
-                    <p className="text-xs text-white/40 font-light text-center mt-4">
-                      {proj.desc}
-                    </p>
-                  </div>
+          <h3 className="text-sm font-light text-white/40 mb-8 tracking-[0.2em]">PROJECTIONS FINANCIÈRES</h3>
+          <div className="grid md:grid-cols-3 gap-6">
+            {projections.map((proj, index) => (
+              <div 
+                key={index}
+                className="relative p-6 rounded-lg bg-white/[0.02] border border-white/10 hover:border-white/20 transition-all duration-500"
+              >
+                <div className="text-sm text-white/40 mb-2">{proj.period}</div>
+                <div className="text-3xl font-light text-white/90 mb-1">{proj.mrr}</div>
+                <div className="text-sm text-white/50 mb-3">MRR</div>
+                <div className="flex justify-between text-xs text-white/40">
+                  <span>Coûts: {proj.costs}</span>
+                  <span className={`${
+                    proj.status === 'Rentable' || proj.status === 'Profitable' 
+                      ? 'text-green-400' 
+                      : 'text-yellow-400'
+                  }`}>
+                    {proj.status}
+                  </span>
                 </div>
-              ))}
-            </div>
+                <p className="text-xs text-white/30 mt-2">{proj.desc}</p>
+              </div>
+            ))}
           </div>
         </div>
 
-        {/* Unit economics */}
-        <div className={`grid md:grid-cols-4 gap-6 mb-20 transition-all duration-1200 delay-800 ease-out ${
+        {/* Key metrics */}
+        <div className={`grid grid-cols-2 md:grid-cols-4 gap-6 mb-16 transition-all duration-1200 delay-800 ease-out ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
         }`}>
           <div className="p-6 rounded-lg bg-white/[0.02] border border-white/10 text-center">
@@ -420,11 +348,11 @@ export default function BusinessModelSection() {
           <div className="grid md:grid-cols-3 gap-8">
             <div>
               <h4 className="text-base text-white/80 mb-2">Cash immédiat</h4>
-              <p className="text-sm text-white/50">Brand content dès le mois 1 : 10-15k€/mois garantis.</p>
+              <p className="text-sm text-white/50">Brand content dès le mois 1 : 15-20k€/mois garantis.</p>
             </div>
             <div>
               <h4 className="text-base text-white/80 mb-2">Récurrence forte</h4>
-              <p className="text-sm text-white/50">Skool + Newsletter = 65% de revenus récurrents.</p>
+              <p className="text-sm text-white/50">Newsletter premium = revenus prévisibles et croissants.</p>
             </div>
             <div>
               <h4 className="text-base text-white/80 mb-2">Coûts maîtrisés</h4>
@@ -437,70 +365,11 @@ export default function BusinessModelSection() {
         <div className={`text-center transition-all duration-1200 delay-1200 ease-out ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
         }`}>
-          <button
-            onClick={() => {
-              const roadmapElement = document.getElementById('roadmap');
-              if (roadmapElement) {
-                roadmapElement.scrollIntoView({ behavior: 'smooth' });
-              }
-            }}
-            className="group inline-flex items-center gap-4 text-white/60 hover:text-white/90 transition-all duration-500"
-          >
-            <span className="text-sm font-light tracking-wider">Voir notre plan d'exécution</span>
-            <svg 
-              className="w-4 h-4 transition-transform duration-500 group-hover:translate-x-2" 
-              fill="none" 
-              viewBox="0 0 24 24" 
-              stroke="currentColor"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </button>
+          <p className="text-sm text-white/40 mb-4">
+            Modèle validé sur 3 mois • Premiers revenus générés • Prêt à scaler
+          </p>
         </div>
       </div>
-
-      {/* Floating particles */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(25)].map((_, i) => (
-          <div
-            key={i}
-            className={`absolute rounded-full transition-all duration-1000 ${
-              isVisible ? 'opacity-100' : 'opacity-0'
-            }`}
-            style={{
-              width: `${1 + Math.random() * 2}px`,
-              height: `${1 + Math.random() * 2}px`,
-              background: `radial-gradient(circle, rgba(255,255,255,${0.1 + Math.random() * 0.2}) 0%, transparent 70%)`,
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animation: `drift ${30 + Math.random() * 20}s infinite`,
-              animationDelay: `${i * 0.2}s`
-            }}
-          />
-        ))}
-      </div>
-
-      <style jsx>{`
-        @keyframes drift {
-          0%, 100% { 
-            transform: translate(0, 0) scale(1);
-            opacity: 0.1;
-          }
-          50% { 
-            transform: translate(${Math.random() * 30 - 15}px, ${Math.random() * 30 - 15}px) scale(1.5);
-            opacity: 0.3;
-          }
-        }
-        
-        @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(-5px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .animate-fadeIn {
-          animation: fadeIn 0.3s ease-out;
-        }
-      `}</style>
     </section>
   );
 }

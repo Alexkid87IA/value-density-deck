@@ -7,7 +7,7 @@ export default function MetricsSection() {
   const [animatedValues, setAnimatedValues] = useState({
     impressions: 0,
     followers: 0,
-    members: 0,
+    subscribers: 0,
     revenue: 0,
     brands: 0
   });
@@ -34,7 +34,7 @@ export default function MetricsSection() {
     return () => observer.disconnect();
   }, []);
 
-  // Animate numbers when visible - VRAIS CHIFFRES
+  // Animate numbers when visible - VRAIS CHIFFRES AJUSTÉS
   const animateNumbers = () => {
     const duration = 2000;
     const steps = 60;
@@ -43,9 +43,9 @@ export default function MetricsSection() {
     const targets = {
       impressions: 30, // 30M impressions en 12 mois
       followers: 400, // 400k followers totaux
-      members: 700, // 700 membres payants (Skool + Newsletter)
+      subscribers: 1000, // 1000 abonnés newsletter premium
       revenue: 46, // 46k€ MRR
-      brands: 24 // 24 collaborations/an
+      brands: 36 // 36 collaborations/an (3/mois)
     };
 
     let currentStep = 0;
@@ -55,11 +55,11 @@ export default function MetricsSection() {
       const easeOutQuad = 1 - (1 - progress) * (1 - progress);
       
       setAnimatedValues({
-        impressions: Math.floor(targets.impressions * easeOutQuad),
-        followers: Math.floor(targets.followers * easeOutQuad),
-        members: Math.floor(targets.members * easeOutQuad),
-        revenue: Math.floor(targets.revenue * easeOutQuad),
-        brands: Math.floor(targets.brands * easeOutQuad)
+        impressions: Math.round(targets.impressions * easeOutQuad),
+        followers: Math.round(targets.followers * easeOutQuad),
+        subscribers: Math.round(targets.subscribers * easeOutQuad),
+        revenue: Math.round(targets.revenue * easeOutQuad),
+        brands: Math.round(targets.brands * easeOutQuad)
       });
 
       if (currentStep >= steps) {
@@ -84,31 +84,35 @@ export default function MetricsSection() {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  // Metrics data RÉALISTES
-  const metrics = [
+  // KPIs data - AJUSTÉS SANS SKOOL
+  const kpis = [
     {
-      kpi: "Impressions / mois",
+      kpi: "Impressions totales",
       current: "10M",
+      currentNote: "(par mois)",
       target: `${animatedValues.impressions}M`,
-      rationale: "TikTok, Facebook, Instagram + nouveaux canaux",
+      targetNote: "(en 12 mois)",
+      rationale: "10M actuels × 3 = objectif réaliste",
       progress: 33,
       color: "from-electric-blue to-electric-cyan"
     },
     {
-      kpi: "Communauté totale",
+      kpi: "Followers totaux",
       current: "120k",
+      currentNote: "(Instagram)",
       target: `${animatedValues.followers}k`,
-      rationale: "Réactivation Facebook + croissance organique",
+      targetNote: "(multi-plateformes)",
+      rationale: "+280k en 12 mois via growth organique",
       progress: 30,
       color: "from-electric-cyan to-electric-blue"
     },
     {
-      kpi: "Membres payants",
+      kpi: "Abonnés premium",
       current: "0",
       currentNote: "(lancement)",
-      target: `${animatedValues.members}`,
-      targetNote: "(Skool + Newsletter)",
-      rationale: "150 Skool × 60€ + 550 Newsletter × 7.90€",
+      target: `${animatedValues.subscribers}`,
+      targetNote: "(Newsletter)",
+      rationale: "1000 × 7.90€ = 7.9k€ MRR",
       progress: 0,
       color: "from-electric-blue to-electric-cyan"
     },
@@ -116,7 +120,7 @@ export default function MetricsSection() {
       kpi: "MRR objectif",
       current: "0€",
       target: `${animatedValues.revenue}k€`,
-      rationale: "6 sources de revenus diversifiées",
+      rationale: "3 sources de revenus diversifiées",
       progress: 0,
       color: "from-electric-cyan to-electric-blue"
     },
@@ -125,7 +129,7 @@ export default function MetricsSection() {
       current: "0",
       target: `${animatedValues.brands}`,
       targetNote: "ops/an",
-      rationale: "2-3 par mois × 5-7k€ ticket moyen",
+      rationale: "3-4 par mois × 7k€ ticket moyen",
       progress: 0,
       color: "from-electric-blue to-electric-cyan"
     },
@@ -163,27 +167,10 @@ export default function MetricsSection() {
           className="absolute inset-0 opacity-20"
           style={{
             background: `
-              radial-gradient(circle at 20% 40%, rgba(56, 189, 248, 0.04) 0%, transparent 50%),
-              radial-gradient(circle at 80% 60%, rgba(125, 211, 252, 0.03) 0%, transparent 50%),
-              radial-gradient(circle at 50% 80%, rgba(56, 189, 248, 0.02) 0%, transparent 60%)
+              radial-gradient(circle at 30% 20%, rgba(56, 189, 248, 0.04) 0%, transparent 50%),
+              radial-gradient(circle at 70% 80%, rgba(125, 211, 252, 0.03) 0%, transparent 50%)
             `,
-            transform: `translate(${mousePos.x * 15}px, ${mousePos.y * 15}px)`,
-            transition: 'transform 2s cubic-bezier(0.23, 1, 0.32, 1)'
-          }}
-        />
-      </div>
-
-      {/* Data grid background */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div 
-          className="absolute inset-0 opacity-[0.02]"
-          style={{
-            backgroundImage: `
-              linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)
-            `,
-            backgroundSize: '50px 50px',
-            transform: `translate(${mousePos.x * 10}px, ${mousePos.y * 10}px)`,
+            transform: `translate(${mousePos.x * 20}px, ${mousePos.y * 20}px)`,
             transition: 'transform 2s cubic-bezier(0.23, 1, 0.32, 1)'
           }}
         />
@@ -192,115 +179,87 @@ export default function MetricsSection() {
       {/* Main content */}
       <div className="relative z-10 max-w-6xl mx-auto px-8">
         {/* Title */}
-        <div className={`mb-16 transition-all duration-1200 ease-out ${
+        <div className={`mb-20 transition-all duration-1200 ease-out ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
         }`}>
           <h2 className="text-5xl md:text-6xl lg:text-7xl font-light leading-[1.1] text-white/90 max-w-5xl">
-            Traction actuelle & objectifs 12 mois
+            Des métriques qui prouvent le modèle
           </h2>
         </div>
 
-        {/* Metrics table - Enhanced design */}
-        <div className={`mb-20 transition-all duration-1200 delay-200 ease-out ${
+        {/* KPIs Grid */}
+        <div className={`grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20 transition-all duration-1200 delay-200 ease-out ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
         }`}>
-          <div className="overflow-x-auto -mx-8 px-8">
-            <div className="min-w-[768px]">
-              {/* Table header */}
-              <div className="grid grid-cols-12 gap-4 mb-6 pb-4 border-b border-white/10">
-                <div className="col-span-4">
-                  <h3 className="text-xs font-light text-white/40 uppercase tracking-[0.2em]">MÉTRIQUE</h3>
+          {kpis.map((kpi, index) => (
+            <div 
+              key={index}
+              className="relative p-6 rounded-lg bg-white/[0.02] border border-white/10 hover:border-white/20 transition-all duration-500 hover:scale-[1.02]"
+            >
+              {/* KPI title */}
+              <h3 className="text-sm text-white/40 mb-4 tracking-wide">{kpi.kpi}</h3>
+              
+              {/* Current vs Target */}
+              <div className="flex justify-between items-end mb-4">
+                <div>
+                  <span className="text-2xl font-light text-white/60">{kpi.current}</span>
+                  {kpi.currentNote && (
+                    <span className="text-xs text-white/30 ml-1">{kpi.currentNote}</span>
+                  )}
                 </div>
-                <div className="col-span-2">
-                  <h3 className="text-xs font-light text-white/40 uppercase tracking-[0.2em]">Aujourd'hui</h3>
-                </div>
-                <div className="col-span-2">
-                  <h3 className="text-xs font-light text-white/40 uppercase tracking-[0.2em]">Objectif 12 mois</h3>
-                </div>
-                <div className="col-span-4">
-                  <h3 className="text-xs font-light text-white/40 uppercase tracking-[0.2em]">Stratégie</h3>
+                <div className="text-right">
+                  <span className={`text-3xl font-light text-transparent bg-clip-text bg-gradient-to-r ${kpi.color}`}>
+                    {kpi.target}
+                  </span>
+                  {kpi.targetNote && (
+                    <span className="text-xs text-white/30 ml-1">{kpi.targetNote}</span>
+                  )}
                 </div>
               </div>
-
-              {/* Metrics rows */}
-              {metrics.map((metric, index) => (
-                <div 
-                  key={index}
-                  className={`group grid grid-cols-12 gap-4 py-6 border-b border-white/5 hover:bg-white/[0.02] transition-all duration-500 -mx-4 px-4 rounded-lg ${
-                    isVisible ? 'opacity-100' : 'opacity-0'
-                  }`}
-                  style={{ transitionDelay: `${400 + index * 100}ms` }}
-                >
-                  {/* KPI name */}
-                  <div className="col-span-4">
-                    <h4 className="text-base text-white/80 font-light">{metric.kpi}</h4>
-                    {/* Progress bar for quantitative metrics */}
-                    {!metric.isQualitative && metric.progress > 0 && (
-                      <div className="mt-3 h-px bg-white/10 rounded-full overflow-hidden">
-                        <div 
-                          className={`h-full bg-gradient-to-r ${metric.color} transition-all duration-2000 ease-out`}
-                          style={{ 
-                            width: isVisible ? `${metric.progress}%` : '0%',
-                            transitionDelay: `${1000 + index * 100}ms`
-                          }}
-                        />
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Current value */}
-                  <div className="col-span-2">
-                    <div className="text-lg text-white/60 font-light">{metric.current}</div>
-                    {metric.currentNote && (
-                      <div className="text-xs text-white/30 mt-1">{metric.currentNote}</div>
-                    )}
-                  </div>
-
-                  {/* Target value */}
-                  <div className="col-span-2">
-                    <div className={`text-lg font-light ${
-                      metric.isQualitative ? 'text-electric-blue/70' : 'text-transparent bg-clip-text bg-gradient-to-r ' + metric.color
-                    }`}>
-                      {metric.target}
-                    </div>
-                    {metric.targetNote && (
-                      <div className="text-xs text-white/30 mt-1">{metric.targetNote}</div>
-                    )}
-                  </div>
-
-                  {/* Rationale */}
-                  <div className="col-span-4">
-                    <p className="text-sm text-white/40 font-light leading-relaxed">{metric.rationale}</p>
-                  </div>
+              
+              {/* Progress bar */}
+              {!kpi.isQualitative && (
+                <div className="h-1 bg-white/5 rounded-full overflow-hidden mb-3">
+                  <div 
+                    className={`h-full bg-gradient-to-r ${kpi.color} transition-all duration-1000`}
+                    style={{ 
+                      width: `${kpi.progress}%`,
+                      transitionDelay: `${index * 100}ms`
+                    }}
+                  />
                 </div>
-              ))}
+              )}
+              
+              {/* Rationale */}
+              <p className="text-xs text-white/40 font-light">{kpi.rationale}</p>
             </div>
-          </div>
+          ))}
         </div>
 
-        {/* Key insights */}
-        <div className={`grid md:grid-cols-2 gap-12 mb-20 transition-all duration-1200 delay-800 ease-out ${
+        {/* Comparative analysis */}
+        <div className={`grid md:grid-cols-2 gap-12 mb-20 transition-all duration-1200 delay-600 ease-out ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
         }`}>
-          <div>
-            <h3 className="text-lg font-light text-white/40 mb-8 tracking-[0.2em]">NOS FORCES</h3>
-            <ul className="space-y-6">
+          {/* Why we'll succeed */}
+          <div className="relative">
+            <h3 className="text-sm font-light text-white/40 mb-6 tracking-[0.2em]">POURQUOI NOUS RÉUSSIRONS</h3>
+            <ul className="space-y-4">
               <li className="flex items-start">
                 <span className="text-white/20 mr-3 mt-1">•</span>
                 <p className="text-sm text-white/60 font-light leading-relaxed">
-                  <span className="text-white/80">120k followers engagés</span> avec 4-6% d'engagement : une base solide pour monétiser.
+                  <span className="text-white/80">120k followers acquis en 3 mois</span> : preuve de la capacité d'exécution et de la pertinence du contenu.
                 </p>
               </li>
               <li className="flex items-start">
                 <span className="text-white/20 mr-3 mt-1">•</span>
                 <p className="text-sm text-white/60 font-light leading-relaxed">
-                  <span className="text-white/80">100% organique</span> : aucun euro dépensé en acquisition, pure création de valeur.
+                  <span className="text-white/80">10M impressions/mois</span> : audience massive déjà engagée et qualifiée.
                 </p>
               </li>
               <li className="flex items-start">
                 <span className="text-white/20 mr-3 mt-1">•</span>
                 <p className="text-sm text-white/60 font-light leading-relaxed">
-                  <span className="text-white/80">6 sources de revenus</span> : modèle diversifié et résilient dès le départ.
+                  <span className="text-white/80">3 sources de revenus</span> : modèle diversifié et résilient dès le départ.
                 </p>
               </li>
               <li className="flex items-start">
@@ -319,19 +278,15 @@ export default function MetricsSection() {
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
                   <span className="text-sm text-white/60">Brand content</span>
-                  <span className="text-lg text-white/90 font-light">24k€/mois</span>
+                  <span className="text-lg text-white/90 font-light">28k€/mois</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-white/60">Skool (communauté)</span>
-                  <span className="text-lg text-white/90 font-light">9k€/mois</span>
+                  <span className="text-sm text-white/60">Newsletter premium</span>
+                  <span className="text-lg text-white/90 font-light">10k€/mois</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-sm text-white/60">RS monétisés</span>
-                  <span className="text-lg text-white/90 font-light">6k€/mois</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-white/60">Newsletter & Site</span>
-                  <span className="text-lg text-white/90 font-light">7k€/mois</span>
+                  <span className="text-lg text-white/90 font-light">8k€/mois</span>
                 </div>
                 <div className="flex items-center justify-between pt-4 border-t border-white/10">
                   <span className="text-sm text-white/60">MRR total</span>
@@ -379,58 +334,11 @@ export default function MetricsSection() {
         <div className={`text-center transition-all duration-1200 delay-1200 ease-out ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
         }`}>
-          <button
-            onClick={() => {
-              const ctaElement = document.getElementById('cta');
-              if (ctaElement) {
-                ctaElement.scrollIntoView({ behavior: 'smooth' });
-              }
-            }}
-            className="group inline-flex items-center gap-4 text-white/60 hover:text-white/90 transition-all duration-500"
-          >
-            <span className="text-sm font-light tracking-wider">Investir dans un modèle qui fonctionne</span>
-            <svg 
-              className="w-4 h-4 transition-transform duration-500 group-hover:translate-x-2" 
-              fill="none" 
-              viewBox="0 0 24 24" 
-              stroke="currentColor"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </button>
+          <p className="text-sm text-white/40">
+            Objectifs conservateurs • Croissance organique • Modèle prouvé
+          </p>
         </div>
       </div>
-
-      {/* Floating data points */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(20)].map((_, i) => (
-          <div
-            key={i}
-            className={`absolute w-1 h-1 bg-white/20 rounded-full transition-all duration-1000 ${
-              isVisible ? 'opacity-100' : 'opacity-0'
-            }`}
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animation: `data-float ${15 + Math.random() * 10}s infinite`,
-              animationDelay: `${i * 0.2}s`
-            }}
-          />
-        ))}
-      </div>
-
-      <style jsx>{`
-        @keyframes data-float {
-          0%, 100% { 
-            transform: translate(0, 0) scale(1);
-            opacity: 0.2;
-          }
-          50% { 
-            transform: translate(${Math.random() * 20 - 10}px, ${Math.random() * 20 - 10}px) scale(1.5);
-            opacity: 0.4;
-          }
-        }
-      `}</style>
     </section>
   );
 }

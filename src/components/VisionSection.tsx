@@ -5,7 +5,7 @@ export default function VisionSection() {
   const [isVisible, setIsVisible] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
-  // Intersection Observer pour les animations au scroll
+  // Intersection Observer
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -41,29 +41,30 @@ export default function VisionSection() {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
+  // Les 3 blocs principaux - SANS SKOOL
   const blocks = [
     {
       title: "Le problème",
       points: [
-        "Les médias dépendent à 90% de la pub programmatique qui s'effondre.",
+        "Les médias classiques n'arrivent plus à être rentables.",
         "Les créateurs brûlent leur audience avec trop de sponsors.",
-        "Les communautés payantes restent des niches sans impact."
+        "Les newsletters restent sur des modèles économiques fragiles."
       ]
     },
     {
       title: "Notre solution",
       points: [
-        <><span className="text-white/90 font-normal">Un modèle hybride</span> : 6 sources de revenus équilibrées.</>,
-        <><span className="text-white/90 font-normal">Du contenu qui convertit</span> : brand content premium à 5-7k€.</>,
-        <><span className="text-white/90 font-normal">Une communauté qui paie</span> : Skool à 60€/mois avec Roger.</>
+        <><span className="text-white/90 font-normal">Un modèle hybride</span> : 3 sources de revenus équilibrées.</>,
+        <><span className="text-white/90 font-normal">Du contenu qui convertit</span> : brand content premium à 7-8k€.</>,
+        <><span className="text-white/90 font-normal">Une newsletter premium</span> : 1000 abonnés à 7.90€/mois.</>
       ]
     },
     {
       title: "L'objectif 2025",
       points: [
         <><span className="text-white/90 font-normal">46k€ MRR</span> en 12 mois (réaliste et atteignable).</>,
-        <><span className="text-white/90 font-normal">700 membres payants</span> sur 120k followers (0.6% de conversion).</>,
-        <><span className="text-white/90 font-normal">Break-even mois 10-12</span> avec 400k€ d'investissement.</>
+        <><span className="text-white/90 font-normal">1000 abonnés premium</span> sur 400k followers (0.25% de conversion).</>,
+        <><span className="text-white/90 font-normal">Break-even mois 10-12</span> avec 300k€ d'investissement.</>
       ]
     }
   ];
@@ -117,7 +118,7 @@ export default function VisionSection() {
         }`}>
           <p className="text-xl md:text-2xl text-white/60 font-light leading-relaxed max-w-4xl">
             High Value n'est pas une énième newsletter. C'est un <span className="text-white/80">écosystème média complet</span> qui 
-            combine contenus premium, communauté engagée et monétisation diversifiée.
+            combine contenus premium, audience engagée et monétisation diversifiée.
             <span className="block mt-4 text-white/70">
               Notre ambition : prouver qu'un média peut être rentable sans sacrifier la qualité ni l'éthique.
             </span>
@@ -170,13 +171,13 @@ export default function VisionSection() {
             <div className="group p-6 rounded-lg bg-white/[0.02] border border-white/10 hover:border-white/20 transition-all duration-500">
               <div className="text-2xl mb-4">💰</div>
               <h4 className="text-base text-white/80 font-normal mb-2">REVENUS DIVERSIFIÉS</h4>
-              <p className="text-sm text-white/50 font-light">Brand content, Skool, RS, newsletter : pas de dépendance unique.</p>
+              <p className="text-sm text-white/50 font-light">Brand content, Newsletter, RS : pas de dépendance unique.</p>
             </div>
             
             <div className="group p-6 rounded-lg bg-white/[0.02] border border-white/10 hover:border-white/20 transition-all duration-500">
               <div className="text-2xl mb-4">🚀</div>
               <h4 className="text-base text-white/80 font-normal mb-2">TRACK RECORD</h4>
-              <p className="text-sm text-white/50 font-light">Roger : 5 ans d'expérience média, déjà vendu 2 projets.</p>
+              <p className="text-sm text-white/50 font-light">Roger : 15 ans d'expérience média, déjà vendu 2 projets.</p>
             </div>
             
             <div className="group p-6 rounded-lg bg-white/[0.02] border border-white/10 hover:border-white/20 transition-all duration-500">
@@ -221,93 +222,82 @@ export default function VisionSection() {
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
         }`}>
           <h3 className="text-lg font-light text-white/40 mb-12 tracking-[0.2em] text-center">
-            EXÉCUTION EN 3 PHASES
+            FEUILLE DE ROUTE
           </h3>
           
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-white/[0.05] flex items-center justify-center">
-                <span className="text-white/40">1</span>
-              </div>
-              <h4 className="text-base text-white/70 mb-2">Mois 0-3</h4>
-              <p className="text-sm text-white/40">Lancer Skool + Newsletter payante. Premiers brand contents.</p>
-            </div>
-            <div className="text-center">
-              <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-white/[0.05] flex items-center justify-center">
-                <span className="text-white/40">2</span>
-              </div>
-              <h4 className="text-base text-white/70 mb-2">Mois 4-9</h4>
-              <p className="text-sm text-white/40">Monétiser RS. Scaler le brand content. 25k€ MRR.</p>
-            </div>
-            <div className="text-center">
-              <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-white/[0.05] flex items-center justify-center">
-                <span className="text-white/40">3</span>
-              </div>
-              <h4 className="text-base text-white/70 mb-2">Mois 10-12</h4>
-              <p className="text-sm text-white/40">Break-even. 46k€ MRR. Prêt pour la série A.</p>
+          <div className="relative">
+            {/* Timeline line */}
+            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-px bg-gradient-to-b from-white/20 via-white/10 to-transparent" />
+            
+            <div className="space-y-16">
+              {[
+                {
+                  phase: "Q3 2025",
+                  title: "Setup & Launch",
+                  points: ["Newsletter premium lancée", "3 premiers brand contents", "Équipe de 7 personnes"]
+                },
+                {
+                  phase: "Q4 2025",
+                  title: "Croissance",
+                  points: ["500 abonnés newsletter", "5 brand contents/mois", "Monétisation RS active"]
+                },
+                {
+                  phase: "Q1 2026",
+                  title: "Break-even",
+                  points: ["1000 abonnés", "46k€ MRR atteint", "Rentabilité confirmée"]
+                }
+              ].map((milestone, index) => (
+                <div key={index} className="relative">
+                  <div className={`flex items-center gap-8 ${
+                    index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'
+                  }`}>
+                    <div className="flex-1 text-right">
+                      {index % 2 === 0 && (
+                        <>
+                          <h4 className="text-lg text-white/80 mb-2">{milestone.title}</h4>
+                          <p className="text-sm text-white/40 mb-3">{milestone.phase}</p>
+                          <ul className="text-xs text-white/50 space-y-1">
+                            {milestone.points.map((point, i) => (
+                              <li key={i}>{point}</li>
+                            ))}
+                          </ul>
+                        </>
+                      )}
+                    </div>
+                    
+                    {/* Center dot */}
+                    <div className="relative z-10 w-4 h-4 bg-gradient-to-br from-electric-blue to-electric-cyan rounded-full shadow-lg shadow-electric-blue/50" />
+                    
+                    <div className="flex-1">
+                      {index % 2 !== 0 && (
+                        <>
+                          <h4 className="text-lg text-white/80 mb-2">{milestone.title}</h4>
+                          <p className="text-sm text-white/40 mb-3">{milestone.phase}</p>
+                          <ul className="text-xs text-white/50 space-y-1">
+                            {milestone.points.map((point, i) => (
+                              <li key={i}>{point}</li>
+                            ))}
+                          </ul>
+                        </>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
 
-        {/* CTA */}
+        {/* CTA final */}
         <div className={`text-center transition-all duration-1200 delay-1200 ease-out ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
         }`}>
-          <button
-            onClick={() => {
-              const ecosystemElement = document.getElementById('ecosystem');
-              if (ecosystemElement) {
-                ecosystemElement.scrollIntoView({ behavior: 'smooth' });
-              }
-            }}
-            className="group inline-flex items-center gap-4 text-white/60 hover:text-white/90 transition-all duration-500"
-          >
-            <span className="text-sm font-light tracking-wider">Découvrir notre écosystème de production</span>
-            <svg 
-              className="w-4 h-4 transition-transform duration-500 group-hover:translate-x-2" 
-              fill="none" 
-              viewBox="0 0 24 24" 
-              stroke="currentColor"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </button>
+          <p className="text-sm text-white/40 max-w-2xl mx-auto">
+            Nous avons l'audience, l'expertise et la vision. 
+            Il nous manque juste les moyens pour exécuter à grande échelle.
+          </p>
         </div>
       </div>
-
-      {/* Visuel galaxie - constellation d'étoiles */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(30)].map((_, i) => (
-          <div
-            key={i}
-            className={`absolute rounded-full transition-all duration-1000 ${
-              isVisible ? 'opacity-100' : 'opacity-0'
-            }`}
-            style={{
-              width: `${1 + Math.random() * 3}px`,
-              height: `${1 + Math.random() * 3}px`,
-              background: `radial-gradient(circle, rgba(255,255,255,${0.3 + Math.random() * 0.4}) 0%, transparent 70%)`,
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animation: `twinkle ${3 + Math.random() * 4}s infinite`,
-              animationDelay: `${i * 0.1}s`
-            }}
-          />
-        ))}
-      </div>
-
-      <style jsx>{`
-        @keyframes twinkle {
-          0%, 100% { 
-            opacity: 0.3;
-            transform: scale(1);
-          }
-          50% { 
-            opacity: 1;
-            transform: scale(1.2);
-          }
-        }
-      `}</style>
     </section>
   );
 }
