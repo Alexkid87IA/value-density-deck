@@ -54,7 +54,7 @@ export default function VisionSection() {
     {
       title: "Notre solution",
       points: [
-        <><span className="text-white/90 font-normal">Un modèle hybride</span> : 3 sources de revenus équilibrées.</>,
+        <><span className="text-white/90 font-normal">Un modèle optimisé</span> : 3 sources de revenus équilibrées.</>,
         <><span className="text-white/90 font-normal">Du contenu qui convertit</span> : brand content premium à 7-8k€.</>,
         <><span className="text-white/90 font-normal">Une newsletter premium</span> : 1000 abonnés à 7.90€/mois.</>
       ]
@@ -184,35 +184,6 @@ export default function VisionSection() {
               <div className="text-2xl mb-4">📊</div>
               <h4 className="text-base text-white/80 font-normal mb-2">RENTABILITÉ RAPIDE</h4>
               <p className="text-sm text-white/50 font-light">Break-even en 10-12 mois grâce au brand content immédiat.</p>
-            </div>
-          </div>
-        </div>
-
-        {/* Benchmarks réalistes */}
-        <div className={`relative my-32 transition-all duration-1200 delay-1000 ease-out ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-        }`}>
-          <div className="max-w-3xl mx-auto">
-            <h3 className="text-lg font-light text-white/40 mb-8 tracking-[0.2em] text-center">
-              BENCHMARKS MARCHÉ
-            </h3>
-            
-            <div className="grid grid-cols-3 gap-8 text-center">
-              <div>
-                <p className="text-sm text-white/40 mb-2">Brief.me</p>
-                <p className="text-lg text-white/70">50k€ MRR</p>
-                <p className="text-xs text-white/30">après 3 ans</p>
-              </div>
-              <div>
-                <p className="text-sm text-white/40 mb-2">Titiou Lecoq</p>
-                <p className="text-lg text-white/70">15k€ MRR</p>
-                <p className="text-xs text-white/30">2k abonnés</p>
-              </div>
-              <div>
-                <p className="text-sm text-white/40 mb-2">High Value</p>
-                <p className="text-lg text-transparent bg-clip-text bg-gradient-to-r from-electric-blue to-electric-cyan">46k€ MRR</p>
-                <p className="text-xs text-white/30">objectif 12 mois</p>
-              </div>
             </div>
           </div>
         </div>
